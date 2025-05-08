@@ -30,6 +30,7 @@ public class PossessCard
         handCardIDList = new List<int>(_DEFAULT_DECK_MAX);
         discardCardIDList = new List<int>(_DEFAULT_DECK_MAX);
 
+        // ‰ŠúèDİ’è
         for (int i = 0; i < 6; i++)
         {
             for (int j = 0; j < 2; j++)
@@ -93,6 +94,15 @@ public class PossessCard
         if (handCardIDList.Count <= handCount) return;
         discardCardIDList.Add(handCardIDList[handCount]);
         handCardIDList.RemoveAt(handCount);
+    }
+
+    /// <summary>
+    /// èD‚ğ‚·‚×‚ÄÌ‚Ä‚é
+    /// </summary>
+    public void DiscardHandAll()
+    {
+        discardCardIDList.AddRange(handCardIDList);
+        handCardIDList.Clear();
     }
 
     /// <summary>
