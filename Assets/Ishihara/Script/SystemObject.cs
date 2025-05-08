@@ -11,9 +11,8 @@ public class SystemObject
     /// <summary>
     /// ‰Šú‰»
     /// </summary>
-    public void Initialize()
+    public virtual void Initialize()
     {
         // ‰Šú‰»ˆ—
     }
-    public void
 }

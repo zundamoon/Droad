@@ -43,6 +43,18 @@ public class PossessCard
     }
 
     /// <summary>
+    /// 手札の指定番目のカードを使う
+    /// </summary>
+    /// <param name="handIndex"></param>
+    public void PlayHandCard(Character sourceCharacter, int handIndex)
+    {
+        int usecardID = handCardIDList[handIndex];
+        Entity_CardData.Param cardMaster = CardMasterUtility.GetCardMaster(usecardID);
+        int eventID = cardMaster.eventID;
+        EventManager.ExecuteEvent(sourceCharacter, eventID);
+    }
+
+    /// <summary>
     /// デッキをシャッフルする
     /// </summary>
     public void ShuffleDeck()
