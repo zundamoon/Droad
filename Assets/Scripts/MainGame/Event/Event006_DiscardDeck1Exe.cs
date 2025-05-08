@@ -10,6 +10,7 @@ public class Event006_DiscardDeck1Exe : BaseEvent
         int discardID = sourcePossessCard.deckCardIDList[0];
         sourcePossessCard.DiscardDeck(1);
         // Ì‚Ä‚½ƒJ[ƒh‚ÌID‚©‚çŒø‰Ê”­“®
-
+        int eventID = CardMasterUtility.GetCardMaster(discardID).eventID;
+        EventManager.ExecuteEvent(sourceCharacter, eventID);
     }
 }
