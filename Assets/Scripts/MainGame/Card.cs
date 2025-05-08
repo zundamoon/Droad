@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class Card
 {
-    enum Rarity
+    public int advance { get; private set; } = 0;
+    public int addCoin { get; private set; } = 0;
+    public GameEnum.Rarity rarity { get; private set; } = 0;
+    public BaseEvent playEvent { get; private set; } = null;
+    
+    public void Init()
     {
-        INVALID = -1,
-        BRONZE,
-        SILVER,
-        GOLD,
-        LEGENDARY,
-        MAX
+
     }
 
-    private int _advance = 0;
-    private int _addCoin = 0;
-    private Rarity _rarity;
-    private BaseEvent _event;
-    
+    public void Play()
+    {
+        playEvent.PlayEvent();
+    }
 }
