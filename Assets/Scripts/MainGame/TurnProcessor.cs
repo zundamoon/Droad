@@ -77,7 +77,7 @@ public class TurnProcessor
         // 手札を選ぶ
         int cardID = -1;
         // カードを取得
-        Card useCard = CardManager.GetCard(cardID);
+        CardData useCard = CardManager.GetCard(cardID);
         if (useCard == null) return;
         // コインを増やす
         turnCharacter.AddCoin(useCard.addCoin);
