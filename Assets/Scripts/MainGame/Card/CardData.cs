@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card
+public class CardData
 {
     public int ID { get; private set; } = -1;
     public int advance { get; private set; } = 0;

@@ -5,26 +5,26 @@ using static Entity_CardData;
 
 public class CardManager
 {
-    public static List<Card> cardList { get; private set; } = null;
+    public static List<CardData> cardList { get; private set; } = null;
 
     private const int _CARD_MAX = 24;
 
     public static void Init()
     {
         // マスターデータからカードを生成
-        cardList = new List<Card>();
+        cardList = new List<CardData>();
         for (int i = 0; i < _CARD_MAX; i++)
         {
             Param cardMaster = CardMasterUtility.GetCardMaster(i);
             if (cardMaster == null) return;
 
-            Card addCard = new Card();
+            CardData addCard = new CardData();
             addCard.Init(i, cardMaster.advance, cardMaster.coin, (GameEnum.Rarity)cardMaster.rarity, cardMaster.eventID);
             cardList.Add(addCard);
         }
     }
 
-    public static Card GetCard(int ID)
+    public static CardData GetCard(int ID)
     {
         return cardList[ID];
     }
