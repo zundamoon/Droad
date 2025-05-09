@@ -13,4 +13,14 @@ public class GameEnum
         LEGENDARY,
         MAX
     }
+
+    public enum SquareType
+    {
+        INVALID = -1,
+        BLUE,
+        RED,
+        HAPPENING,
+        SHOP,
+        MAX
+    }
 }
