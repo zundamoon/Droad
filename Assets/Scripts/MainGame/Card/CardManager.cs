@@ -23,4 +23,9 @@ public class CardManager
             cardList.Add(addCard);
         }
     }
+
+    public static Card GetCard(int ID)
+    {
+        return cardList[ID];
+    }
 }

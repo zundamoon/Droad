@@ -2,35 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class TurnProcessor
 {
     private List<Character> _playerList = null;
+    private List<int> _playerOrder = null;
 
     private const int _PLAYER_MAX = 4;
 
     public void Init()
     {
         _playerList = new List<Character>(_PLAYER_MAX);
+        _playerOrder = new List<int>(_PLAYER_MAX);
     }
 
-    public void TurnProc()
+    /// <summary>
+    /// 各ターンの処理
+    /// </summary>
+    public async UniTask TurnProc()
     {
         // 手番決め
-        DesidePlayerOrder();
+        await DesidePlayerOrder();
 
         // 各手番
         for (int i = 0; i < _PLAYER_MAX; i++)
         {
-            EachTurn(_playerList[i]);
+            int orderIndex = _playerOrder[i];
+            await EachTurn(_playerList[orderIndex]);
         }
     }
 
     /// <summary>
     /// 手番を決める
     /// </summary>
-    private void DesidePlayerOrder()
+    private async UniTask DesidePlayerOrder()
     {
+        _playerOrder.Clear();
         List<int> playCardList = new List<int>(_PLAYER_MAX);
         for (int i = 0; i < _PLAYER_MAX; i++)
         {
@@ -38,7 +46,6 @@ public class TurnProcessor
             int playCardCount = 0;
             playCardList.Add(playCardCount);
         }
-
         // 出されたカードから順番を決める
         while (playCardList.Count > 0)
         {
@@ -55,32 +62,49 @@ public class TurnProcessor
             while (indexList.Count > 0)
             {
                 int index = Random.Range(0, indexList.Count);
-                _playerList.Add(indexList[index]);
+                _playerOrder.Add(indexList[index]);
                 indexList.RemoveAt(index);
             }
         }
     }
 
-    private void EachTurn(Character turnCharacter)
+    /// <summary>
+    /// キャラクターのターン処理
+    /// </summary>
+    /// <param name="turnCharacter"></param>
+    private async UniTask EachTurn(Character turnCharacter)
     {
         // 手札を選ぶ
-
-
-        // 移動する対象
-        Character character = turnCharacter;
+        int cardID = -1;
+        // カードを取得
+        Card useCard = CardManager.GetCard(cardID);
+        if (useCard == null) return;
+        // コインを増やす
+        turnCharacter.AddCoin(useCard.addCoin);
         // カードのIDから進む回数を取得
-        int advanceValue = 6;
+        int advanceValue = useCard.advance;
         // 進む分だけ動く
+        // 動く途中のキャラクターを保持
+        List<Character> targetCharacterList = new List<Character>(_PLAYER_MAX);
         for (int i = 0; i < advanceValue; i++)
         {
-            // 進行中の道に次のマスがあるか確認
-            if (StageManager.instance.CheckNextSqaure(character.position) == null)
-            {
-                // 分岐があれば道を選択（選択されるまで動かない）
-
-            }
             // 移動
             // character.Move();
+            // 現在のマスを取得
+            // マスからキャラクターを取得
+            //targetCharacter.Add();
+            // 現在のマスが停止マスか判定
+            if (false) continue;
+
+            // キャラクターのマスからイベントを取得し実行
+            if (!turnCharacter.CanEvent()) return;
+
         }
+        // 移動後処理
+        turnCharacter.ExecuteAfterMoveEvent(targetCharacterList);
+
+        // キャラクターのマスからイベントを取得し実行
+        if (!turnCharacter.CanEvent()) return;
+        
     }
 }

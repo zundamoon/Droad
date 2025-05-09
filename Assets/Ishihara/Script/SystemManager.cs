@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SystemManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private List<SystemObject> _systemObject = null;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        // システムオブジェクトの初期化
+        for (int i = 0, max = _systemObject.Count; i < max; i++)
+        {
+            _systemObject[i].Initialize();
+        }
     }
 }
