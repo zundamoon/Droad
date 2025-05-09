@@ -1,26 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using static CommonModule;
+
 public class StageManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class SquareList
+    public static StageManager instance;
+    [SerializeField] public StageData stageData;
+
+    public void Start()
     {
-        public List<GameObject> squareArray = new List<GameObject>();
+        instance = this;
     }
 
-    [System.Serializable]
-    public class RoadList
+    /// <summary>
+    /// ステージの座標からマスのイベントを取得
+    /// </summary>
+    /// <param name="stagePosition"></param>
+    /// <returns></returns>
+    public int GetSquareEvent(StagePosition stagePosition)
     {
-        public List<SquareList> routeList = new List<SquareList>();
+        GameObject square = stageData.stageRoute.routeList[stagePosition.route].roadList[stagePosition.road].squareList[stagePosition.square];
+        Square squareData = square.GetComponent<Square>();
+        return squareData.GetEventID();
     }
-
-    [System.Serializable]
-    public class RouteList
+    
+    /// <summary>
+    /// プレイヤーの座標から次のマスを返す
+    /// </summary>
+    /// <param name="playerPos"></param>
+    /// <returns></returns>
+    public GameObject CheckNextSqaure(StagePosition playerPos)
     {
-        public List<RoadList> routeList = new List<RoadList>();
+        GameObject square;
+        square = stageData.stageRoute.routeList[playerPos.route].roadList[playerPos.road].squareList[playerPos.square + 1];
+        if (square != null) return square;
+        return null;
     }
-
-    public RouteList routeList_ = new RouteList();
 }

@@ -1,10 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+
+using static CommonModule;
 
 public class Character : MonoBehaviour
 {
+    // 自身
+    public GameObject playerObject = null;
     // 所持カード
     public PossessCard possessCard { get; private set; } = null;
     // コイン
@@ -14,12 +19,25 @@ public class Character : MonoBehaviour
     // 効果無効フラグ
     public bool eventCancel { get; private set; } = false;
     // 移動後のイベント
-    private Action<List<Character>> _AfterMoveEvent = null;
+    public Action<List<Character>> AfterMoveEvent { get; private set; } = null;
+
+    // 位置情報
+    public StagePosition position;
+    // 次の移動先を保持
+    public StagePosition nextPosition;
+
+    public float moveSpeed = 3.0f;
+
+    public float goalDistance = 0.05f;
 
     public void Init()
     {
+        playerObject = GetComponent<GameObject>();
         possessCard = new PossessCard();
         possessCard.Init();
+        position.route = 0;
+        position.road = 0;
+        position.square = 0;
     }
     /// <summary>
     /// 移動後イベントの設定
@@ -41,7 +59,7 @@ public class Character : MonoBehaviour
         coins -= removeCoin;
         return removeCoin;
     }
-    public void AddStar(int value) {  stars += value; }
+    public void AddStar(int value) { stars += value; }
     public int RemoveStar(int value)
     {
         int removeStar = Math.Max(0, stars - value);
@@ -61,5 +79,23 @@ public class Character : MonoBehaviour
             return true;
         }
         return false;
+    }
+    /// <summary>
+    /// 移動関数
+    /// </summary>
+    /// <param name="targetPos"></param>
+    /// <returns></returns>
+    public async UniTask Move(Vector3 targetPos)
+    {
+        // 移動ループ
+        while (Vector3.Distance(playerObject.transform.position, targetPos) > goalDistance)
+        {
+            // 補間で滑らかに移動
+            transform.position = Vector3.Lerp(playerObject.transform.position, targetPos, moveSpeed * Time.deltaTime);
+            await UniTask.DelayFrame(1);
+        }
+        transform.position = targetPos;
+
+
     }
 }
