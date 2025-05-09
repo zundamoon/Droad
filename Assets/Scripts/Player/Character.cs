@@ -14,7 +14,7 @@ public class Character : MonoBehaviour
     // 効果無効フラグ
     public bool eventCancel { get; private set; } = false;
     // 移動後のイベント
-    public Action<List<Character>> AfterMoveEvent { get; private set; } = null;
+    private Action<List<Character>> _AfterMoveEvent = null;
 
     public void Init()
     {
@@ -25,7 +25,13 @@ public class Character : MonoBehaviour
     /// 移動後イベントの設定
     /// </summary>
     /// <param name="setEvent"></param>
-    public void SetAfterMoveEvent(Action<List<Character>> setEvent) { AfterMoveEvent = setEvent; }
+    public void SetAfterMoveEvent(Action<List<Character>> setEvent) { _AfterMoveEvent = setEvent; }
+    public void ExecuteAfterMoveEvent(List<Character> targetCharacterList)
+    {
+        if (_AfterMoveEvent == null) return;
+        _AfterMoveEvent(targetCharacterList);
+        _AfterMoveEvent = null;
+    }
 
     public void SetCoin(int value) { coins = value; }
     public void AddCoin(int value) { coins += value; }

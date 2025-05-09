@@ -6,6 +6,10 @@ public class MainGameManager : SystemObject
 {
     private TurnProcessor _turnProcessor = null;
 
+    public int currentTurn { get; private set; } = 0;
+
+    private const int _TURN_MAX = 15;
+
     public override void Initialize()
     {
         MasterDataManager.LoadAllData();
@@ -14,5 +18,28 @@ public class MainGameManager : SystemObject
 
         _turnProcessor = new TurnProcessor();
         _turnProcessor.Init();
+
+        MainGameProc();
+    }
+
+    /// <summary>
+    /// メインゲームの処理
+    /// </summary>
+    private void MainGameProc()
+    {
+        while (currentTurn < _TURN_MAX)
+        {
+            TurnCountUp();
+            _turnProcessor.TurnProc();
+        }
+    }
+    
+    /// <summary>
+    /// ターンをカウントアップ
+    /// </summary>
+    private void TurnCountUp()
+    {
+        currentTurn++;
+        // UIに通知
     }
 }

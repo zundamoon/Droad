@@ -6,7 +6,7 @@ using UnityEngine;
  * Ishihara
  * マネージャークラスの基底
  */
-public class SystemObject 
+public class SystemObject : MonoBehaviour
 {
     /// <summary>
     /// 初期化
