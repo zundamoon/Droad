@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class TurnProcessor
 {
-    private List<int> _playerList = null;
+    private List<Character> _playerList = null;
 
     private const int _PLAYER_MAX = 4;
 
     public void Init()
     {
-        _playerList = new List<int>(_PLAYER_MAX);
+        _playerList = new List<Character>(_PLAYER_MAX);
     }
 
     public void TurnProc()
@@ -20,9 +20,9 @@ public class TurnProcessor
         DesidePlayerOrder();
 
         // 各手番
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < _PLAYER_MAX; i++)
         {
-            EachTurn();
+            EachTurn(_playerList[i]);
         }
     }
 
@@ -61,8 +61,26 @@ public class TurnProcessor
         }
     }
 
-    private void EachTurn()
+    private void EachTurn(Character turnCharacter)
     {
+        // 手札を選ぶ
 
+
+        // 移動する対象
+        Character character = turnCharacter;
+        // カードのIDから進む回数を取得
+        int advanceValue = 6;
+        // 進む分だけ動く
+        for (int i = 0; i < advanceValue; i++)
+        {
+            // 進行中の道に次のマスがあるか確認
+            if (StageManager.instance.CheckNextSqaure(character.position) == null)
+            {
+                // 分岐があれば道を選択（選択されるまで動かない）
+
+            }
+            // 移動
+            // character.Move();
+        }
     }
 }
