@@ -4,21 +4,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static CommonModule;
 
-class MenuListItem : MonoBehaviour
-{
-    public void Deselect()
-    {
-        // 実装は省略
-    }
-}
-
 public class MenuList : BaseMenu
 {
     /// <summary>
     /// リスト項目のオリジナル
     /// </summary>
     [SerializeField]
-    private MenuListItem _itemOrigin = null;
+    private MenuChoiceItem _itemOrigin = null;
     /// <summary>
     /// 項目を並べるルートオブジェクト
     /// </summary>
@@ -32,23 +24,23 @@ public class MenuList : BaseMenu
 
     private int _currentIndex = -1;
 
-    private List<MenuListItem> _useList = null;
-    private List<MenuListItem> _unuseList = null;
+    private List<MenuChoiceItem> _useList = null;
+    private List<MenuChoiceItem> _unuseList = null;
 
     public override async UniTask Initialize()
     {
         await base.Initialize();
-        _useList = new List<MenuListItem>();
-        _unuseList = new List<MenuListItem>();
+        _useList = new List<MenuChoiceItem>();
+        _unuseList = new List<MenuChoiceItem>();
     }
 
     /// <summary>
     /// リスト項目の生成
     /// </summary>
     /// <returns></returns>
-    protected MenuListItem AddListItem()
+    protected MenuChoiceItem AddListItem()
     {
-        MenuListItem addItem;
+        MenuChoiceItem addItem;
         if (IsEmpty(_unuseList))
         {
             // 未使用リストが空なので生成
@@ -74,7 +66,7 @@ public class MenuList : BaseMenu
     {
         if (!IsEnableIndex(_useList, itemIndex)) return;
         // 使用リストから取り除く
-        MenuListItem removeItem = _useList[itemIndex];
+        MenuChoiceItem removeItem = _useList[itemIndex];
         _useList.RemoveAt(itemIndex);
         // 未使用リストへ追加
         _unuseList.Add(removeItem);
