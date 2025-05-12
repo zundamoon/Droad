@@ -35,4 +35,9 @@ public class BaseMenu : MonoBehaviour
         _menuRoot.SetActive(false);
         await UniTask.CompletedTask;
     }
+
+    public GameObject GetCanvas()
+    {
+        return _menuRoot;
+    }
 }
