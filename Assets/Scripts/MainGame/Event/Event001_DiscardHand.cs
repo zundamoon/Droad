@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Event001_DiscardHand : BaseEvent
 {
-    public override void PlayEvent(Character sourceCharacter, int param)
+    public override void PlayEvent(Character sourceCharacter, int param, int addParam = -1)
     {
         // ‘I‘ğ‚ÌŒÄ‚Ño‚µ
         int handIndex = 0;

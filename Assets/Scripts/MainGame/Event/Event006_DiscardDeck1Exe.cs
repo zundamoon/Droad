@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Event006_DiscardDeck1Exe : BaseEvent
 {
-    public override void PlayEvent(Character sourceCharacter, int param)
+    public override void PlayEvent(Character sourceCharacter, int param, int addParam = -1)
     {
         PossessCard sourcePossessCard = sourceCharacter.possessCard;
         int discardID = sourcePossessCard.deckCardIDList[0];

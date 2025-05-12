@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Event100_BuyStar : BaseEvent
 {
-    public override void PlayEvent(Character sourceCharacter, int param)
+    public override void PlayEvent(Character sourceCharacter, int param, int addParam = -1)
     {
         // 購入できるか判定
         if (sourceCharacter.coins < param) return;
@@ -12,7 +12,7 @@ public class Event100_BuyStar : BaseEvent
         if (false) return;
 
         sourceCharacter.RemoveCoin(param);
-        sourceCharacter.AddStar(1);
+        sourceCharacter.possessCard.AddCard(addParam);
 
         // スターの位置変更
 

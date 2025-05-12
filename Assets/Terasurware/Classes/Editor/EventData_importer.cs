@@ -10,7 +10,7 @@ using NPOI.SS.UserModel;
 public class EventData_importer : AssetPostprocessor {
 	private static readonly string filePath = "Assets/Resources/MasterData/EventData.xlsx";
 	private static readonly string exportPath = "Assets/Resources/MasterData/EventData.asset";
-	private static readonly string[] sheetNames = { "EventData","reference", };
+	private static readonly string[] sheetNames = { "EventData", };
 	
 	static void OnPostprocessAllAssets (string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
 	{
@@ -51,10 +51,11 @@ public class EventData_importer : AssetPostprocessor {
 						Entity_EventData.Param p = new Entity_EventData.Param ();
 						
 					cell = row.GetCell(0); p.ID = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(1); p.eventType = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(1); p.textID = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(2); p.eventType = (int)(cell == null ? 0 : cell.NumericCellValue);
 					p.param = new int[2];
-					cell = row.GetCell(3); p.param[0] = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(4); p.param[1] = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(4); p.param[0] = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(5); p.param[1] = (int)(cell == null ? 0 : cell.NumericCellValue);
 						s.list.Add (p);
 					}
 					data.sheets.Add(s);

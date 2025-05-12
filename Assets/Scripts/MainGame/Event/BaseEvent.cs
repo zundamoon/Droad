@@ -4,6 +4,12 @@ using UnityEngine;
 
 public abstract class BaseEvent
 {
-    // 引数で実行者を取得
-    abstract public void PlayEvent(Character sourceCharacter, int param);
+    /// <summary>
+    /// イベント実行処理
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="sourceCharacter"></param>
+    /// <param name="param"></param>
+    /// <param name="setParam"></param>
+    public abstract void PlayEvent(Character sourceCharacter, int param, int addParam = -1);
 }

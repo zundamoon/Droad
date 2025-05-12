@@ -7,7 +7,7 @@ public class Event002_StealCoin : BaseEvent
     private Character _sourceCharacter = null;
     private int _stealCoinCount = 0;
 
-    public override void PlayEvent(Character sourceCharacter, int param)
+    public override void PlayEvent(Character sourceCharacter, int param, int addParam = -1)
     {
         // ƒvƒŒƒCƒ„[‚ÌˆÚ“®Œã‚Ìˆ—‚Éİ’è
         sourceCharacter.SetAfterMoveEvent(StealCoin);
