@@ -20,6 +20,7 @@ public class PossessCard
     /// 捨てカードリスト
     /// </summary>
     public List<int> discardCardIDList { get; private set; } = null;
+    public List<int> starCardIDList { get; private set; } = null;
 
     private int _DEFAULT_DECK_MAX = 12;
 
@@ -130,5 +131,69 @@ public class PossessCard
             discardCardIDList.Add(deckCardIDList[0]);
             deckCardIDList.RemoveAt(0);
         }
+    }
+
+    /// <summary>
+    /// 指定IDを所持カードに加える
+    /// </summary>
+    /// <param name="ID"></param>
+    public void AddCard(int ID)
+    {
+        discardCardIDList.Add(ID);
+        possessCardIDList.Add(ID);
+
+        // スターカードならUI更新
+        CardData card = CardManager.GetCard(ID);
+        if (!card.IsStar()) return;
+
+
+    }
+
+    /// <summary>
+    /// 手札を所持カードから破棄
+    /// </summary>
+    public void RemoveHandAll()
+    {
+        for (int i = 0, max = handCardIDList.Count; i < max; i++)
+        {
+            int handCardID = handCardIDList[i];
+            possessCardIDList.Remove(handCardID);
+            handCardIDList.Remove(handCardID);
+        }
+    }
+
+    /// <summary>
+    /// 手札のスターカードを破棄
+    /// </summary>
+    /// <returns></returns>
+    public int RemoveHandStarCard()
+    {
+        for (int i = 0, max = handCardIDList.Count; i < max; i++)
+        {
+            int handCardID = handCardIDList[i];
+            CardData card = CardManager.GetCard(handCardID);
+            if (!card.IsStar()) continue;
+
+            possessCardIDList.Remove(handCardID);
+            handCardIDList.Remove(handCardID);
+
+            return handCardID;
+        }
+        return -1;
+    }
+
+    /// <summary>
+    /// スターの数を数える
+    /// </summary>
+    /// <returns></returns>
+    public int CountStar()
+    {
+        int star = 0;
+        for (int i = 0, max = possessCardIDList.Count; i < max; i++)
+        {
+            CardData card = CardManager.GetCard(possessCardIDList[i]);
+            star += card.star;
+        }
+        return star;
     }
 }

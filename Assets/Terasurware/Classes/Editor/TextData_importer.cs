@@ -7,10 +7,10 @@ using NPOI.HSSF.UserModel;
 using NPOI.XSSF.UserModel;
 using NPOI.SS.UserModel;
 
-public class CardData_importer : AssetPostprocessor {
-	private static readonly string filePath = "Assets/Resources/MasterData/CardData.xlsx";
-	private static readonly string exportPath = "Assets/Resources/MasterData/CardData.asset";
-	private static readonly string[] sheetNames = { "CardData", };
+public class TextData_importer : AssetPostprocessor {
+	private static readonly string filePath = "Assets/Resources/MasterData/TextData.xlsx";
+	private static readonly string exportPath = "Assets/Resources/MasterData/TextData.asset";
+	private static readonly string[] sheetNames = { "TextData", };
 	
 	static void OnPostprocessAllAssets (string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
 	{
@@ -18,9 +18,9 @@ public class CardData_importer : AssetPostprocessor {
 			if (!filePath.Equals (asset))
 				continue;
 				
-			Entity_CardData data = (Entity_CardData)AssetDatabase.LoadAssetAtPath (exportPath, typeof(Entity_CardData));
+			Entity_TextData data = (Entity_TextData)AssetDatabase.LoadAssetAtPath (exportPath, typeof(Entity_TextData));
 			if (data == null) {
-				data = ScriptableObject.CreateInstance<Entity_CardData> ();
+				data = ScriptableObject.CreateInstance<Entity_TextData> ();
 				AssetDatabase.CreateAsset ((ScriptableObject)data, exportPath);
 				data.hideFlags = HideFlags.NotEditable;
 			}
@@ -41,21 +41,17 @@ public class CardData_importer : AssetPostprocessor {
 						continue;
 					}
 
-					Entity_CardData.Sheet s = new Entity_CardData.Sheet ();
+					Entity_TextData.Sheet s = new Entity_TextData.Sheet ();
 					s.name = sheetName;
 				
 					for (int i=1; i<= sheet.LastRowNum; i++) {
 						IRow row = sheet.GetRow (i);
 						ICell cell = null;
 						
-						Entity_CardData.Param p = new Entity_CardData.Param ();
+						Entity_TextData.Param p = new Entity_TextData.Param ();
 						
 					cell = row.GetCell(0); p.ID = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(1); p.advance = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(2); p.coin = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(3); p.rarity = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(5); p.eventID = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(6); p.star = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(1); p.text = (cell == null ? "" : cell.StringCellValue);
 						s.list.Add (p);
 					}
 					data.sheets.Add(s);

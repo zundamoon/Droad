@@ -22,6 +22,7 @@ public class Entity_CardData : ScriptableObject
 		public int coin;
 		public int rarity;
 		public int eventID;
+		public int star;
 	}
 }
 

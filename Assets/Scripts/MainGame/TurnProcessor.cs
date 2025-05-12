@@ -76,6 +76,7 @@ public class TurnProcessor
     {
         // 手札を選ぶ
         int cardID = -1;
+
         // カードを取得
         CardData useCard = CardManager.GetCard(cardID);
         if (useCard == null) return;
