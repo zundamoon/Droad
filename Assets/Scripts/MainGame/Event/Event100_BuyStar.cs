@@ -10,11 +10,10 @@ public class Event100_BuyStar : BaseEvent
         if (sourceCharacter.coins < param) return;
         // 購入するか選択
         if (false) return;
-
+        // カード追加
         sourceCharacter.RemoveCoin(param);
         sourceCharacter.possessCard.AddCard(addParam);
-
-        // スターの位置変更
+        // スターマスの位置変更
 
     }
 }

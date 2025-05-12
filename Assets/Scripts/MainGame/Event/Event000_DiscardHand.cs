@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Event001_DiscardHand : BaseEvent
+public class Event000_DiscardHand : BaseEvent
 {
     public override void PlayEvent(Character sourceCharacter, int param, int addParam = -1)
     {

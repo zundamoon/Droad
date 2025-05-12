@@ -12,7 +12,13 @@ public class EventManager
     public static void Init()
     {
         eventList = new List<BaseEvent>();
-        eventList.Add(new Event001_DiscardHand());
+        eventList.Add(new Event000_DiscardHand());
+        eventList.Add(new Event001_StealCoin());
+        eventList.Add(new Event002_Reshuffle());
+        eventList.Add(new Event003_DiscardDeck());
+        eventList.Add(new Event004_CancelNextSquareEvent());
+        eventList.Add(new Event005_DiscardDeck1Exe());
+        eventList.Add(new Event006_AddCoin());
     }
 
     /// <summary>

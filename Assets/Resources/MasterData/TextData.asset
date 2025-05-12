@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 8
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -12,4 +12,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b20ee90a02deac4d911f5891a3d4e69, type: 3}
   m_Name: TextData
   m_EditorClassIdentifier: 
-  sheets: []
+  sheets:
+  - name: TextData
+    list:
+    - ID: 0
+      text: "\u624B\u672D\u3092{0}\u679A\u6368\u3066\u308B\u3002"
+    - ID: 1
+      text: "\u901A\u3063\u305F\u30DE\u30B9\u306E\u30D7\u30EC\u30A4\u30E4\u30FC\u304B\u3089\u30B3\u30A4\u30F3\u3092{0}\u679A\u305A\u3064\u76D7\u3080\u3002"
+    - ID: 2
+      text: "\u30EA\u30B7\u30E3\u30C3\u30D5\u30EB\u3059\u308B\u3002"
+    - ID: 3
+      text: "\u30C7\u30C3\u30AD\u306E\u4E0A\u304B\u3089{0}\u679A\u6368\u3066\u308B\u3002"
+    - ID: 4
+      text: "\u6B21\u306E\u30DE\u30B9\u306E\u30A4\u30D9\u30F3\u30C8\u30921\u56DE\u7121\u52B9\u5316\u3059\u308B\u3002"
+    - ID: 5
+      text: "\u30C7\u30C3\u30AD\u306E\u4E0A\u304B\u30891\u679A\u6368\u3066\u3001\u305D\u306E\u52B9\u679C\u3092\u767A\u52D5\u3055\u305B\u308B\u3002"
+    - ID: 6
+      text: "\u624B\u672D\u3092\u3059\u3079\u3066\u6368\u3066\u308B\u3002"
+    - ID: 7
+      text: "\u6B21\u306E\u30DE\u30B9\u306E\u52B9\u679C\u767A\u52D5\u5F8C\u3001\u8FFD\u52A0\u3067{0}\u56DE\u767A\u52D5\u3059\u308B\u3002"
+    - ID: 8
+      text: "\u3053\u306E\u30AB\u30FC\u30C9\u306E\u9032\u884C\u30DE\u30B9\u6570\u30921~3\u306E\u3046\u3061\u304B\u3089\u9078\u629E\u3059\u308B\u3002"
+    - ID: 9
+      text: "\u3053\u306E\u30AB\u30FC\u30C9\u306E\u9032\u884C\u30DE\u30B9\u6570\u30924~6\u306E\u3046\u3061\u304B\u3089\u9078\u629E\u3059\u308B\u3002"
+    - ID: 10
+      text: "\u901A\u3063\u305F\u30DE\u30B9\u306E\u30D7\u30EC\u30A4\u30E4\u30FC\u306E\u624B\u672D\u304B\u3089\u52DD\u3061\u70B9\u304C1\u4EE5\u4E0A\u306E\u30AB\u30FC\u30C9\u30921\u679A\u305A\u3064\u76D7\u3080\u3002"
+    - ID: 11
+      text: 
+    - ID: 12
+      text: 
+    - ID: 13
+      text: 
+    - ID: 14
+      text: 
+    - ID: 15
+      text: 
+    - ID: 16
+      text: 
+    - ID: 17
+      text: 
+    - ID: 18
+      text: 
+    - ID: 19
+      text: 
+    - ID: 20
+      text: 
+    - ID: 100
+      text: 
+    - ID: 200
+      text: 

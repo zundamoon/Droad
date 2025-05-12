@@ -2,16 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Event101_Shop : BaseEvent
+public class Event002_Reshuffle : BaseEvent
 {
     public override void PlayEvent(Character sourceCharacter, int param, int addParam = -1)
     {
-        // 表示カードを抽選
-
-        // Uiにカード情報を渡す
-
-        // ショップUIを表示
-
-        // 入力待ち
+        sourceCharacter.possessCard.ReshuffleDeck();
     }
 }

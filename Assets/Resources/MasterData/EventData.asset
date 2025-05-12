@@ -12,4 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34eb8edf2bffe2b49be6a00f594cdd2b, type: 3}
   m_Name: EventData
   m_EditorClassIdentifier: 
-  sheets: []
+  sheets:
+  - name: EventData
+    list:
+    - ID: 0
+      textID: -1
+      eventType: 0
+      param: 01000000ffffffff
+    - ID: 1
+      textID: -1
+      eventType: 1
+      param: 03000000ffffffff
+    - ID: 2
+      textID: -1
+      eventType: 2
+      param: ffffffffffffffff
+    - ID: 3
+      textID: -1
+      eventType: 3
+      param: 03000000ffffffff
+    - ID: 4
+      textID: -1
+      eventType: 4
+      param: ffffffffffffffff
+    - ID: 5
+      textID: -1
+      eventType: 5
+      param: ffffffffffffffff
+    - ID: 6
+      textID: -1
+      eventType: 6
+      param: 03000000ffffffff
+    - ID: 0
+      textID: 0
+      eventType: 0
+      param: 0000000000000000
