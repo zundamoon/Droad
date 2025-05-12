@@ -70,4 +70,10 @@ public class CardObject : MonoBehaviour
         _coinText.text = coinText;
         _eventText.text = eventText;
     }
+
+    public void SetCard(int setID)
+    {
+        _ID = setID;
+        // ƒJ[ƒhî•ñæ“¾
+    }
 }
