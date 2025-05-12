@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Event003_Reshuffle : BaseEvent
+public class Event004_CancelNextSquareEvent : BaseEvent
 {
     public override void PlayEvent(Character sourceCharacter, int param, int addParam = -1)
     {
-        sourceCharacter.possessCard.ReshuffleDeck();
+        sourceCharacter.SetCancelEvent();
     }
 }

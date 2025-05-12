@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Event006_DiscardDeck1Exe : BaseEvent
+public class Event005_DiscardDeck1Exe : BaseEvent
 {
     public override void PlayEvent(Character sourceCharacter, int param, int addParam = -1)
     {

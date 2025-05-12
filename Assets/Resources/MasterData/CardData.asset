@@ -12,4 +12,192 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9527c7bdcc0ec3448b7c7d8592854957, type: 3}
   m_Name: CardData
   m_EditorClassIdentifier: 
-  sheets: []
+  sheets:
+  - name: CardData
+    list:
+    - ID: 0
+      advance: 1
+      coin: 2
+      rarity: 0
+      eventID: -1
+      star: 0
+    - ID: 1
+      advance: 2
+      coin: 2
+      rarity: 0
+      eventID: -1
+      star: 0
+    - ID: 2
+      advance: 3
+      coin: 2
+      rarity: 0
+      eventID: -1
+      star: 0
+    - ID: 3
+      advance: 4
+      coin: 2
+      rarity: 0
+      eventID: -1
+      star: 0
+    - ID: 4
+      advance: 5
+      coin: 2
+      rarity: 0
+      eventID: -1
+      star: 0
+    - ID: 5
+      advance: 6
+      coin: 2
+      rarity: 0
+      eventID: -1
+      star: 0
+    - ID: 6
+      advance: 1
+      coin: 3
+      rarity: 1
+      eventID: -1
+      star: 0
+    - ID: 7
+      advance: 2
+      coin: 3
+      rarity: 1
+      eventID: -1
+      star: 0
+    - ID: 8
+      advance: 3
+      coin: 3
+      rarity: 1
+      eventID: -1
+      star: 0
+    - ID: 9
+      advance: 4
+      coin: 3
+      rarity: 1
+      eventID: -1
+      star: 0
+    - ID: 10
+      advance: 5
+      coin: 3
+      rarity: 1
+      eventID: -1
+      star: 0
+    - ID: 11
+      advance: 6
+      coin: 3
+      rarity: 1
+      eventID: -1
+      star: 0
+    - ID: 12
+      advance: 1
+      coin: 4
+      rarity: 2
+      eventID: -1
+      star: 0
+    - ID: 13
+      advance: 2
+      coin: 4
+      rarity: 2
+      eventID: -1
+      star: 0
+    - ID: 14
+      advance: 3
+      coin: 4
+      rarity: 2
+      eventID: -1
+      star: 0
+    - ID: 15
+      advance: 4
+      coin: 4
+      rarity: 2
+      eventID: -1
+      star: 0
+    - ID: 16
+      advance: 5
+      coin: 4
+      rarity: 2
+      eventID: -1
+      star: 0
+    - ID: 17
+      advance: 6
+      coin: 4
+      rarity: 2
+      eventID: -1
+      star: 0
+    - ID: 18
+      advance: 1
+      coin: 5
+      rarity: 3
+      eventID: -1
+      star: 0
+    - ID: 19
+      advance: 2
+      coin: 5
+      rarity: 3
+      eventID: -1
+      star: 0
+    - ID: 20
+      advance: 3
+      coin: 5
+      rarity: 3
+      eventID: -1
+      star: 0
+    - ID: 21
+      advance: 4
+      coin: 5
+      rarity: 3
+      eventID: -1
+      star: 0
+    - ID: 22
+      advance: 5
+      coin: 5
+      rarity: 3
+      eventID: -1
+      star: 0
+    - ID: 23
+      advance: 6
+      coin: 5
+      rarity: 3
+      eventID: -1
+      star: 0
+    - ID: 24
+      advance: 1
+      coin: 0
+      rarity: 0
+      eventID: -1
+      star: 1
+    - ID: 25
+      advance: 2
+      coin: 0
+      rarity: 0
+      eventID: -1
+      star: 1
+    - ID: 26
+      advance: 3
+      coin: 0
+      rarity: 0
+      eventID: -1
+      star: 1
+    - ID: 27
+      advance: 4
+      coin: 0
+      rarity: 0
+      eventID: -1
+      star: 1
+    - ID: 28
+      advance: 5
+      coin: 0
+      rarity: 0
+      eventID: -1
+      star: 1
+    - ID: 29
+      advance: 6
+      coin: 0
+      rarity: 0
+      eventID: -1
+      star: 1
+    - ID: 0
+      advance: 0
+      coin: 0
+      rarity: 0
+      eventID: 0
+      star: 0
