@@ -43,12 +43,12 @@ public class Character : MonoBehaviour
     /// ˆÚ“®ŒãƒCƒxƒ“ƒg‚Ìİ’è
     /// </summary>
     /// <param name="setEvent"></param>
-    public void SetAfterMoveEvent(Action<List<Character>> setEvent) { _AfterMoveEvent = setEvent; }
+    public void SetAfterMoveEvent(Action<List<Character>> setEvent) { AfterMoveEvent = setEvent; }
     public void ExecuteAfterMoveEvent(List<Character> targetCharacterList)
     {
-        if (_AfterMoveEvent == null) return;
-        _AfterMoveEvent(targetCharacterList);
-        _AfterMoveEvent = null;
+        if (AfterMoveEvent == null) return;
+        AfterMoveEvent(targetCharacterList);
+        AfterMoveEvent = null;
     }
 
     public void SetCoin(int value) { coins = value; }
@@ -95,7 +95,5 @@ public class Character : MonoBehaviour
             await UniTask.DelayFrame(1);
         }
         transform.position = targetPos;
-
-
     }
 }
