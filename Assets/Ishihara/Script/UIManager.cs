@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        menuHand.Initialize().Forget();
     }
 
     public GameObject GetHandCanvas()
@@ -60,8 +62,9 @@ public class UIManager : MonoBehaviour
     /// èDƒGƒŠƒA‚ğŠJ‚­
     /// </summary>
     /// <returns></returns>
-    public async UniTask OpenHandArea()
+    public async UniTask OpenHandArea(PossessCard setPossessCard)
     {
+        menuHand.SetTurnPlayerCard(setPossessCard);
         await menuHand.Open();
     }
 
