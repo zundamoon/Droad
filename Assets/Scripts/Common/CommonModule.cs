@@ -6,19 +6,60 @@ using UnityEngine;
 
 public class CommonModule
 {
-    // ステージの位置情報を管理
+    /// <summary>
+    /// ステージ上の位置情報を表す構造体
+    /// </summary>
     public struct StagePosition
     {
-        public int route;
-        public int road;
-        public int square;
+        public int m_route;
+        public int m_road;
+        public int m_square;
 
-        public StagePosition(int route_, int road_, int square_)
+        // コンストラクタ
+        public StagePosition(int route, int road, int square)
         {
-            route = route_;
-            road = road_;
-            square = square_;
+            m_route = route;
+            m_road = road;
+            m_square = square;
         }
+
+        /// <summary>
+        /// オブジェクトが等しいかを比較
+        /// </summary>
+        public override bool Equals(object obj)
+        {
+            if (!(obj is StagePosition)) return false;
+
+            StagePosition other = (StagePosition)obj;
+
+            return m_route == other.m_route &&
+                   m_road == other.m_road &&
+                   m_square == other.m_square;
+        }
+
+        /// <summary>
+        /// ハッシュコードを取得
+        /// </summary>
+        public override int GetHashCode()
+        {
+            return (m_route, m_road, m_square).GetHashCode();
+        }
+
+        /// <summary>
+        /// 等価演算子
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static bool operator ==(StagePosition a, StagePosition b) => a.Equals(b);
+
+        /// <summary>
+        /// 非等価演算子
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static bool operator !=(StagePosition a, StagePosition b) => !a.Equals(b);
     }
 
     /// <summary>

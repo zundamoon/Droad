@@ -8,7 +8,7 @@ public class Square : MonoBehaviour
 {
     [SerializeField] public SquareType squareType = SquareType.INVALID;
     [SerializeField] public bool isStopSquare = false;
-    [SerializeField] public bool isStarSquare = false;
+    [SerializeField] public bool isPointSquare = false;
     [SerializeField] private int eventID = -1;
     [SerializeField] private new Renderer renderer = null;
 
@@ -42,7 +42,8 @@ public class Square : MonoBehaviour
         return;
     }
 
-    // public void GrantD
-
+    public void GrantPoint() { isPointSquare = true; }
+    public void DenyPoint() { isPointSquare = false; }
     public int GetEventID() { return eventID; }
+    public void SetEventID(int eventID) { this.eventID = eventID; }
 }
