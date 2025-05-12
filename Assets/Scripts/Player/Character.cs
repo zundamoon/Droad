@@ -8,8 +8,6 @@ using static CommonModule;
 
 public class Character : MonoBehaviour
 {
-    // 自身
-    public GameObject playerObject = null;
     // 所持カード
     public PossessCard possessCard { get; private set; } = null;
     // コイン
@@ -26,18 +24,17 @@ public class Character : MonoBehaviour
     // 次の移動先を保持
     public StagePosition nextPosition;
 
-    public float moveSpeed = 3.0f;
+    public float moveSpeed = 0.1f;
 
     public float goalDistance = 0.05f;
 
     public void Init()
     {
-        playerObject = GetComponent<GameObject>();
         possessCard = new PossessCard();
         possessCard.Init();
-        position.route = 0;
-        position.road = 0;
-        position.square = 0;
+        position.m_route = 0;
+        position.m_road = 0;
+        position.m_square = 0;
     }
     /// <summary>
     /// 移動後イベントの設定
@@ -76,10 +73,11 @@ public class Character : MonoBehaviour
         if (eventCancel)
         {
             eventCancel = false;
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
+
     /// <summary>
     /// 移動関数
     /// </summary>
@@ -88,12 +86,13 @@ public class Character : MonoBehaviour
     public async UniTask Move(Vector3 targetPos)
     {
         // 移動ループ
-        while (Vector3.Distance(playerObject.transform.position, targetPos) > goalDistance)
+        while (Vector3.Distance(transform.position, targetPos) > goalDistance)
         {
             // 補間で滑らかに移動
-            transform.position = Vector3.Lerp(playerObject.transform.position, targetPos, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
             await UniTask.DelayFrame(1);
         }
+
         transform.position = targetPos;
     }
 }

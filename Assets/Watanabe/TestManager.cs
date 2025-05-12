@@ -1,22 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using System.Linq;
 using UnityEngine;
-using Cysharp.Threading.Tasks;
-
 using static CommonModule;
+using System.Threading.Tasks;
 
-public class TurnProcessor
+public class TestManager : MonoBehaviour
 {
+    [SerializeField] public List<Character> playerObjectList = null;
     private List<Character> _playerList = null;
     private List<int> _playerOrder = null;
 
-    private const int _PLAYER_MAX = 4;
+    private const int _PLAYER_MAX = 1;
 
-    public void Init()
+    private void Awake()
     {
+        MasterDataManager.LoadAllData();
+        EventManager.Init();
         _playerList = new List<Character>(_PLAYER_MAX);
         _playerOrder = new List<int>(_PLAYER_MAX);
+
+        for (int i = 0; i < _PLAYER_MAX; i++)
+        {
+            _playerList.Add(playerObjectList[i]);
+        }
+    }
+
+    private void Start()
+    {
+        TurnProc();
     }
 
     /// <summary>
@@ -24,14 +37,14 @@ public class TurnProcessor
     /// </summary>
     public async UniTask TurnProc()
     {
-        // 手番決め
-        await DesidePlayerOrder();
-
-        // 各手番
-        for (int i = 0; i < _PLAYER_MAX; i++)
+        while (true)
         {
-            int orderIndex = _playerOrder[i];
-            await EachTurn(_playerList[orderIndex]);
+            // 各手番
+            for (int i = 0; i < _playerList.Count; i++)
+            {
+                await EachTurn(_playerList[i]);
+                Debug.Log(_playerList[i].coins);
+            }
         }
     }
 
@@ -76,7 +89,7 @@ public class TurnProcessor
     /// <param name="turnCharacter"></param>
     private async UniTask EachTurn(Character turnCharacter)
     {
-        if (turnCharacter == null) return;
+        if(turnCharacter == null) return;
 
         StageManager stageManager = StageManager.instance;
         // カードのIDから進む回数を取得
@@ -126,3 +139,5 @@ public class TurnProcessor
         EventManager.ExecuteEvent(target, squareEventID);
     }
 }
+
+

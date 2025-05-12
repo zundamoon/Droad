@@ -31,7 +31,7 @@ public class EventManager
     public static void ExecuteEvent(Character sourceCharacter, int eventID, int addParam = -1)
     {
         Param eventMaster = EventMasterUtility.GetEventMaster(eventID);
-        if (eventMaster != null) return;
+        if (eventMaster == null) return;
 
         int eventIndex = eventMaster.eventType;
         int eventParam = eventMaster.param[0];
