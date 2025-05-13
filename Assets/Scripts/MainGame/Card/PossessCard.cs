@@ -22,7 +22,8 @@ public class PossessCard
     public List<int> discardCardIDList { get; private set; } = null;
     public List<int> starCardIDList { get; private set; } = null;
 
-    private int _DEFAULT_DECK_MAX = 12;
+    private const int _DEFAULT_DECK_MAX = 12;
+    private const int _HAND_MAX = 4;
 
     public void Init()
     {
@@ -41,18 +42,6 @@ public class PossessCard
             }
         }
         ShuffleDeck();
-    }
-
-    /// <summary>
-    /// 手札の指定番目のカードを使う
-    /// </summary>
-    /// <param name="handIndex"></param>
-    public void PlayHandCard(Character sourceCharacter, int handIndex)
-    {
-        int usecardID = handCardIDList[handIndex];
-        Entity_CardData.Param cardMaster = CardMasterUtility.GetCardMaster(usecardID);
-        int eventID = cardMaster.eventID;
-        EventManager.ExecuteEvent(sourceCharacter, eventID);
     }
 
     /// <summary>
@@ -96,6 +85,15 @@ public class PossessCard
             handCardIDList.Add(deckCardIDList[0]);
             deckCardIDList.RemoveAt(0);
         }
+    }
+
+    /// <summary>
+    /// 手札が最大枚数になるように引く
+    /// </summary>
+    public void DrawDeckMax()
+    {
+        int drawCount = _HAND_MAX - handCardIDList.Count;
+        DrawDeck(drawCount);
     }
 
     /// <summary>

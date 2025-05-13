@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class MainGameManager : SystemObject
 {
@@ -13,7 +14,7 @@ public class MainGameManager : SystemObject
 
     private const int _TURN_MAX = 15;
 
-    public override void Initialize()
+    public override async UniTask Initialize()
     {
         MasterDataManager.LoadAllData();
         EventManager.Init();
@@ -21,19 +22,21 @@ public class MainGameManager : SystemObject
 
         _turnProcessor = new TurnProcessor();
         _turnProcessor.Init();
+        // カードのコールバックを設定
+        CardObject.SetOnUseCard(_turnProcessor.AcceptCard);
 
-        MainGameProc();
+        await MainGameProc();
     }
 
     /// <summary>
     /// メインゲームの処理
     /// </summary>
-    private void MainGameProc()
+    private async UniTask MainGameProc()
     {
         while (currentTurn < _TURN_MAX)
         {
             TurnCountUp();
-            _turnProcessor.TurnProc();
+            await _turnProcessor.TurnProc();
         }
     }
     

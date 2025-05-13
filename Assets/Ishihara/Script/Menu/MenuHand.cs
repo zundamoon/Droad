@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 using static CommonModule;
@@ -55,6 +56,8 @@ public class MenuHand : BaseMenu
 
     public async override UniTask Open()
     {
+        RemoveAllItem();
+
         await base.Open();
         // 並べる
         // 手札枚数取得
@@ -88,9 +91,28 @@ public class MenuHand : BaseMenu
         return addItem;
     }
 
-    public async void Update()
+    /// <summary>
+    /// インデクス指定のリスト項目削除
+    /// </summary>
+    /// <param name="itemIndex"></param>
+    protected void RemoveListItem(int itemIndex)
     {
-        await UniTask.DelayFrame(1);
+        if (!IsEnableIndex(_useList, itemIndex)) return;
+        // 使用リストから取り除く
+        CardObject removeItem = _useList[itemIndex];
+        _useList.RemoveAt(itemIndex);
+        // 未使用リストへ追加
+        _unuseList.Add(removeItem);
+        removeItem.transform.SetParent(_unuseRoot);
+    }
+
+    /// <summary>
+    /// 全てのリスト項目削除
+    /// </summary>
+    protected void RemoveAllItem()
+    {
+        while (!IsEmpty(_useList)) RemoveListItem(0);
+
     }
 
     public RectTransform GetPlayArea()

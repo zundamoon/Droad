@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CardObject : MonoBehaviour
 {
-    public static Action<int> OnUseCard = null;
+    private static Action<int> _OnUseCard = null;
 
     [SerializeField]
     private TextMeshProUGUI _advanceText = null;
@@ -17,15 +17,10 @@ public class CardObject : MonoBehaviour
     private int _ID = -1;
     private Transform _handArea;
 
-    public void Start()
-    {
-        _handArea = transform.parent;
-    }
-
     // ドラッグ
     public void OnDrag()
     {
-        if (!UIManager.Instance.IsHandAccept) return;
+        if (!UIManager.instance.IsHandAccept) return;
         
         transform.position = Input.mousePosition;
     }
@@ -33,10 +28,11 @@ public class CardObject : MonoBehaviour
     // ドラッグ開始されたとき
     public void OnStartDrop()
     {
-        if (!UIManager.Instance.IsHandAccept) return;
+        if (!UIManager.instance.IsHandAccept) return;
 
-        Transform field = UIManager.Instance.GetHandCanvas().transform;
+        Transform field = UIManager.instance.GetHandCanvas().transform;
         // ドラッグしたオブジェクトを親から外す
+        _handArea = transform.parent;
         transform.SetParent(field);
         // 大きくする
         transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
@@ -45,25 +41,23 @@ public class CardObject : MonoBehaviour
     // ドラッグ解除されたとき
     public void OnEndDrop()
     {
-        if (!UIManager.Instance.IsHandAccept) return;
+        if (!UIManager.instance.IsHandAccept) return;
 
         // 元のサイズに戻す
         transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
         // 使用エリアなら
-        if (!UIManager.Instance.CheckPlayArea(Input.mousePosition))
+        if (!UIManager.instance.CheckPlayArea(Input.mousePosition))
         {
             // 使用エリア外なら元の位置に戻す
             transform.SetParent(_handArea);
             return;
         }
         
-        // カード使用
-        Debug.Log(CardManager.GetCard(_ID).advance + "進む");
-        Debug.Log(CardManager.GetCard(_ID).addCoin + "コイン獲得");
-        //OnUseCard(_ID);
+        // 使用カードをターンに通知
+        _OnUseCard(_ID);
         // 入力受付終了
-        UIManager.Instance.EndHandAccept();
+        UIManager.instance.EndHandAccept();
   
         Destroy(gameObject);
     }
@@ -89,5 +83,14 @@ public class CardObject : MonoBehaviour
         }
         int eventTextID = param.textID;
         _eventText.text = eventTextID.ToText();
+    }
+
+    /// <summary>
+    /// カードを使った際のコールバック設定
+    /// </summary>
+    /// <param name="setCallback"></param>
+    public static void SetOnUseCard(Action<int> setCallback)
+    {
+        _OnUseCard = setCallback;
     }
 }

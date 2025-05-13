@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+
 using static Entity_EventData;
 
 public class EventManager
@@ -28,13 +30,13 @@ public class EventManager
     /// <param name="sourceCharacter"></param>
     /// <param name="eventID"></param>
     /// <param name="setParam"></param>
-    public static void ExecuteEvent(Character sourceCharacter, int eventID, int addParam = -1)
+    public static async UniTask ExecuteEvent(Character sourceCharacter, int eventID, int addParam = -1)
     {
         Param eventMaster = EventMasterUtility.GetEventMaster(eventID);
         if (eventMaster == null) return;
 
         int eventIndex = eventMaster.eventType;
         int eventParam = eventMaster.param[0];
-        eventList[eventIndex].PlayEvent(sourceCharacter, eventParam, addParam);
+        await eventList[eventIndex].PlayEvent(sourceCharacter, eventParam, addParam);
     }
 }

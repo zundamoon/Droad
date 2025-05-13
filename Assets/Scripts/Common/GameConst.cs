@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class GameConst
 {
-    public const int _PLAYER_MAX = 4;
+    public const int PLAYER_MAX = 4;
 }
