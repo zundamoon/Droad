@@ -8,11 +8,13 @@ public class MasterDataManager
 
 	public static List<List<Entity_EventData.Param>> eventData = null;
     public static List<List<Entity_CardData.Param>> cardData = null;
+    public static List<List<Entity_TextData.Param>> textData = null;
 
     public static void LoadAllData()
 	{
 		eventData = Load<Entity_EventData, Entity_EventData.Sheet, Entity_EventData.Param>("EventData");
         cardData = Load<Entity_CardData, Entity_CardData.Sheet, Entity_CardData.Param>("CardData");
+        textData = Load<Entity_TextData, Entity_TextData.Sheet, Entity_TextData.Param>("TextData");
     }
 
 	private static List<List<T3>> Load<T1, T2, T3>(string dataName) where T1 : ScriptableObject
