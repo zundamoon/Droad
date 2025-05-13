@@ -5,18 +5,26 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 
 using static CommonModule;
+using static GameConst;
 
 public class TurnProcessor
 {
     private List<Character> _playerList = null;
     private List<int> _playerOrder = null;
 
-    private const int _PLAYER_MAX = 4;
-
     public void Init()
     {
         _playerList = new List<Character>(_PLAYER_MAX);
         _playerOrder = new List<int>(_PLAYER_MAX);
+
+        CharacterManager characterManager = CharacterManager.instance;
+
+        for (int i = 0; i < _PLAYER_MAX; i++)
+        {
+            characterManager.GenerateCharacter();
+        }
+
+        _playerList = characterManager.GetCharacterList();
     }
 
     /// <summary>
