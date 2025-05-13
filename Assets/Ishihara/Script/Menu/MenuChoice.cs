@@ -25,11 +25,39 @@ public class MenuChoice : BaseMenu
     private List<MenuChoiceList> _useList = null;
     private List<MenuChoiceList> _unuseList = null;
 
+    private List<int> _choiceCardIDList = null;
+
     public override async UniTask Initialize()
     {
         await base.Initialize();
         _useList = new List<MenuChoiceList>();
         _unuseList = new List<MenuChoiceList>();
+        _choiceCardIDList = new List<int>();
+    }
+
+    public void SetChoiceCardID(List<int> setChoiceCardID)
+    {
+        _choiceCardIDList.Clear();
+        _choiceCardIDList = setChoiceCardID;
+    }
+
+    public async override UniTask Open()
+    {
+        await base.Open();
+        // 並べる
+        // 選択肢が何行必要か
+        for(int i = 0; i < _choiceCardIDList.Count; i+= 3)
+        {
+            // リスト項目を生成
+            MenuChoiceList item = AddListItem();
+            for (int j = 0; j < 3; j++)
+            {
+                // 3つ目の選択肢が無い場合はスキップ
+                if (i + j >= _choiceCardIDList.Count) break;
+                // リスト項目にカード情報をセット
+                item.SetChoiceList(_choiceCardIDList[i + j]);
+            }
+        }
     }
 
     /// <summary>
@@ -51,7 +79,7 @@ public class MenuChoice : BaseMenu
             _unuseList.RemoveAt(0);
             addItem.transform.SetParent(_contentRoot);
         }
-        addItem.Deselect();
+        addItem.Initialized();
         _useList.Add(addItem);
         return addItem;
     }
@@ -69,7 +97,6 @@ public class MenuChoice : BaseMenu
         // 未使用リストへ追加
         _unuseList.Add(removeItem);
         removeItem.transform.SetParent(_unuseRoot);
-        removeItem.Deselect();
     }
 
     /// <summary>

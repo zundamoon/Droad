@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,6 +6,8 @@ using UnityEngine;
 
 public class CardObject : MonoBehaviour
 {
+    public static Action<int> OnUseCard = null;
+
     [SerializeField]
     private TextMeshProUGUI _advanceText = null;
     [SerializeField]
@@ -35,12 +38,17 @@ public class CardObject : MonoBehaviour
         Transform field = UIManager.Instance.GetHandCanvas().transform;
         // ドラッグしたオブジェクトを親から外す
         transform.SetParent(field);
+        // 大きくする
+        transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
     }
 
     // ドラッグ解除されたとき
     public void OnEndDrop()
     {
         if (!UIManager.Instance.IsHandAccept) return;
+
+        // 元のサイズに戻す
+        transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
         // 使用エリアなら
         if (!UIManager.Instance.CheckPlayArea(Input.mousePosition))
@@ -51,7 +59,9 @@ public class CardObject : MonoBehaviour
         }
         
         // カード使用
-        Debug.Log("カード使用");
+        Debug.Log(CardManager.GetCard(_ID).advance + "進む");
+        Debug.Log(CardManager.GetCard(_ID).addCoin + "コイン獲得");
+        //OnUseCard(_ID);
         // 入力受付終了
         UIManager.Instance.EndHandAccept();
   
@@ -71,7 +81,13 @@ public class CardObject : MonoBehaviour
 
         _advanceText.text = card.advance.ToString();
         _coinText.text = card.addCoin.ToString();
-        int eventTextID = EventMasterUtility.GetEventMaster(card.eventID).textID;
+        Entity_EventData.Param param = EventMasterUtility.GetEventMaster(card.eventID);
+        if (param == null)
+        {
+            _eventText.text = "";
+            return;
+        }
+        int eventTextID = param.textID;
         _eventText.text = eventTextID.ToText();
     }
 }
