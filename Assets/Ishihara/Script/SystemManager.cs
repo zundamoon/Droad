@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,14 +6,23 @@ using UnityEngine;
 public class SystemManager : MonoBehaviour
 {
     [SerializeField]
-    private List<SystemObject> _systemObject = null;
+    private SystemObject[] _systemObjectList = null;
 
-    private void Start()
+    void Start()
     {
-        // システムオブジェクトの初期化
-        for (int i = 0, max = _systemObject.Count; i < max; i++)
+        UniTask task = Initialize();
+    }
+
+    private async UniTask Initialize()
+    {
+        for (int i = 0, max = _systemObjectList.Length; i < max; i++)
         {
-            _systemObject[i].Initialize();
+            SystemObject origin = _systemObjectList[i];
+            if (origin == null) continue;
+
+            SystemObject createObj = Instantiate(origin, transform);
+            await createObj.Initialize();
         }
+        //UniTask task = PartManager.instance.TransitionPart(eGamePart.Standby);
     }
 }

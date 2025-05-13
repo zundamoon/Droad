@@ -6,13 +6,13 @@ using UnityEngine;
 
 public class UIManager : SystemObject
 {
-    public static UIManager Instance { get; private set; } = null;
+    public static UIManager instance { get; private set; } = null;
 
     [SerializeField]
-    private MenuChoice _menuChoice;
+    private MenuChoice _menuChoice = null;
 
     [SerializeField]
-    private MenuHand _menuHand;
+    private MenuHand _menuHand = null;
 
     public bool IsHandAccept { get; private set; } = false;
 
@@ -20,9 +20,9 @@ public class UIManager : SystemObject
     {
         await base.Initialize();
 
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
         }
         else
         {

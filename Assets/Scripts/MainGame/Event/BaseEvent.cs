@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public abstract class BaseEvent
 {
@@ -11,5 +12,5 @@ public abstract class BaseEvent
     /// <param name="sourceCharacter"></param>
     /// <param name="param"></param>
     /// <param name="setParam"></param>
-    public abstract void PlayEvent(Character sourceCharacter, int param, int addParam = -1);
+    public abstract UniTask PlayEvent(Character sourceCharacter, int param, int addParam = -1);
 }

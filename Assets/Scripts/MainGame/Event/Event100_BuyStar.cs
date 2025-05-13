@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class Event100_BuyStar : BaseEvent
 {
-    public override void PlayEvent(Character sourceCharacter, int param, int addParam = -1)
+    public override async UniTask PlayEvent(Character sourceCharacter, int param, int addParam = -1)
     {
         // w“ü‚Å‚«‚é‚©”»’è
         if (sourceCharacter.coins < param) return;
