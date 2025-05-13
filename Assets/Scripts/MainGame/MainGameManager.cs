@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MainGameManager : SystemObject
 {
+    [SerializeField]
+    public List<Character> characterList { get; private set; } = null;
+
     private TurnProcessor _turnProcessor = null;
 
     public int currentTurn { get; private set; } = 0;

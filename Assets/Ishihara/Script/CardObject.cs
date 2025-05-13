@@ -24,7 +24,7 @@ public class CardObject : MonoBehaviour
     {
         if (!UIManager.Instance.IsHandAccept) return;
         
-        this.transform.position = Input.mousePosition;
+        transform.position = Input.mousePosition;
     }
 
     // ドラッグ開始されたとき
@@ -34,7 +34,7 @@ public class CardObject : MonoBehaviour
 
         Transform field = UIManager.Instance.GetHandCanvas().transform;
         // ドラッグしたオブジェクトを親から外す
-        this.transform.SetParent(field);
+        transform.SetParent(field);
     }
 
     // ドラッグ解除されたとき
@@ -46,7 +46,7 @@ public class CardObject : MonoBehaviour
         if (!UIManager.Instance.CheckPlayArea(Input.mousePosition))
         {
             // 使用エリア外なら元の位置に戻す
-            this.transform.SetParent(_handArea);
+            transform.SetParent(_handArea);
             return;
         }
         
@@ -55,25 +55,23 @@ public class CardObject : MonoBehaviour
         // 入力受付終了
         UIManager.Instance.EndHandAccept();
   
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     /// <summary>
-    /// テキストの設定
+    /// カード情報を設定
     /// </summary>
-    /// <param name="advanceText"></param>
-    /// <param name="coinText"></param>
-    /// <param name="eventText"></param>
-    public void SetText(string advanceText, string coinText, string eventText)
-    {
-        _advanceText.text = advanceText;
-        _coinText.text = coinText;
-        _eventText.text = eventText;
-    }
-
+    /// <param name="setID"></param>
     public void SetCard(int setID)
     {
         _ID = setID;
         // カード情報取得
+        CardData card = CardManager.GetCard(_ID);
+        if (card == null) return;
+
+        _advanceText.text = card.advance.ToString();
+        _coinText.text = card.addCoin.ToString();
+        int eventTextID = EventMasterUtility.GetEventMaster(card.eventID).textID;
+        _eventText.text = eventTextID.ToText();
     }
 }
