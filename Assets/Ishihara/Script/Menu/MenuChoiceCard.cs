@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuChoiceCard : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private CardObject _cardObject = null;
+
+    [SerializeField]
+    private Button _button = null;
+
+    public void SetCard(int ID)
     {
-        
+        _cardObject.SetCard(ID);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetButtonAction(System.Action action)
     {
-        
+        _button.onClick.AddListener(() => action());
     }
 }

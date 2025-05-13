@@ -5,13 +5,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
+using static CommonModule;
+
 public class MenuHand : BaseMenu
 {
     /// <summary>
     /// リスト項目のオリジナル
     /// </summary>
     [SerializeField]
-    private GameObject _itemOrigin = null;
+    private CardObject _itemOrigin = null;
     /// <summary>
     /// 項目を並べるルートオブジェクト
     /// </summary>
@@ -47,8 +49,7 @@ public class MenuHand : BaseMenu
         for (int i = 0; i < _MAX_HAND_CARD; i++)
         {
             var item = Instantiate(_itemOrigin, _unuseRoot);
-            item.gameObject.SetActive(true);
-            _unuseList.Add(item.GetComponent<CardObject>());
+            _unuseList.Add(item);
         }
     }
 
@@ -62,15 +63,29 @@ public class MenuHand : BaseMenu
         for (int i = 0; i < handCount; i++)
         {
             // 使用エリアに移動
-            var item = _unuseList.FirstOrDefault();
-            if (item == null) continue;
-            item.gameObject.SetActive(true);
+            var item = AddListItem();
             // カード情報更新
-            //item.SetCard(_possessCard.handCardIDList[i]);
-            item.transform.SetParent(_contentRoot);
-            _useList.Add(item);
-            _unuseList.Remove(item);
+            item.SetCard(_possessCard.handCardIDList[i]);
         }
+    }
+
+    protected CardObject AddListItem()
+    {
+        CardObject addItem;
+        if (IsEmpty(_unuseList))
+        {
+            // 未使用リストが空なので生成
+            addItem = Instantiate(_itemOrigin, _contentRoot);
+        }
+        else
+        {
+            // 未使用リストから取得
+            addItem = _unuseList[0];
+            _unuseList.RemoveAt(0);
+            addItem.transform.SetParent(_contentRoot);
+        }
+        _useList.Add(addItem);
+        return addItem;
     }
 
     public async void Update()

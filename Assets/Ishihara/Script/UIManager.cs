@@ -1,22 +1,25 @@
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class UIManager : SystemObject
 {
     public static UIManager Instance { get; private set; } = null;
 
     [SerializeField]
-    private MenuChoice menuChoice;
+    private MenuChoice _menuChoice;
 
     [SerializeField]
-    private MenuHand menuHand;
+    private MenuHand _menuHand;
 
     public bool IsHandAccept { get; private set; } = false;
 
-    private void Awake()
+    public async override UniTask Initialize()
     {
+        await base.Initialize();
+
         if (Instance == null)
         {
             Instance = this;
@@ -26,12 +29,20 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        menuHand.Initialize().Forget();
+        // メニューを生成
+        _menuHand = Instantiate(_menuHand);
+        _menuChoice = Instantiate(_menuChoice);
+
+        await _menuHand.Initialize();
+        await _menuChoice.Initialize();
+
+        await _menuHand.Close();
+        await _menuChoice.Close();
     }
 
     public GameObject GetHandCanvas()
     {
-        return menuHand.GetCanvas();
+        return _menuHand.GetCanvas();
     }
 
     /// <summary>
@@ -41,7 +52,7 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     public bool CheckPlayArea(Vector2 pos)
     {
-        RectTransform playArea = menuHand.GetPlayArea();
+        RectTransform playArea = _menuHand.GetPlayArea();
         if (playArea == null)
         {
             return false;
@@ -64,8 +75,8 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     public async UniTask OpenHandArea(PossessCard setPossessCard)
     {
-        menuHand.SetTurnPlayerCard(setPossessCard);
-        await menuHand.Open();
+        _menuHand.SetTurnPlayerCard(setPossessCard);
+        await _menuHand.Open();
     }
 
     /// <summary>
@@ -74,7 +85,26 @@ public class UIManager : MonoBehaviour
     /// <returns></returns>
     public async UniTask CloseHandArea()
     {
-        await menuHand.Close();
+        await _menuHand.Close();
+    }
+
+    /// <summary>
+    /// 選択肢エリアを開く
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask OpenChoiceArea(List<int> choiceCardIDList)
+    {
+        _menuChoice.SetChoiceCardID(choiceCardIDList);
+        await _menuChoice.Open();
+    }
+
+    /// <summary>
+    /// 選択肢エリアを閉じる
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask CloseChoiceArea()
+    {
+        await _menuChoice.Close();
     }
 
     /// <summary>

@@ -7,6 +7,7 @@ public class EventMasterUtility
 {
     public static Param GetEventMaster(int ID)
     {
+        if (ID == -1) return null;
         List<Param> eventMasterList = MasterDataManager.eventData[0];
         for (int i = 0, max = eventMasterList.Count; i < max; i++)
         {
