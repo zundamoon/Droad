@@ -69,6 +69,7 @@ public class MenuHand : BaseMenu
             var item = AddListItem();
             // カード情報更新
             item.SetCard(_possessCard.handCardIDList[i]);
+            item.SetHandIndex(i);
         }
     }
 
@@ -87,6 +88,7 @@ public class MenuHand : BaseMenu
             _unuseList.RemoveAt(0);
             addItem.transform.SetParent(_contentRoot);
         }
+        addItem.gameObject.SetActive(true);
         _useList.Add(addItem);
         return addItem;
     }

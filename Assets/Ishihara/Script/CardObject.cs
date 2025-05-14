@@ -16,6 +16,7 @@ public class CardObject : MonoBehaviour
     private TextMeshProUGUI _eventText = null;
     private int _ID = -1;
     private Transform _handArea;
+    private int _handIndex = -1;
 
     // ドラッグ
     public void OnDrag()
@@ -55,11 +56,11 @@ public class CardObject : MonoBehaviour
         }
         
         // 使用カードをターンに通知
-        _OnUseCard(_ID);
+        _OnUseCard(_handIndex);
         // 入力受付終了
         UIManager.instance.EndHandAccept();
   
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -83,6 +84,15 @@ public class CardObject : MonoBehaviour
         }
         int eventTextID = param.textID;
         _eventText.text = eventTextID.ToText();
+    }
+
+    /// <summary>
+    /// 表示番号を設定
+    /// </summary>
+    /// <param name="index"></param>
+    public void SetHandIndex(int index)
+    {
+        _handIndex = index;
     }
 
     /// <summary>
