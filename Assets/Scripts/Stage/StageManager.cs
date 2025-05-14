@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cysharp.Threading.Tasks;
 using static CommonModule;
 using static GameEnum;
 
@@ -12,16 +12,7 @@ public class StageManager : SystemObject
     public GameObject stagePrefab;
     private StageData stageData;
 
-    public void Start()
-    {
-        instance = this;
-        GenerateStage();
-        GameObject stageDataObject = GameObject.Find("StageData");
-        stageData = stageDataObject.GetComponent<StageData>();
-        AllSquareInit();
-    }
-
-    public override void Initialize()
+    public override async UniTask Initialize()
     {
         instance = this;
         GenerateStage();
@@ -39,6 +30,8 @@ public class StageManager : SystemObject
     public void AllSquareInit()
     {
         int routeIndex = 0;
+        // Ç§ÇÒÇøÅI
+        // unnti
         foreach (var roadList in stageData.stageRoute.routeList)
         {
             int roadIndex = 0;

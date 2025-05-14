@@ -189,8 +189,6 @@ public class TurnProcessor
 
             await ExcuteSquareEvent(moveCharacter);
         }
-
-        await UniTask.DelayFrame(1000);
     }
 
     /// <summary>
