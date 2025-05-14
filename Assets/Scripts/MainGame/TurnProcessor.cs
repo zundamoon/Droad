@@ -11,7 +11,7 @@ public class TurnProcessor
 {
     private List<int> _playerOrder = null;
     private bool _acceptEnd = false;
-    private int _useCardID = -1;
+    private int _handIndex = -1;
 
     public void Init()
     {
@@ -61,20 +61,21 @@ public class TurnProcessor
                 await UniTask.DelayFrame(1);
             }
             _acceptEnd = false;
-            int playCardCount = CardManager.GetCard(_useCardID).advance;
+            int playCardCount = GetOrderCount(_handIndex, character);
             playCardList.Add(playCardCount);
         }
         // 出されたカードから順番を決める
-        while (playCardList.Count > 0)
+        while (_playerOrder.Count < PLAYER_MAX)
         {
             // 最大値のインデックスを取得
-            int max = playCardList.Max();
-            List<int> indexList = new List<int>();
-            for (int j = 0; j < PLAYER_MAX; j++)
+            int maxValue = playCardList.Max();
+            int playCount = playCardList.Count;
+            List<int> indexList = new List<int>(playCount);
+            for (int i = 0; i < playCardList.Count; i++)
             {
-                if (indexList[j] != max) continue;
-                indexList.Add(j);
-                playCardList.RemoveAt(j);
+                if (playCardList[i] != maxValue) continue;
+                indexList.Add(i);
+                playCardList[i] = -1;
             }
             // 複数ならランダムに決定
             while (indexList.Count > 0)
@@ -87,6 +88,19 @@ public class TurnProcessor
     }
 
     /// <summary>
+    /// 手札番号を指定し順番の数字を取得
+    /// </summary>
+    /// <param name="handIndex"></param>
+    /// <returns></returns>
+    private int GetOrderCount(int handIndex, Character playCharacter)
+    {
+        PossessCard possess = playCharacter.possessCard;
+        int ID = possess.handCardIDList[handIndex];
+        possess.DiscardHand(handIndex);
+        return CardManager.GetCard(ID).advance;
+    }
+
+    /// <summary>
     /// キャラクターのターン処理
     /// </summary>
     /// <param name="turnCharacter"></param>
@@ -95,7 +109,8 @@ public class TurnProcessor
         if (turnCharacter == null) return;
 
         // UI表示
-
+        await UIManager.instance.OpenHandArea(turnCharacter.possessCard);
+        UIManager.instance.StartHandAccept();
         // 手札が使われるまで待機
         while (!_acceptEnd)
         {
@@ -104,7 +119,7 @@ public class TurnProcessor
         _acceptEnd = false;
 
         // カードの使用
-        int advanceValue = UseCard(_useCardID, turnCharacter);
+        int advanceValue = await UseCard(_handIndex, turnCharacter);
         if (advanceValue <= 0) return;
 
         // キャラクターを動かす
@@ -116,7 +131,7 @@ public class TurnProcessor
 
         // イベント可能でなければ終了
         if (!turnCharacter.CanEvent()) return;
-        ExcuteSquareEvent(turnCharacter);
+        await ExcuteSquareEvent(turnCharacter);
     }
 
     /// <summary>
@@ -125,13 +140,16 @@ public class TurnProcessor
     /// <param name="cardID"></param>
     /// <param name="useCharacter"></param>
     /// <returns></returns>
-    private int UseCard(int cardID, Character useCharacter)
+    private async UniTask<int> UseCard(int handIndex, Character useCharacter)
     {
         // カードのIDから処理を実行
+        PossessCard possess = useCharacter.possessCard;
+        int cardID = possess.handCardIDList[handIndex];
+        possess.DiscardHand(handIndex);
         CardData card = CardManager.GetCard(cardID);
         if (card == null) return -1;
         // イベント処理
-        EventManager.ExecuteEvent(useCharacter, card.eventID);
+        await EventManager.ExecuteEvent(useCharacter, card.eventID);
         // コイン追加
         useCharacter.AddCoin(card.addCoin);
         return card.advance;
@@ -169,7 +187,7 @@ public class TurnProcessor
             // 停止マスでなければ次へ
             if (!stageManager.CheckStopSquare(moveCharacter.position)) continue;
 
-            ExcuteSquareEvent(moveCharacter);
+            await ExcuteSquareEvent(moveCharacter);
         }
 
         await UniTask.DelayFrame(1000);
@@ -179,19 +197,19 @@ public class TurnProcessor
     /// マスのイベント実行
     /// </summary>
     /// <param name="target"></param>
-    private void ExcuteSquareEvent(Character target)
+    private async UniTask ExcuteSquareEvent(Character target)
     {
         int squareEventID = StageManager.instance.GetSquareEvent(target.position);
-        EventManager.ExecuteEvent(target, squareEventID);
+        await EventManager.ExecuteEvent(target, squareEventID);
     }
 
     /// <summary>
     /// カード使用
     /// </summary>
-    /// <param name="ID"></param>
-    public void AcceptCard(int ID)
+    /// <param name="index"></param>
+    public void AcceptCard(int index)
     {
         _acceptEnd = true;
-        _useCardID = ID;
+        _handIndex = index;
     }
 }
