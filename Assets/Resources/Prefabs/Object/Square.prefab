@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 6577253323306337103}
   - component: {fileID: 7273900355523582369}
   - component: {fileID: 5692058539754005803}
-  - component: {fileID: 4722785328719627862}
+  - component: {fileID: 7390389724374891244}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -195,7 +195,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4722785328719627862
+--- !u!114 &7390389724374891244
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -204,14 +204,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 4582009261673876180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6796e40aa7cff4a49b2f27f7a7a8f395, type: 3}
+  m_Script: {fileID: 11500000, guid: e0146c0a5c9c5a74aa79e05047252555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  squareType: -1
-  isStopSquare: 0
-  isPointSquare: 0
+  isStarSquare: 0
   renderer: {fileID: 7273900355523582369}
-  eventID: -1
+  squareData:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &8015049639913805483
 GameObject:
   m_ObjectHideFlags: 0

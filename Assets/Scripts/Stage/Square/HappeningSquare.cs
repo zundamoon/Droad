@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static GameEnum;
 
-public class HappeningSquare : Square
+public class HappeningSquare : BaseSquareData
 {
-    public override EventID GetEventID()
+    public HappeningSquare()
     {
-        return eventID;
+        squareColor = Color.green;
+        eventID = 2;
     }
 }
 

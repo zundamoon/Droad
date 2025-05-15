@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static GameEnum;
 
-public class ShopSquare : Square
+public class ShopSquare : BaseSquareData
 {
-    public override EventID GetEventID()
+    public ShopSquare()
     {
-        return EventID.SHOP;
+        squareColor = Color.yellow;
+        eventID = 101;
     }
 }
