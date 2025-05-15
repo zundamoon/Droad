@@ -8,6 +8,9 @@ using static CommonModule;
 
 public class Character : MonoBehaviour
 {
+    // カメラアンカー
+    [SerializeField]
+    private Transform _cameraAnchor = null;
     // 所持カード
     public PossessCard possessCard { get; private set; } = null;
     // コイン
@@ -22,7 +25,7 @@ public class Character : MonoBehaviour
     public StagePosition position;
     // 次の移動先を保持
     public StagePosition nextPosition;
-    private float moveSpeed = 0.1f;
+    private float moveSpeed = 1.0f;
     private float goalDistance = 0.05f;
 
     public void Init()
@@ -96,5 +99,14 @@ public class Character : MonoBehaviour
         }
 
         transform.position = targetPos;
+    }
+
+    /// <summary>
+    /// カメラアンカーの取得
+    /// </summary>
+    /// <returns></returns>
+    public Transform GetCameraAnchor()
+    {
+        return _cameraAnchor;
     }
 }
