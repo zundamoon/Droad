@@ -16,6 +16,10 @@ public class TurnProcessor
     public void Init()
     {
         _playerOrder = new List<int>(PLAYER_MAX);
+        for (int i = 0; i < PLAYER_MAX; i++)
+        {
+            _playerOrder.Add(i);
+        }
     }
 
     /// <summary>
@@ -23,6 +27,8 @@ public class TurnProcessor
     /// </summary>
     public async UniTask TurnProc()
     {
+        await UIManager.instance.RunMessage("次のターン");
+
         // ドロー
         for (int i = 0; i < PLAYER_MAX; i++)
         {
@@ -31,6 +37,7 @@ public class TurnProcessor
         }
 
         // 手番決め
+        await UIManager.instance.RunMessage("順番決め！");
         await DesidePlayerOrder();
 
         // 各手番
@@ -38,6 +45,11 @@ public class TurnProcessor
         {
             int orderIndex = _playerOrder[i];
             Character character = CharacterManager.instance.GetCharacter(orderIndex);
+            if (character == null) return;
+
+            // UI表示
+            await UIManager.instance.OpenHandArea(character.possessCard);
+            await UIManager.instance.RunMessage("あなたのターン");
             await EachTurn(character);
         }
     }
@@ -51,10 +63,11 @@ public class TurnProcessor
         List<int> playCardList = new List<int>(PLAYER_MAX);
         for (int i = 0; i < PLAYER_MAX; i++)
         {
-            Character character = CharacterManager.instance.GetCharacter(i);
+            Character character = CharacterManager.instance.GetCharacter(_playerOrder[i]);
             // 手札の選択
             // UIの表示
             await UIManager.instance.OpenHandArea(character.possessCard);
+            await UIManager.instance.RunMessage("手札を出してね");
             UIManager.instance.StartHandAccept();
             while (!_acceptEnd)
             {
@@ -106,10 +119,6 @@ public class TurnProcessor
     /// <param name="turnCharacter"></param>
     private async UniTask EachTurn(Character turnCharacter)
     {
-        if (turnCharacter == null) return;
-
-        // UI表示
-        await UIManager.instance.OpenHandArea(turnCharacter.possessCard);
         UIManager.instance.StartHandAccept();
         // 手札が使われるまで待機
         while (!_acceptEnd)
