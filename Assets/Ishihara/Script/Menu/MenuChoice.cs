@@ -105,6 +105,5 @@ public class MenuChoice : BaseMenu
     protected void RemoveAllItem()
     {
         while (!IsEmpty(_useList)) RemoveListItem(0);
-
     }
 }

@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 1459373365528248728}
   - component: {fileID: 1459373365528248730}
   - component: {fileID: 1459373365528248731}
+  - component: {fileID: 8122641984572144492}
   m_Layer: 5
   m_Name: PlayerStatus
   m_TagString: Untagged
@@ -297,8 +298,8 @@ RectTransform:
   m_GameObject: {fileID: 1459373365528248729}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1459373366724649317}
   - {fileID: 8142029585997223454}
@@ -348,6 +349,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8122641984572144492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459373365528248729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 871aff7a2acd88540bb4debb90b3b726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rectTransform: {fileID: 1459373365528248728}
 --- !u!1 &1459373366350341098
 GameObject:
   m_ObjectHideFlags: 0

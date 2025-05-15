@@ -32,4 +32,5 @@ public class CharacterManager : SystemObject
     }
 
     public Character GetCharacter(int characterID) { return _characterList[characterID]; }
+    public List<Character> GetAllCharacter() { return _characterList; }
 }
