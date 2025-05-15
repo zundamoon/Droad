@@ -13,12 +13,14 @@ public class MainGameManager : SystemObject
     public int currentTurn { get; private set; } = 0;
 
     private const int _TURN_MAX = 15;
+    private const int _TURN_TEXT_ID = 100;
 
     public override async UniTask Initialize()
     {
         MasterDataManager.LoadAllData();
         EventManager.Init();
         CardManager.Init();
+        CameraManager.Init();
 
         _turnProcessor = new TurnProcessor();
         _turnProcessor.Init();
@@ -35,7 +37,7 @@ public class MainGameManager : SystemObject
     {
         while (currentTurn < _TURN_MAX)
         {
-            TurnCountUp();
+            await TurnCountUp();
             await _turnProcessor.TurnProc();
         }
     }
@@ -43,9 +45,10 @@ public class MainGameManager : SystemObject
     /// <summary>
     /// ターンをカウントアップ
     /// </summary>
-    private void TurnCountUp()
+    private async UniTask TurnCountUp()
     {
         currentTurn++;
         // UIに通知
+        await UIManager.instance.RunMessage(string.Format(_TURN_TEXT_ID.ToText(), currentTurn, _TURN_MAX));
     }
 }

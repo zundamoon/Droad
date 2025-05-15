@@ -6,19 +6,24 @@ using Cysharp.Threading.Tasks;
 
 using static CommonModule;
 using static GameConst;
+using UnityEngine.TextCore.Text;
 
 public class TurnProcessor
 {
-    private List<int> _playerOrder = null;
+    public static List<int> playerOrder = null;
     private bool _acceptEnd = false;
     private int _handIndex = -1;
 
+    private const int _TURN_ANNOUNCE_ID = 101;
+    private const int _ORDER_TURN_ANNOUNCE_ID = 102;
+    private const int _PLAY_ANNOUNCE_ID = 103;
+
     public void Init()
     {
-        _playerOrder = new List<int>(PLAYER_MAX);
+        playerOrder = new List<int>(PLAYER_MAX);
         for (int i = 0; i < PLAYER_MAX; i++)
         {
-            _playerOrder.Add(i);
+            playerOrder.Add(i);
         }
     }
 
@@ -27,8 +32,6 @@ public class TurnProcessor
     /// </summary>
     public async UniTask TurnProc()
     {
-        await UIManager.instance.RunMessage("次のターン");
-
         // ドロー
         for (int i = 0; i < PLAYER_MAX; i++)
         {
@@ -37,19 +40,20 @@ public class TurnProcessor
         }
 
         // 手番決め
-        await UIManager.instance.RunMessage("順番決め！");
+        await UIManager.instance.RunMessage(_ORDER_TURN_ANNOUNCE_ID.ToText());
         await DesidePlayerOrder();
 
         // 各手番
         for (int i = 0; i < PLAYER_MAX; i++)
         {
-            int orderIndex = _playerOrder[i];
+            int orderIndex = playerOrder[i];
             Character character = CharacterManager.instance.GetCharacter(orderIndex);
             if (character == null) return;
 
             // UI表示
+            await CameraManager.SetCharacter(character.GetCameraAnchor());
             await UIManager.instance.OpenHandArea(character.possessCard);
-            await UIManager.instance.RunMessage("あなたのターン");
+            await UIManager.instance.RunMessage(string.Format(_TURN_ANNOUNCE_ID.ToText(), orderIndex + 1));
             await EachTurn(character);
         }
     }
@@ -62,11 +66,11 @@ public class TurnProcessor
         List<int> playCardList = new List<int>(PLAYER_MAX);
         for (int i = 0; i < PLAYER_MAX; i++)
         {
-            Character character = CharacterManager.instance.GetCharacter(_playerOrder[i]);
+            Character character = CharacterManager.instance.GetCharacter(playerOrder[i]);
             // 手札の選択
             // UIの表示
             await UIManager.instance.OpenHandArea(character.possessCard);
-            await UIManager.instance.RunMessage("手札を出してね");
+            await UIManager.instance.RunMessage(string.Format(_PLAY_ANNOUNCE_ID.ToText()));
             UIManager.instance.StartHandAccept();
             while (!_acceptEnd)
             {
@@ -76,9 +80,9 @@ public class TurnProcessor
             int playCardCount = GetOrderCount(_handIndex, character);
             playCardList.Add(playCardCount);
         }
-        _playerOrder.Clear();
+        playerOrder.Clear();
         // 出されたカードから順番を決める
-        while (_playerOrder.Count < PLAYER_MAX)
+        while (playerOrder.Count < PLAYER_MAX)
         {
             // 最大値のインデックスを取得
             int maxValue = playCardList.Max();
@@ -94,7 +98,7 @@ public class TurnProcessor
             while (indexList.Count > 0)
             {
                 int index = Random.Range(0, indexList.Count);
-                _playerOrder.Add(indexList[index]);
+                playerOrder.Add(indexList[index]);
                 indexList.RemoveAt(index);
             }
         }
