@@ -66,7 +66,7 @@ public class PossessCard
     public void ReshuffleDeck()
     {
         // 捨て札をデッキに戻す
-        discardCardIDList.AddRange(deckCardIDList);
+        deckCardIDList.AddRange(discardCardIDList);
         discardCardIDList.Clear();
         // デッキをシャッフル
         ShuffleDeck();

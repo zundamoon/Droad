@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _menuChoice: {fileID: 8956463154466803165, guid: f188c810007f61c4096c1054d170dc0d, type: 3}
   _menuHand: {fileID: 3646455676470727671, guid: 1e63425c6431ed6418bba4baf40afa19, type: 3}
+  _messageUI: {fileID: 1480244286524136102, guid: 4e82294820818b2409fa42d192481890, type: 3}

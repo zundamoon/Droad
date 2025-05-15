@@ -14,6 +14,11 @@ public class UIManager : SystemObject
     [SerializeField]
     private MenuHand _menuHand = null;
 
+    [SerializeField]
+    private MessageUI _messageUI = null;
+
+    private const float _DEFAULT_DISPLAY_TIME = 0.75f;
+
     public bool IsHandAccept { get; private set; } = false;
 
     public async override UniTask Initialize()
@@ -32,12 +37,14 @@ public class UIManager : SystemObject
         // メニューを生成
         _menuHand = Instantiate(_menuHand);
         _menuChoice = Instantiate(_menuChoice);
+        _messageUI = Instantiate(_messageUI);
 
         await _menuHand.Initialize();
         await _menuChoice.Initialize();
 
         await _menuHand.Close();
         await _menuChoice.Close();
+        await _messageUI.Inactive();
     }
 
     public GameObject GetHandCanvas()
@@ -121,5 +128,16 @@ public class UIManager : SystemObject
     public void EndHandAccept()
     {
         IsHandAccept = false;
+    }
+
+    /// <summary>
+    /// メッセージUIを表示する
+    /// </summary>
+    /// <param name="text"></param>
+    /// <param name="displayTime"></param>
+    /// <returns></returns>
+    public async UniTask RunMessage(string text, float displayTime = _DEFAULT_DISPLAY_TIME)
+    {
+        await _messageUI.RunMessage(text, displayTime);
     }
 }
