@@ -59,7 +59,6 @@ public class TurnProcessor
     /// </summary>
     private async UniTask DesidePlayerOrder()
     {
-        _playerOrder.Clear();
         List<int> playCardList = new List<int>(PLAYER_MAX);
         for (int i = 0; i < PLAYER_MAX; i++)
         {
@@ -77,6 +76,7 @@ public class TurnProcessor
             int playCardCount = GetOrderCount(_handIndex, character);
             playCardList.Add(playCardCount);
         }
+        _playerOrder.Clear();
         // 出されたカードから順番を決める
         while (_playerOrder.Count < PLAYER_MAX)
         {
