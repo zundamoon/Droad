@@ -149,18 +149,16 @@ public class StageManager : SystemObject
         StagePosition nextPos = playerPos;
         nextPos.m_square++;
 
-        if (IsValidSquare(nextPos))
-            return nextPos;
+        if (IsValidSquare(nextPos)) return nextPos;
 
         // 次のルートに移動
         nextPos.m_route++;
         nextPos.m_road = 0;
         nextPos.m_square = 0;
 
-        if (IsValidSquare(nextPos))
-            return nextPos;
+        if (IsValidSquare(nextPos)) return nextPos;
 
-        // fallback（1番目のルートへ戻す）
+        // 1番目のルートへ戻す
         return new StagePosition
         {
             m_route = 1,
