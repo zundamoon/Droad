@@ -10,11 +10,11 @@ public abstract class Square : MonoBehaviour
     [SerializeField] public bool isStopSquare = false;
     [SerializeField] public bool isPointSquare = false;
     [SerializeField] public new Renderer renderer = null;
-    [SerializeField] protected int eventID = -1;
+    [SerializeField] protected EventID eventID = EventID.INVALID;
 
     protected List<int> standingPlayerList = null;
 
     public bool GetPoint() { return isPointSquare; }
-    public abstract int GetEventID();
-    public void SetEventID(int eventID) { this.eventID = eventID; }
+    public abstract EventID GetEventID();
+    public void SetEventID(EventID eventID) { this.eventID = eventID; }
 }

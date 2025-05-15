@@ -18,15 +18,12 @@ public class Character : MonoBehaviour
     public bool eventCancel { get; private set; } = false;
     // 移動後のイベント
     public Action<List<Character>> AfterMoveEvent { get; private set; } = null;
-
     // 位置情報
     public StagePosition position;
     // 次の移動先を保持
     public StagePosition nextPosition;
-
-    public float moveSpeed = 0.1f;
-
-    public float goalDistance = 0.05f;
+    private float moveSpeed = 0.1f;
+    private float goalDistance = 0.05f;
 
     public void Init()
     {
@@ -35,6 +32,9 @@ public class Character : MonoBehaviour
         position.m_route = 0;
         position.m_road = 0;
         position.m_square = 0;
+
+        coins = 0;
+        stars = 0;
     }
     /// <summary>
     /// 移動後イベントの設定
@@ -77,6 +77,8 @@ public class Character : MonoBehaviour
         }
         return true;
     }
+
+    public int GetStarCount() { return possessCard.CountStar(); }
 
     /// <summary>
     /// 移動関数

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameEnum;
 
 public class BlueSquare : Square
 {
-    public override int GetEventID()
+    public override EventID GetEventID()
     {
-        return 6;
+        return EventID.ADD_COIN;
     }
 }
