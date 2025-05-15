@@ -4,17 +4,41 @@ using UnityEngine;
 
 using static GameEnum;
 
-public abstract class Square : MonoBehaviour
+public class Square : MonoBehaviour
 {
-    [SerializeField] public SquareType squareType = SquareType.INVALID;
-    [SerializeField] public bool isStopSquare = false;
-    [SerializeField] public bool isPointSquare = false;
-    [SerializeField] public new Renderer renderer = null;
-    [SerializeField] protected EventID eventID = EventID.INVALID;
+    public bool isStarSquare;
+    [SerializeField] private new Renderer renderer;
+    [SerializeReference, SubclassSelector]
+    private BaseSquareData squareData;
 
     protected List<int> standingPlayerList = null;
 
-    public bool GetPoint() { return isPointSquare; }
-    public abstract EventID GetEventID();
-    public void SetEventID(EventID eventID) { this.eventID = eventID; }
+    public void Init()
+    {
+        isStarSquare = false;
+        ChangeLooks();
+    }
+
+    public void ChangeStarSquare()
+    {
+        if (isStarSquare) isStarSquare = false;
+        else isStarSquare = true;
+    }
+
+    public void ChangeSquareType(BaseSquareData baseSquareData)
+    {
+        if (baseSquareData == null) return;
+
+        squareData = baseSquareData;
+        ChangeLooks();
+    }
+
+    private void ChangeLooks()
+    {
+        renderer.material.color = squareData.squareColor;
+    }
+
+    public int GetEventID() { return squareData.eventID; }
+    public bool GetIsStarSquare() { return isStarSquare; }
+    public void SetIsStarSquare(bool state) {  isStarSquare = state; }
 }

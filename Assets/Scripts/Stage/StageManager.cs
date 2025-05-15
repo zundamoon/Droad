@@ -30,7 +30,7 @@ public class StageManager : SystemObject
     public void AllSquareInit()
     {
         int routeIndex = 0;
-        // ‚¤‚ñ‚¿I
+        // ï¿½ï¿½ï¿½ñ‚¿I
         // unnti
         foreach (var roadList in stageData.stageRoute.routeList)
         {
@@ -43,7 +43,7 @@ public class StageManager : SystemObject
                     if (squareObject != null)
                     {
                         Square square = GetSquare(squareObject);
-                        ChangeSquareType(square, square.squareType);
+                        square.Init();
                     }
                     squareIndex++;
                 }
@@ -53,35 +53,28 @@ public class StageManager : SystemObject
         }
     }
 
-    public void ChangeSquareType(Square square, SquareType type)
+    public void ChangeSquareType(StagePosition pos, SquareType type)
     {
-        square.squareType = type;
+        Square square = GetSquare(pos);
+        BaseSquareData newData = CreateSquareData(type);
 
+        if (newData != null)
+        {
+            square.ChangeSquareType(newData);
+        }
+    }
+
+    private BaseSquareData CreateSquareData(SquareType type)
+    {
         switch (type)
         {
-            case SquareType.INVALID:
-                square.renderer.material.color = Color.gray;
-                square = new InvalidSquare();
-                break;
-            case SquareType.BLUE:
-                square.renderer.material.color = Color.blue;
-                square = new BlueSquare();
-                break;
-            case SquareType.RED:
-                square.renderer.material.color = Color.red;
-                square = new RedSquare();
-                break;
-            case SquareType.HAPPENING:
-                square.renderer.material.color = Color.green;
-                square = new HappeningSquare();
-                break;
-            case SquareType.SHOP:
-                square.renderer.material.color = Color.yellow;
-                square = new ShopSquare();
-                break;
+            case SquareType.BLUE: return new BlueSquare();
+            case SquareType.RED: return new RedSquare();
+            case SquareType.HAPPENING: return new HappeningSquare();
+            case SquareType.SHOP: return new ShopSquare();
+            case SquareType.INVALID: return new InvalidSquare();
+            default: return null;
         }
-
-        return;
     }
 
     private Square GetSquare(StagePosition squarePos)
@@ -100,21 +93,21 @@ public class StageManager : SystemObject
     }
 
     /// <summary>
-    /// ƒXƒe[ƒW‚ÌÀ•W‚©‚çƒ}ƒX‚ÌƒCƒxƒ“ƒg‚ğæ“¾
+    /// ï¿½Xï¿½eï¿½[ï¿½Wï¿½Ìï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½}ï¿½Xï¿½ÌƒCï¿½xï¿½ï¿½ï¿½gï¿½ï¿½ï¿½æ“¾
     /// </summary>
     /// <param name="stagePosition"></param>
     /// <returns></returns>
     public int GetSquareEvent(StagePosition squarePos) { return GetSquare(squarePos).GetEventID(); }
 
     /// <summary>
-    /// ˆê’U’â~ƒ}ƒX‚©Šm”F
+    /// ï¿½ï¿½Uï¿½ï¿½~ï¿½}ï¿½Xï¿½ï¿½ï¿½mï¿½F
     /// </summary>
     /// <param name="squarePos"></param>
     /// <returns></returns>
-    public bool CheckStopSquare(StagePosition squarePos) { return GetSquare(squarePos).isStopSquare; }
+    public bool CheckStopSquare(StagePosition squarePos) { return GetSquare(squarePos).GetIsStarSquare(); }
 
     /// <summary>
-    /// “n‚³‚ê‚½À•W‚Ìˆêƒ}ƒXæ‚ÌÀ•W‚ğŠm”F
+    /// ï¿½nï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½Wï¿½Ìˆï¿½}ï¿½Xï¿½ï¿½Ìï¿½ï¿½Wï¿½ï¿½ï¿½mï¿½F
     /// </summary>
     /// <param name="playerPos"></param>
     /// <returns></returns>
@@ -128,10 +121,10 @@ public class StageManager : SystemObject
     //    var roadList = stageData.stageRoute.routeList;
     //    nextSquare = stageData.stageRoute.routeList[playerPos.m_route].roadList[playerPos.m_road].squareList[nextPos.m_square];
 
-    //    // i‚ß‚éƒ}ƒX‚ª‚È‚­‚È‚Á‚Ä‚¢‚È‚©‚Á‚½‚çÀ•W‚ğ•Ô‚·
+    //    // ï¿½iï¿½ß‚ï¿½}ï¿½Xï¿½ï¿½ï¿½È‚ï¿½ï¿½È‚ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½ï¿½Ô‚ï¿½
     //    if (nextSquare != null) return nextPos;
     //    nextPos.m_route += 1;
-    //    // Ÿ‚Ìƒ‹[ƒg‚É‚¢‚­‚Â“¹‚ª‚ ‚é‚©æ“¾
+    //    // ï¿½ï¿½ï¿½Ìƒï¿½ï¿½[ï¿½gï¿½É‚ï¿½ï¿½ï¿½ï¿½Â“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚©ï¿½æ“¾
     //    int roadCount = stageData.stageRoute.routeList[nextPos.m_route].roadList.Count;
     //    nextPos.m_road = roadCount;
     //    nextPos.m_square = 0;
@@ -140,7 +133,7 @@ public class StageManager : SystemObject
     //}
 
     /// <summary>
-    /// “n‚³‚ê‚½À•W‚Ìˆêƒ}ƒXæ‚ÌÀ•W‚ğŠm”F
+    /// ï¿½nï¿½ï¿½ï¿½ê‚½ï¿½ï¿½ï¿½Wï¿½Ìˆï¿½}ï¿½Xï¿½ï¿½Ìï¿½ï¿½Wï¿½ï¿½ï¿½mï¿½F
     /// </summary>
     /// <param name="playerPos"></param>
     /// <returns></returns>
@@ -151,14 +144,14 @@ public class StageManager : SystemObject
 
         if (IsValidSquare(nextPos)) return nextPos;
 
-        // Ÿ‚Ìƒ‹[ƒg‚ÉˆÚ“®
+        // ï¿½ï¿½ï¿½Ìƒï¿½ï¿½[ï¿½gï¿½ÉˆÚ“ï¿½
         nextPos.m_route++;
         nextPos.m_road = 0;
         nextPos.m_square = 0;
 
         if (IsValidSquare(nextPos)) return nextPos;
 
-        // 1”Ô–Ú‚Ìƒ‹[ƒg‚Ö–ß‚·
+        // 1ï¿½Ô–Ú‚Ìƒï¿½ï¿½[ï¿½gï¿½Ö–ß‚ï¿½
         return new StagePosition
         {
             m_route = 1,
@@ -181,7 +174,7 @@ public class StageManager : SystemObject
     }
 
     /// <summary>
-    /// StagePosition‚©‚çVector3‚É•ÏŠ·‚·‚é
+    /// StagePositionï¿½ï¿½ï¿½ï¿½Vector3ï¿½É•ÏŠï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     /// <param name="squarePosition"></param>
     /// <returns></returns>

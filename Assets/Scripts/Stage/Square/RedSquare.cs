@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static GameEnum;
 
-public class RedSquare : Square
+public class RedSquare : BaseSquareData
 {
-    public override EventID GetEventID()
+    public RedSquare()
     {
-        return EventID.STEAL_COIN;
+        squareColor = Color.red;
+        eventID = 1;
     }
 }
 

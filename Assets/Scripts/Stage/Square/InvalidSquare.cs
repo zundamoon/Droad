@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static GameEnum;
 
-public class InvalidSquare : Square
+public class InvalidSquare : BaseSquareData
 {
-    public override EventID GetEventID()
+    public InvalidSquare()
     {
-        return EventID.INVALID;
+        squareColor = Color.grey;
+        eventID = -1;
     }
 }
 

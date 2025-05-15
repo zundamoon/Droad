@@ -25,7 +25,7 @@ public class Character : MonoBehaviour
     public StagePosition position;
     // Ÿ‚ÌˆÚ“®æ‚ğ•Û
     public StagePosition nextPosition;
-    private float moveSpeed = 1.0f;
+    private float moveSpeed = 10.0f;
     private float goalDistance = 0.05f;
 
     public void Init()
@@ -35,6 +35,8 @@ public class Character : MonoBehaviour
         position.m_route = 0;
         position.m_road = 0;
         position.m_square = 0;
+        Vector3 initPosition = StageManager.instance.GetPosition(position);
+        SetPosition(initPosition);
 
         coins = 0;
         stars = 0;
@@ -83,6 +85,11 @@ public class Character : MonoBehaviour
 
     public int GetStarCount() { return possessCard.CountStar(); }
 
+    public void SetPosition(Vector3 position)
+    {
+        gameObject.transform.position = position;
+    }
+
     /// <summary>
     /// ˆÚ“®ŠÖ”
     /// </summary>
@@ -90,11 +97,9 @@ public class Character : MonoBehaviour
     /// <returns></returns>
     public async UniTask Move(Vector3 targetPos)
     {
-        // ˆÚ“®ƒ‹[ƒv
         while (Vector3.Distance(transform.position, targetPos) > goalDistance)
         {
-            // •âŠÔ‚ÅŠŠ‚ç‚©‚ÉˆÚ“®
-            transform.position = Vector3.Lerp(transform.position, targetPos, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
             await UniTask.DelayFrame(1);
         }
 
