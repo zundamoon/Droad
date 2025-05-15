@@ -30,7 +30,7 @@ public class MessageUI : MonoBehaviour
         gameObject.SetActive(true);
         // テキストの表示
         _text.text = setText;
-        _text.rectTransform.anchoredPosition = _displayAnchor.anchoredPosition;
+        _textBG.rectTransform.anchoredPosition = _displayAnchor.anchoredPosition;
 
         float elapsedTime = 0;
         // 移動
@@ -38,7 +38,7 @@ public class MessageUI : MonoBehaviour
         {
             // UIを動かす
             float ratio = elapsedTime / _MOVE_TIME;
-            _text.rectTransform.anchoredPosition += new Vector2(0, _MOVE_HEIGHT / _MOVE_TIME * Time.deltaTime);
+            _textBG.rectTransform.anchoredPosition += new Vector2(0, _MOVE_HEIGHT / _MOVE_TIME * Time.deltaTime);
             SetMessageAlpha(ratio);
             elapsedTime += Time.deltaTime;
             await UniTask.DelayFrame(1);
