@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -16,7 +17,7 @@ public class MenuStatus : BaseMenu
     private MenuStatusChara _charaStatusOrigin = null;
     [SerializeField]
     private MenuStatusEvent _eventStatusOrigin = null;
-    
+
     /// <summary>
     /// 並べる背景
     /// </summary>
@@ -32,6 +33,9 @@ public class MenuStatus : BaseMenu
     /// </summary>
     [SerializeField]
     private Transform _unuseRoot = null;
+
+    [SerializeField]
+    private RectTransform _startPos = null;
 
     // 順番リスト
     private List<MenuStatusItem> _statusOrderList = null;
@@ -51,17 +55,15 @@ public class MenuStatus : BaseMenu
         _characters = setCharacters;
     }
 
-    public async UniTask ScrollStatus()
+    public async UniTask Alignment()
     {
-        if (!IsEnableIndex(_statusOrderList, 0)) return;
-
-        _statusOrderList.RemoveAt(0);
-
         if (!IsEnableIndex(_statusOrderList, 0)) return;
 
         List<UniTask> tasks = new List<UniTask>();
 
-        Vector3 pos = _BGRect.position;
+        Vector3 pos = Vector3.zero;
+        // スペース
+        pos.y -= 20;
 
         for (int i = 0; i < _statusOrderList.Count; i++)
         {
@@ -70,20 +72,50 @@ public class MenuStatus : BaseMenu
             UniTask task = status.Move(pos);
             tasks.Add(task);
 
-            pos.y += status.GetHeight();
+            pos.y -= status.GetHeight();
             // スペース
-            pos.y += 20;
+            pos.y -= 20;
         }
 
-       await UniTask.WhenAll(tasks);
+        await UniTask.WhenAll(tasks);
     }
 
-    public void AddStatus()
+    public async UniTask ScrollStatus()
+    {
+        if (!IsEnableIndex(_statusOrderList, 0)) return;
+
+        _statusOrderList[0].ReSize(0.8f);
+        _statusOrderList.RemoveAt(0);
+        RemoveCharaStatus(0);
+
+        if (IsEnableIndex(_statusOrderList, 0) &&
+            _statusOrderList[0].isChara == false)
+        {
+            _statusOrderList[0].ReSize(0.8f);
+            RemoveEventStatus(0);
+            _statusOrderList.RemoveAt(0);
+        }
+        await Alignment();
+    }
+
+    public async UniTask AddStatus(Character character)
     {
         var status = AddCharaStatusItem();
+        status.SetChara(character);
         _statusOrderList.Add(status);
+
+        await Alignment();
     }
-    
+
+    public async UniTask AddStatus(string str)
+    {
+        var status = AddEventStatusItem();
+        status.SetEvent(str);
+        _statusOrderList.Add(status);
+
+        await Alignment();
+    }
+
     public override async UniTask Initialize()
     {
         await base.Initialize();
@@ -94,14 +126,14 @@ public class MenuStatus : BaseMenu
             var status = Instantiate(_charaStatusOrigin, _unuseRoot);
             _unuseCharaList.Add(status);
         }
-        //_useEventList = new List<MenuStatusEvent>();
-        //_unuseEventList = new List<MenuStatusEvent>();
-        //for (int i = 0; i < _EVENT_MAX; i++)
-        //{
-        //    var status = Instantiate(_eventStatusOrigin, _unuseRoot);
-        //    _unuseEventList.Add(status);
-        //}
-        //_statusOrderList = new List<MenuStatusItem>();
+        _useEventList = new List<MenuStatusEvent>();
+        _unuseEventList = new List<MenuStatusEvent>();
+        for (int i = 0; i < _EVENT_MAX; i++)
+        {
+            var status = Instantiate(_eventStatusOrigin, _unuseRoot);
+            _unuseEventList.Add(status);
+        }
+        _statusOrderList = new List<MenuStatusItem>();
         _characters = new List<Character>();
     }
 
@@ -124,7 +156,8 @@ public class MenuStatus : BaseMenu
             _unuseCharaList.RemoveAt(0);
             addItem.transform.SetParent(_contentRoot);
         }
-        //addItem.Initialized();
+        addItem.Initialize();
+        addItem.transform.position = _startPos.position;
         _useCharaList.Add(addItem);
         return addItem;
     }
@@ -148,7 +181,8 @@ public class MenuStatus : BaseMenu
             _unuseEventList.RemoveAt(0);
             addItem.transform.SetParent(_contentRoot);
         }
-        //addItem.Initialized();
+        addItem.Initialize();
+        addItem.transform.position = _startPos.position;
         _useEventList.Add(addItem);
         return addItem;
     }
@@ -185,16 +219,33 @@ public class MenuStatus : BaseMenu
     /// <summary>
     /// 全てのリスト項目削除
     /// </summary>
-    public void RemoveAllStatus()
+    public async UniTask RemoveAllStatus()
     {
         while (!IsEmpty(_useCharaList)) RemoveCharaStatus(0);
         while (!IsEmpty(_useEventList)) RemoveEventStatus(0);
+        while(!IsEmpty(_statusOrderList)) _statusOrderList.Clear();
+
+        await UniTask.DelayFrame(1);
     }
 
-    public void ShowSelfData(int index, GUIStyle style)
+    /// <summary>
+    /// リスト項目のサイズ変更
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask ReSizeTop()
     {
-        GUILayout.Label( (index + 1) + "P", style);
-        GUILayout.Label("coin" + _characters[index].coins, style);
-        GUILayout.Label("star" + _characters[index].stars, style);
+       await _statusOrderList[0].ReSize(1);
+    }
+
+    /// <summary>
+    /// 全てのリスト項目をスクロール
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask ScrollAllStatus()
+    {
+        for (int i = 0; i < _STATUS_MAX + _EVENT_MAX; i++)
+        {
+            await ScrollStatus();
+        }
     }
 }

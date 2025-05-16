@@ -25,6 +25,7 @@ public class TurnProcessor
         {
             playerOrder.Add(i);
         }
+        UIManager.instance.AddStatus(playerOrder);
     }
 
     /// <summary>
@@ -42,6 +43,9 @@ public class TurnProcessor
         // 手番決め
         await UIManager.instance.RunMessage(_ORDER_TURN_ANNOUNCE_ID.ToText());
         await DesidePlayerOrder();
+        await UIManager.instance.ScrollAllStatus();
+        await UIManager.instance.AddStatus(playerOrder);
+        await UIManager.instance.AddStatus(_ORDER_TURN_ANNOUNCE_ID.ToText());
 
         // 各手番
         for (int i = 0; i < PLAYER_MAX; i++)
@@ -53,8 +57,11 @@ public class TurnProcessor
             // UI表示
             await CameraManager.SetCharacter(character.GetCameraAnchor());
             await UIManager.instance.OpenHandArea(character.possessCard);
+            await UIManager.instance.ReSizeTop();
             await UIManager.instance.RunMessage(string.Format(_TURN_ANNOUNCE_ID.ToText(), orderIndex + 1));
             await EachTurn(character);
+            await UIManager.instance.ScrollStatus();
+            await UIManager.instance.AddStatus(playerOrder[i]);
         }
     }
 
@@ -70,6 +77,7 @@ public class TurnProcessor
             // 手札の選択
             // UIの表示
             await UIManager.instance.OpenHandArea(character.possessCard);
+            await UIManager.instance.ReSizeTop();
             await UIManager.instance.RunMessage(string.Format(_PLAY_ANNOUNCE_ID.ToText()));
             UIManager.instance.StartHandAccept();
             while (!_acceptEnd)
@@ -79,6 +87,8 @@ public class TurnProcessor
             _acceptEnd = false;
             int playCardCount = GetOrderCount(_handIndex, character);
             playCardList.Add(playCardCount);
+            await UIManager.instance.ScrollStatus();
+            await UIManager.instance.AddStatus(playerOrder[i]);
         }
         playerOrder.Clear();
         // 出されたカードから順番を決める
