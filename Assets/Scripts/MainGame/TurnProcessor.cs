@@ -194,7 +194,8 @@ public class TurnProcessor
         for (int i = 0; i < advanceValue; i++)
         {
             // 移動先のマスを取得
-            StagePosition nextPosition = stageManager.CheckNextPosition(moveCharacter.position);
+            // StagePosition nextPosition = stageManager.CheckNextPosition(moveCharacter.position);
+            StagePosition nextPosition = stageManager.GetNextPosition(moveCharacter.position);
             Vector3 movePosition = stageManager.GetPosition(nextPosition);
 
             // 移動
@@ -208,6 +209,8 @@ public class TurnProcessor
                 if (target == moveCharacter) continue;
                 if (target.position == nextPosition) targetCharacterList.Add(target);
             }
+
+            await UniTask.DelayFrame(100);
 
             // 停止マスでなければ次へ
             if (!stageManager.CheckStopSquare(moveCharacter.position)) continue;

@@ -106,15 +106,31 @@ public class Character : MonoBehaviour
     /// </summary>
     /// <param name="targetPos"></param>
     /// <returns></returns>
-    public async UniTask Move(Vector3 targetPos)
+    public async UniTask Move(Vector3 targetPos, float jumpHeight = 5.0f)
     {
-        while (Vector3.Distance(transform.position, targetPos) > goalDistance)
+        Vector3 startPos = transform.position;
+        float distance = Vector3.Distance(new Vector3(startPos.x, 0, startPos.z), new Vector3(targetPos.x, 0, targetPos.z));
+        Vector3 currentPos = startPos;
+
+        while (Vector3.Distance(new Vector3(currentPos.x, 0, currentPos.z), new Vector3(targetPos.x, 0, targetPos.z)) > goalDistance)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
-            await UniTask.DelayFrame(1);
+            // 横移動
+            Vector3 nextPos = Vector3.MoveTowards(new Vector3(currentPos.x, 0, currentPos.z), new Vector3(targetPos.x, 0, targetPos.z), moveSpeed * Time.deltaTime);
+            float traveled = Vector3.Distance(new Vector3(startPos.x, 0, startPos.z), nextPos);
+            float t = traveled / distance;
+
+            // 高さ計算（Sin波 + Lerp）
+            float heightOffset = Mathf.Sin(t * Mathf.PI) * jumpHeight;
+            float y = Mathf.Lerp(startPos.y, targetPos.y, t) + heightOffset;
+
+            // 縦と横を合成する
+            currentPos = new Vector3(nextPos.x, y, nextPos.z);
+            transform.position = currentPos;
+
+            await UniTask.Yield();
         }
 
-        transform.position = targetPos;
+        transform.position = targetPos; // 最終位置補正
     }
 
     /// <summary>
