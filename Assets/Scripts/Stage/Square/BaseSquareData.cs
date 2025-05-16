@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class BaseSquareData
 {
-    public Color squareColor;
-    public int eventID;
+    public Color squareColor { get; protected set; }
+    public int eventID { get; protected set; }
 
     public BaseSquareData()
     {
