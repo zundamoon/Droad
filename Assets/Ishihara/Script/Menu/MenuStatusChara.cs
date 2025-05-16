@@ -18,6 +18,8 @@ public class MenuStatusChara : MenuStatusItem
     [SerializeField]
     private List<TextMeshProUGUI> _charaCards = null;
 
+    public int _charaID { get; private set; } = -1;
+
     public override async UniTask Initialize()
     {
         await base.Initialize();
@@ -32,6 +34,7 @@ public class MenuStatusChara : MenuStatusItem
     {
         // ƒLƒƒƒ‰‚Ìİ’è
         var chara = setChara;
+        _charaID = chara.playerID;
         Color charaColor = chara.playerColor;
         int charaCion = chara.coins;
         int charaStar = chara.stars;

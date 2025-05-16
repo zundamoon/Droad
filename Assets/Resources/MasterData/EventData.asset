@@ -42,8 +42,16 @@ MonoBehaviour:
     - ID: 6
       textID: -1
       eventType: 6
-      param: ffffffffffffffff
-    - ID: 6
+      param: 03000000ffffffff
+    - ID: 7
       textID: -1
       eventType: 7
+      param: ffffffffffffffff
+    - ID: 8
+      textID: -1
+      eventType: 8
       param: 03000000ffffffff
+    - ID: 9
+      textID: -1
+      eventType: 9
+      param: ffffffffffffffff
