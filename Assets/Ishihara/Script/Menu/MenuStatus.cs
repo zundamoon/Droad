@@ -248,4 +248,17 @@ public class MenuStatus : BaseMenu
             await ScrollStatus();
         }
     }
+
+    public async UniTask SetCharaStatus(int playerID)
+    {
+        if (!IsEnableIndex(_characters, playerID)) return;
+        for (int i = 0; i < _characters.Count; i++)
+        {
+            if (_characters[i].playerID == playerID)
+            {
+                await AddStatus(_characters[i]);
+                break;
+            }
+        }
+    }
 }

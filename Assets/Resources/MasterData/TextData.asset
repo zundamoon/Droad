@@ -65,3 +65,15 @@ MonoBehaviour:
       text: "\u9806\u756A\u6C7A\u3081"
     - ID: 103
       text: "\u30AB\u30FC\u30C9\u3092\u51FA\u3057\u3066\u306D"
+    - ID: 104
+      text: "\u30B3\u30A4\u30F3\u3092{0}\u5931\u3063\u305F\uFF01"
+    - ID: 105
+      text: "\u30B3\u30A4\u30F3\u3092{0}\u7372\u5F97\u3057\u305F\uFF01"
+    - ID: 106
+      text: "\u30B9\u30BF\u30FC\u30AB\u30FC\u30C9\u3092\u7372\u5F97\u3057\u305F\uFF01"
+    - ID: 107
+      text: "\u30EA\u30B7\u30E3\u30C3\u30D5\u30EB\uFF01"
+    - ID: 108
+      text: "\u30C9\u30ED\u30FC\uFF01"
+    - ID: 109
+      text: 
