@@ -4,10 +4,12 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 
 using static GameConst;
+using UnityEngine.Rendering;
 
 public class CharacterManager : SystemObject
 {
     [SerializeField] private GameObject characterObject = null;
+    [SerializeField] private List<Color> _playerColorList = null;
     private List<Character> _characterList = null;
     public static CharacterManager instance = null;
 
@@ -19,18 +21,26 @@ public class CharacterManager : SystemObject
         // キャラクターの生成
         for (int i = 0; i < PLAYER_MAX; i++)
         {
-            GenerateCharacter();
+            GenerateCharacter(i);
         }
     }
 
-    private void GenerateCharacter()
+    private void GenerateCharacter(int setID)
     {
         GameObject generatedObject = Instantiate(characterObject, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
         Character character = generatedObject.GetComponent<Character>();
-        character.Init();
+        Color passColor = _playerColorList[setID];
+        character.SetPlayerColor(passColor);
+        character.Init(setID);
         _characterList.Add(character);
     }
 
     public Character GetCharacter(int characterID) { return _characterList[characterID]; }
-    public List<Character> GetAllCharacter() { return _characterList; }
+
+    public List<Character> GetAllCharacter() {  return _characterList; }
+
+    public Color GetCharacterColor(int playerID)
+    {
+        return _characterList[playerID].playerColor;
+    }
 }

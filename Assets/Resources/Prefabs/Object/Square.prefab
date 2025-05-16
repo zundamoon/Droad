@@ -208,6 +208,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStarSquare: 0
+  standingPlayerList: 
+  standAnchorList:
+  - {fileID: 8015049639913805483}
+  - {fileID: 3231615475915744939}
+  - {fileID: 3567536837073533475}
+  - {fileID: 2601503821448032563}
   renderer: {fileID: 7273900355523582369}
   squareData:
     rid: -2
