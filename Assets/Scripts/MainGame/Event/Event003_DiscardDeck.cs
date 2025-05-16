@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 
 public class Event003_DiscardDeck : BaseEvent
 {
-    public override async UniTask PlayEvent(Character sourceCharacter, int param, int addParam = -1)
+    public override async UniTask PlayEvent(Character sourceCharacter, int param, Square square = null)
     {
         sourceCharacter.possessCard.DiscardDeck(param);
     }

@@ -5,15 +5,14 @@ using Cysharp.Threading.Tasks;
 
 public class Event100_BuyStar : BaseEvent
 {
-    public override async UniTask PlayEvent(Character sourceCharacter, int param, int addParam = -1)
+    public override async UniTask PlayEvent(Character sourceCharacter, int param, Square square = null)
     {
-        // 購入できるか判定
-        if (sourceCharacter.coins < param) return;
         // 購入するか選択
         if (false) return;
         // カード追加
         sourceCharacter.RemoveCoin(param);
-        sourceCharacter.possessCard.AddCard(addParam);
+        int cardID = -1;
+        await sourceCharacter.possessCard.AddCard(cardID);
         // スターマスの位置変更
 
     }

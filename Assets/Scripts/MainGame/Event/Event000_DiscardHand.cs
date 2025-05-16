@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 
 public class Event000_DiscardHand : BaseEvent
 {
-    public override async UniTask PlayEvent(Character sourceCharacter, int param, int addParam = -1)
+    public override async UniTask PlayEvent(Character sourceCharacter, int param, Square square = null)
     {
         // ‘I‘ğ‚ÌŒÄ‚Ño‚µ
         int handIndex = 0;

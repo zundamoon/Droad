@@ -22,5 +22,8 @@ public class StageData : MonoBehaviour
         public List<RoadList> routeList = new List<RoadList>();
     }
 
+    [SerializeField]
+    public Transform cameraAnchor = null;
+
     public RouteList stageRoute = new RouteList();
 }

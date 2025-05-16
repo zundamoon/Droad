@@ -12,6 +12,9 @@ public class StageManager : SystemObject
     public GameObject stagePrefab;
     private StageData stageData;
 
+    [SerializeField]
+    private Transform _cameraAnchor = null;
+
     public override async UniTask Initialize()
     {
         instance = this;
@@ -182,5 +185,14 @@ public class StageManager : SystemObject
     {
         GameObject squareObject = stageData.stageRoute.routeList[squarePosition.m_route].roadList[squarePosition.m_road].squareList[squarePosition.m_square];
         return squareObject.transform.position;
+    }
+
+    /// <summary>
+    /// カメラのアンカーを取得
+    /// </summary>
+    /// <returns></returns>
+    public Transform GetCameraAnchor()
+    {
+        return stageData.cameraAnchor;
     }
 }

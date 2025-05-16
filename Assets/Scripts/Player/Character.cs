@@ -38,6 +38,7 @@ public class Character : MonoBehaviour
     {
         possessCard = new PossessCard();
         possessCard.Init();
+        possessCard.SetCallback(AddStar, RemoveStar);
         playerID = setPlayerID;
         position.m_route = 0;
         position.m_road = 0;
@@ -65,15 +66,17 @@ public class Character : MonoBehaviour
     public void AddCoin(int value) { coins += value; }
     public int RemoveCoin(int value)
     {
-        int removeCoin = Math.Max(0, coins - value);
-        coins -= removeCoin;
+        int result = Math.Max(0, coins - value);
+        int removeCoin = coins - result;
+        coins = result;
         return removeCoin;
     }
     public void AddStar(int value) { stars += value; }
     public int RemoveStar(int value)
     {
-        int removeStar = Math.Max(0, stars - value);
-        stars -= removeStar;
+        int result = Math.Max(0, stars - value);
+        int removeStar = stars - result;
+        stars = result;
         return removeStar;
     }
     public void SetCancelEvent() { eventCancel = true; }

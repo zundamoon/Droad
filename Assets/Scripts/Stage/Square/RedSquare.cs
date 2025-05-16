@@ -5,7 +5,7 @@ public class RedSquare : BaseSquareData
     public RedSquare()
     {
         squareColor = Color.red;
-        eventID = 1;
+        eventID = 8;
     }
 }
 
