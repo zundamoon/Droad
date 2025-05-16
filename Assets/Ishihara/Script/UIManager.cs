@@ -83,53 +83,6 @@ public class UIManager : SystemObject
         return playArea.rect.Contains(localPos);
     }
 
-    private GUIStyle largeLabelStyle;
-
-    private void OnGUI()
-    {
-        // GUIスタイルを初期化（毎回作らないように）
-        if (largeLabelStyle == null)
-        {
-            largeLabelStyle = new GUIStyle(GUI.skin.label);
-            largeLabelStyle.fontSize = 30;
-            largeLabelStyle.normal.textColor = Color.yellow;
-            largeLabelStyle.alignment = TextAnchor.MiddleCenter;
-        }
-
-        Color oldColor = GUI.color;
-        GUI.color = Color.yellow;
-
-        using (new GUILayout.AreaScope(new Rect(0, 0, Screen.width, Screen.height)))
-        {
-            using (new GUILayout.VerticalScope())
-            {
-                using (new GUILayout.HorizontalScope())
-                {
-                    GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height / 3));
-                    {
-                        GUILayout.BeginHorizontal("box");
-                        GUILayout.FlexibleSpace();
-
-                        for (int i = 0; i < GameConst.PLAYER_MAX; i++)
-                        {
-                            GUILayout.BeginVertical("box");
-                            {
-                                _menuStatus.ShowSelfData(i, largeLabelStyle);
-                            }
-                            GUILayout.EndVertical();
-                        }
-
-                        GUILayout.FlexibleSpace();
-                        GUILayout.EndHorizontal();
-                    }
-                    GUILayout.EndArea();
-                }
-            }
-        }
-
-        GUI.color = oldColor;
-    }
-
     /// <summary>
     /// 手札エリアを開く
     /// </summary>
@@ -193,5 +146,75 @@ public class UIManager : SystemObject
     public async UniTask RunMessage(string text, float displayTime = _DEFAULT_DISPLAY_TIME)
     {
         await _messageUI.RunMessage(text, displayTime);
+    }
+
+    /// <summary>
+    /// ステータスエリアに追加する
+    /// </summary>
+    /// <param name="character"></param>
+    /// <returns></returns>
+    public async UniTask AddStatus(int CharacterID)
+    {
+        Character character = CharacterManager.instance.GetCharacter(CharacterID);
+        await _menuStatus.AddStatus(character);
+    }
+
+    /// <summary>
+    /// ステータスエリアに追加する
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask AddStatus(string str)
+    {
+        await _menuStatus.AddStatus(str);
+    }
+
+    /// <summary>
+    /// ステータスエリアに追加する
+    /// </summary>
+    /// <param name="character"></param>
+    /// <returns></returns>
+    public async UniTask AddStatus(List<int> CharacterID)
+    {
+        for (int i = 0; i < CharacterID.Count; i++)
+        {
+            Character character = CharacterManager.instance.GetCharacter(CharacterID[i]);
+            await _menuStatus.AddStatus(character);
+        }
+    }
+
+    /// <summary>
+    /// ステータスエリアをスクロールする
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask ScrollStatus()
+    {
+        await _menuStatus.ScrollStatus();
+    }
+
+    /// <summary>
+    /// 先頭のステータスを大きくする
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask ReSizeTop()
+    {
+        await _menuStatus.ReSizeTop();
+    }
+
+    /// <summary>
+    /// ステータスエリアをクリアする
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask ClearStatus()
+    {
+        await _menuStatus.RemoveAllStatus();
+    }
+
+    /// <summary>
+    /// 全てのステータスをスクロールする
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask ScrollAllStatus()
+    {
+        await _menuStatus.ScrollAllStatus();
     }
 }

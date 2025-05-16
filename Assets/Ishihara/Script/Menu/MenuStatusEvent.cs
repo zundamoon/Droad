@@ -1,18 +1,21 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MenuStatusEvent : MenuStatusItem
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private TextMeshProUGUI _eventText = null;
+
+    public override async UniTask Initialize()
     {
-        
+        await base.Initialize();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetEvent(string setEvent)
     {
-        
+        _eventText.text = setEvent;
     }
 }

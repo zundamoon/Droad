@@ -50,5 +50,6 @@ public class MainGameManager : SystemObject
         currentTurn++;
         // UI�ɒʒm
         await UIManager.instance.RunMessage(string.Format(_TURN_TEXT_ID.ToText(), currentTurn, _TURN_MAX));
+        await UIManager.instance.AddStatus(string.Format(_TURN_TEXT_ID.ToText(), currentTurn + 1, _TURN_MAX));
     }
 }
