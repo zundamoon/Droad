@@ -26,7 +26,7 @@ public class MainGameManager : SystemObject
         _turnProcessor.Init();
         // カードのコールバックを設定
         CardObject.SetOnUseCard(_turnProcessor.AcceptCard);
-
+        await CameraManager.SetAnchor(StageManager.instance.GetCameraAnchor(), 0);
         await MainGameProc();
     }
 

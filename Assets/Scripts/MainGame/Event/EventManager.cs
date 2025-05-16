@@ -21,6 +21,9 @@ public class EventManager
         eventList.Add(new Event004_CancelNextSquareEvent());
         eventList.Add(new Event005_DiscardDeck1Exe());
         eventList.Add(new Event006_AddCoin());
+        eventList.Add(new Event007_ReshuffleAll());
+        eventList.Add(new Event008_LoseCoin());
+        eventList.Add(new Event009_TurningRoute());
     }
 
     /// <summary>
@@ -30,13 +33,13 @@ public class EventManager
     /// <param name="sourceCharacter"></param>
     /// <param name="eventID"></param>
     /// <param name="setParam"></param>
-    public static async UniTask ExecuteEvent(Character sourceCharacter, int eventID, int addParam = -1)
+    public static async UniTask ExecuteEvent(Character sourceCharacter, int eventID, Square square = null)
     {
         Param eventMaster = EventMasterUtility.GetEventMaster(eventID);
         if (eventMaster == null) return;
 
         int eventIndex = eventMaster.eventType;
         int eventParam = eventMaster.param[0];
-        await eventList[eventIndex].PlayEvent(sourceCharacter, eventParam, addParam);
+        await eventList[eventIndex].PlayEvent(sourceCharacter, eventParam, square);
     }
 }

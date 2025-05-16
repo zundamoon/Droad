@@ -33,6 +33,8 @@ public class TurnProcessor
     /// </summary>
     public async UniTask TurnProc()
     {
+        // カメラをステージに向ける
+        await CameraManager.SetAnchor(StageManager.instance.GetCameraAnchor());
         // ドロー
         for (int i = 0; i < PLAYER_MAX; i++)
         {
@@ -55,7 +57,7 @@ public class TurnProcessor
             if (character == null) return;
 
             // UI表示
-            await CameraManager.SetCharacter(character.GetCameraAnchor());
+            await CameraManager.SetAnchor(character.GetCameraAnchor());
             await UIManager.instance.OpenHandArea(character.possessCard);
             await UIManager.instance.ReSizeTop();
             await UIManager.instance.RunMessage(string.Format(_TURN_ANNOUNCE_ID.ToText(), orderIndex + 1));

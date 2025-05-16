@@ -5,8 +5,9 @@ using Cysharp.Threading.Tasks;
 
 public class Event002_Reshuffle : BaseEvent
 {
-    public override async UniTask PlayEvent(Character sourceCharacter, int param, int addParam = -1)
+
+    public override async UniTask PlayEvent(Character sourceCharacter, int param, Square square = null)
     {
-        sourceCharacter.possessCard.ReshuffleDeck();
+        await sourceCharacter.possessCard.ReshuffleDeck();
     }
 }

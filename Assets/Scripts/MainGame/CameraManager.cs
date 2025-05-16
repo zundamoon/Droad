@@ -14,7 +14,7 @@ public class CameraManager
         _camera = Camera.main;
     }
 
-    public static async UniTask SetCharacter(Transform targetTransform)
+    public static async UniTask SetAnchor(Transform anchorTransform , float moveTime = _CHANGE_TARGET_TIME)
     {
         Vector3 oldPosition = _camera.transform.position;
         Vector3 oldRotation = _camera.transform.eulerAngles;
@@ -24,10 +24,10 @@ public class CameraManager
             elapsedTime += Time.deltaTime;
             float ratio = Mathf.Clamp01(elapsedTime / _CHANGE_TARGET_TIME);
             float smooth = Mathf.SmoothStep(0, 1, ratio);
-            _camera.transform.position = Vector3.Lerp(oldPosition, targetTransform.position, smooth);
-            _camera.transform.eulerAngles = Vector3.Lerp(oldRotation, targetTransform.eulerAngles, smooth);
+            _camera.transform.position = Vector3.Lerp(oldPosition, anchorTransform.position, smooth);
+            _camera.transform.eulerAngles = Vector3.Lerp(oldRotation, anchorTransform.eulerAngles, smooth);
             await UniTask.DelayFrame(1);
         }
-        _camera.transform.SetParent(targetTransform);
+        _camera.transform.SetParent(anchorTransform);
     }
 }

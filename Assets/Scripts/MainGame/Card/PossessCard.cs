@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class PossessCard
 {
@@ -22,8 +24,13 @@ public class PossessCard
     public List<int> discardCardIDList { get; private set; } = null;
     public List<int> starCardIDList { get; private set; } = null;
 
+    private Action<int> _AddStarCallback = null;
+    private Func<int, int> _LoseStarCallback = null;
+
     private const int _DEFAULT_DECK_MAX = 12;
     private const int _HAND_MAX = 4;
+    private const int _GET_STAR_TEXT_ID = 106;
+    private const int _RESHUFFLE_TEXT_ID = 107;
 
     public void Init()
     {
@@ -53,7 +60,7 @@ public class PossessCard
         for (int i = deckCount - 1; i > 0; i--)
         {
             // ランダムな箇所と入れ替え
-            int n = Random.Range(0, i + 1);
+            int n = UnityEngine.Random.Range(0, i + 1);
             int temp = deckCardIDList[i];
             deckCardIDList[i] = deckCardIDList[n];
             deckCardIDList[n] = temp;
@@ -63,8 +70,9 @@ public class PossessCard
     /// <summary>
     /// リシャッフルする
     /// </summary>
-    public void ReshuffleDeck()
+    public async UniTask ReshuffleDeck()
     {
+        await UIManager.instance.RunMessage(_RESHUFFLE_TEXT_ID.ToText());
         // 捨て札をデッキに戻す
         deckCardIDList.AddRange(discardCardIDList);
         discardCardIDList.Clear();
@@ -135,7 +143,7 @@ public class PossessCard
     /// 指定IDを所持カードに加える
     /// </summary>
     /// <param name="ID"></param>
-    public void AddCard(int ID)
+    public async UniTask AddCard(int ID)
     {
         discardCardIDList.Add(ID);
         possessCardIDList.Add(ID);
@@ -144,7 +152,8 @@ public class PossessCard
         CardData card = CardManager.GetCard(ID);
         if (!card.IsStar()) return;
 
-
+        _AddStarCallback(1);
+        await UIManager.instance.RunMessage(_GET_STAR_TEXT_ID.ToText());
     }
 
     /// <summary>
@@ -157,6 +166,10 @@ public class PossessCard
             int handCardID = handCardIDList[i];
             possessCardIDList.Remove(handCardID);
             handCardIDList.Remove(handCardID);
+
+            CardData card = CardManager.GetCard(handCardID);
+            if (!card.IsStar()) continue;
+            _LoseStarCallback(1);
         }
     }
 
@@ -174,6 +187,7 @@ public class PossessCard
 
             possessCardIDList.Remove(handCardID);
             handCardIDList.Remove(handCardID);
+            _LoseStarCallback(1);
 
             return handCardID;
         }
@@ -193,5 +207,15 @@ public class PossessCard
             star += card.star;
         }
         return star;
+    }
+
+    /// <summary>
+    /// コールバックを設定
+    /// </summary>
+    /// <param name="setCallback"></param>
+    public void SetCallback(Action<int> setAddStarCallback, Func<int, int> setLoseStarCallback)
+    {
+        _AddStarCallback = setAddStarCallback;
+        _LoseStarCallback = setLoseStarCallback;
     }
 }

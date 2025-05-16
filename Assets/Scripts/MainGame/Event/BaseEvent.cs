@@ -12,5 +12,5 @@ public abstract class BaseEvent
     /// <param name="sourceCharacter"></param>
     /// <param name="param"></param>
     /// <param name="setParam"></param>
-    public abstract UniTask PlayEvent(Character sourceCharacter, int param, int addParam = -1);
+    public abstract UniTask PlayEvent(Character sourceCharacter, int param, Square square = null);
 }
