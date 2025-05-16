@@ -21,7 +21,10 @@ public class Square : MonoBehaviour
     public void ChangeStarSquare()
     {
         if (isStarSquare) isStarSquare = false;
-        else isStarSquare = true;
+        else
+        {
+            isStarSquare = true;
+        }
     }
 
     public void ChangeSquareType(BaseSquareData baseSquareData)

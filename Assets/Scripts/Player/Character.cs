@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 using static CommonModule;
+using static GameConst;
 
 public class Character : MonoBehaviour
 {
@@ -45,8 +46,8 @@ public class Character : MonoBehaviour
         SetPosition(initPosition);
         AdaptPlayerColor();
 
-        coins = 0;
-        stars = 0;
+        coins = DEFAULT_COINS;
+        stars = DEFAULT_STARS;
     }
     /// <summary>
     /// 移動後イベントの設定
