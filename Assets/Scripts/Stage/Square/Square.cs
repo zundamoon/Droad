@@ -7,11 +7,10 @@ using static GameEnum;
 public class Square : MonoBehaviour
 {
     public bool isStarSquare;
+    [SerializeField] public List<int> standingPlayerList = null;
+    [SerializeField] public List<GameObject> standAnchorList = null;
     [SerializeField] private new Renderer renderer;
-    [SerializeReference, SubclassSelector]
-    private BaseSquareData squareData;
-
-    protected List<int> standingPlayerList = null;
+    [SerializeReference, SubclassSelector] private BaseSquareData squareData;
 
     public void Init()
     {
@@ -40,5 +39,5 @@ public class Square : MonoBehaviour
 
     public int GetEventID() { return squareData.eventID; }
     public bool GetIsStarSquare() { return isStarSquare; }
-    public void SetIsStarSquare(bool state) {  isStarSquare = state; }
+    public void SetIsStarSquare(bool state) { isStarSquare = state; }
 }

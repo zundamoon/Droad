@@ -8,41 +8,48 @@ using static CommonModule;
 
 public class Character : MonoBehaviour
 {
-    // ƒJƒƒ‰ƒAƒ“ƒJ[
-    [SerializeField]
-    private Transform _cameraAnchor = null;
-    // ŠƒJ[ƒh
+    // ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚«ãƒ¼
+    [SerializeField] private Transform _cameraAnchor = null;
+    // è‰²å¤‰æ›´ã®ãŸã‚ã«ä¿æŒ
+    [SerializeField] private new Renderer renderer = null;
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚«ãƒ©ãƒ¼
+    public Color playerColor { get; private set; }
+    // æ‰€æŒã‚«ãƒ¼ãƒ‰
     public PossessCard possessCard { get; private set; } = null;
-    // ƒRƒCƒ“
+    // ã‚³ã‚¤ãƒ³
     public int coins { get; private set; } = -1;
-    // ƒXƒ^[
+    // ã‚¹ã‚¿ãƒ¼
     public int stars { get; private set; } = -1;
-    // Œø‰Ê–³Œøƒtƒ‰ƒO
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ID
+    public int playerID { get; private set; } = -1;
+    // åŠ¹æœç„¡åŠ¹ãƒ•ãƒ©ã‚°
     public bool eventCancel { get; private set; } = false;
-    // ˆÚ“®Œã‚ÌƒCƒxƒ“ƒg
+    // ç§»å‹•å¾Œã®ã‚¤ãƒ™ãƒ³ãƒˆ
     public Action<List<Character>> AfterMoveEvent { get; private set; } = null;
-    // ˆÊ’uî•ñ
+    // ä½ç½®æƒ…å ±
     public StagePosition position;
-    // Ÿ‚ÌˆÚ“®æ‚ğ•Û
+    // æ¬¡ã®ç§»å‹•å…ˆã‚’ä¿æŒ
     public StagePosition nextPosition;
     private float moveSpeed = 10.0f;
     private float goalDistance = 0.05f;
 
-    public void Init()
+    public void Init(int setPlayerID)
     {
         possessCard = new PossessCard();
         possessCard.Init();
+        playerID = setPlayerID;
         position.m_route = 0;
         position.m_road = 0;
         position.m_square = 0;
         Vector3 initPosition = StageManager.instance.GetPosition(position);
         SetPosition(initPosition);
+        AdaptPlayerColor();
 
         coins = 0;
         stars = 0;
     }
     /// <summary>
-    /// ˆÚ“®ŒãƒCƒxƒ“ƒg‚Ìİ’è
+    /// ç§»å‹•å¾Œã‚¤ãƒ™ãƒ³ãƒˆã®è¨­å®š
     /// </summary>
     /// <param name="setEvent"></param>
     public void SetAfterMoveEvent(Action<List<Character>> setEvent) { AfterMoveEvent = setEvent; }
@@ -70,7 +77,7 @@ public class Character : MonoBehaviour
     }
     public void SetCancelEvent() { eventCancel = true; }
     /// <summary>
-    /// ƒCƒxƒ“ƒg‚ğÀs‚Å‚«‚é‚©
+    /// ã‚¤ãƒ™ãƒ³ãƒˆã‚’å®Ÿè¡Œã§ãã‚‹ã‹
     /// </summary>
     /// <returns></returns>
     public bool CanEvent()
@@ -91,7 +98,7 @@ public class Character : MonoBehaviour
     }
 
     /// <summary>
-    /// ˆÚ“®ŠÖ”
+    /// ç§»å‹•é–¢æ•°
     /// </summary>
     /// <param name="targetPos"></param>
     /// <returns></returns>
@@ -107,11 +114,19 @@ public class Character : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒJƒƒ‰ƒAƒ“ƒJ[‚Ìæ“¾
+    /// ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚«ãƒ¼ã®å–å¾—
     /// </summary>
     /// <returns></returns>
     public Transform GetCameraAnchor()
     {
         return _cameraAnchor;
+    }
+    public void SetPlayerColor(Color color) { playerColor = color; }
+    public void AdaptPlayerColor()
+    {
+        if (renderer != null)
+        {
+            renderer.material.color = playerColor;
+        }
     }
 }

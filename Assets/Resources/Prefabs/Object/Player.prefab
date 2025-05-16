@@ -144,3 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraAnchor: {fileID: 7052927188256839208}
+  renderer: {fileID: 6983759177148448629}
