@@ -89,48 +89,48 @@ public class TestManager : MonoBehaviour
     /// <param name="turnCharacter"></param>
     private async UniTask EachTurn(Character turnCharacter)
     {
-        if(turnCharacter == null) return;
+        //if(turnCharacter == null) return;
 
-        StageManager stageManager = StageManager.instance;
-        // カードのIDから進む回数を取得
-        int advanceValue = 2;
-        // 進む分だけ動く
-        // 動く途中のキャラクターを保持
-        List<Character> targetCharacterList = new List<Character>(_PLAYER_MAX);
-        for (int i = 0; i < advanceValue; i++)
-        {
-            // 移動先のマスを取得
-            StagePosition nextPosition = stageManager.CheckNextPosition(turnCharacter.position);
-            Vector3 movePosition = stageManager.GetPosition(nextPosition);
+        //StageManager stageManager = StageManager.instance;
+        //// カードのIDから進む回数を取得
+        //int advanceValue = 2;
+        //// 進む分だけ動く
+        //// 動く途中のキャラクターを保持
+        //List<Character> targetCharacterList = new List<Character>(_PLAYER_MAX);
+        //for (int i = 0; i < advanceValue; i++)
+        //{
+        //    // 移動先のマスを取得
+        //    StagePosition nextPosition = stageManager.CheckNextPosition(turnCharacter.position);
+        //    Vector3 movePosition = stageManager.GetPosition(nextPosition);
 
-            // 移動
-            await turnCharacter.Move(movePosition);
-            turnCharacter.position = nextPosition;
-            // マス上にいる他キャラを検出
-            for (int j = 0; j < _PLAYER_MAX; j++)
-            {
-                Character target = _playerList[j];
+        //    // 移動
+        //    await turnCharacter.Move(movePosition);
+        //    turnCharacter.position = nextPosition;
+        //    // マス上にいる他キャラを検出
+        //    for (int j = 0; j < _PLAYER_MAX; j++)
+        //    {
+        //        Character target = _playerList[j];
 
-                if (target == turnCharacter) continue;
-                if (target.position == nextPosition) targetCharacterList.Add(target);
-            }
+        //        if (target == turnCharacter) continue;
+        //        if (target.position == nextPosition) targetCharacterList.Add(target);
+        //    }
 
-            // 停止マスでなければ次へ
-            if (!stageManager.CheckStopSquare(turnCharacter.position)) continue;
-            // イベント可能ならその場で終了
-            if (!turnCharacter.CanEvent()) return;
+        //    // 停止マスでなければ次へ
+        //    if (!stageManager.CheckStopSquare(turnCharacter.position)) continue;
+        //    // イベント可能ならその場で終了
+        //    if (!turnCharacter.CanEvent()) return;
 
-            ExcuteSquareEvent(turnCharacter);
-        }
+        //    ExcuteSquareEvent(turnCharacter);
+        //}
 
-        await UniTask.DelayFrame(1000);
+        //await UniTask.DelayFrame(1000);
 
-        // 移動後処理を実行
-        turnCharacter.ExecuteAfterMoveEvent(targetCharacterList);
+        //// 移動後処理を実行
+        //turnCharacter.ExecuteAfterMoveEvent(targetCharacterList);
 
-        // イベント可能でなければ終了
-        if (!turnCharacter.CanEvent()) return;
-        ExcuteSquareEvent(turnCharacter);
+        //// イベント可能でなければ終了
+        //if (!turnCharacter.CanEvent()) return;
+        //ExcuteSquareEvent(turnCharacter);
     }
 
     private void ExcuteSquareEvent(Character target)

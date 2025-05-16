@@ -46,7 +46,7 @@ public class StageManager : SystemObject
                     if (squareObject != null)
                     {
                         Square square = GetSquare(squareObject);
-                        square.Init();
+                        square.Init(CheckNextPosition(square.GetSquarePosition()));
                     }
                     squareIndex++;
                 }
@@ -109,58 +109,85 @@ public class StageManager : SystemObject
     /// <returns></returns>
     public bool CheckStopSquare(StagePosition squarePos) { return GetSquare(squarePos).GetIsStarSquare(); }
 
-    /// <summary>
-    /// �n���ꂽ���W�̈�}�X��̍��W���m�F
-    /// </summary>
-    /// <param name="playerPos"></param>
-    /// <returns></returns>
     //public StagePosition CheckNextPosition(StagePosition playerPos)
     //{
-    //    StagePosition nextPos;
-    //    nextPos = playerPos;
-    //    nextPos.m_square = playerPos.m_square + 1;
-    //    GameObject nextSquare;
+    //    StagePosition nextPos = playerPos;
+    //    nextPos.m_square++;
 
-    //    var roadList = stageData.stageRoute.routeList;
-    //    nextSquare = stageData.stageRoute.routeList[playerPos.m_route].roadList[playerPos.m_road].squareList[nextPos.m_square];
+    //    if (IsValidSquare(nextPos)) return nextPos;
 
-    //    // �i�߂�}�X���Ȃ��Ȃ��Ă��Ȃ���������W��Ԃ�
-    //    if (nextSquare != null) return nextPos;
-    //    nextPos.m_route += 1;
-    //    // ���̃��[�g�ɂ����������邩�擾
-    //    int roadCount = stageData.stageRoute.routeList[nextPos.m_route].roadList.Count;
-    //    nextPos.m_road = roadCount;
+    //    nextPos.m_route++;
+    //    nextPos.m_road = 0;
     //    nextPos.m_square = 0;
 
-    //    return nextPos;
+    //    if (IsValidSquare(nextPos)) return nextPos;
+
+
+    //    return new StagePosition
+    //    {
+    //        m_route = 1,
+    //        m_road = 0,
+    //        m_square = 0
+    //    };
     //}
 
-    /// <summary>
-    /// �n���ꂽ���W�̈�}�X��̍��W���m�F
-    /// </summary>
-    /// <param name="playerPos"></param>
-    /// <returns></returns>
-    public StagePosition CheckNextPosition(StagePosition playerPos)
+    public StagePosition GetNextPosition(StagePosition playerPos)
     {
-        StagePosition nextPos = playerPos;
-        nextPos.m_square++;
+        return GetSquare(playerPos).nextPositionList[0];
+    }
 
-        if (IsValidSquare(nextPos)) return nextPos;
+    public List<StagePosition> CheckNextPosition(StagePosition playerPos)
+    {
+        List<StagePosition> nextPositions = new List<StagePosition>();
 
-        // ���̃��[�g�Ɉړ�
-        nextPos.m_route++;
-        nextPos.m_road = 0;
-        nextPos.m_square = 0;
-
-        if (IsValidSquare(nextPos)) return nextPos;
-
-        // 1�Ԗڂ̃��[�g�֖߂�
-        return new StagePosition
+        // 現在の位置の次のマス
+        StagePosition nextSquare = new StagePosition(playerPos.m_route, playerPos.m_road, playerPos.m_square + 1);
+        if (IsValidSquare(nextSquare))
         {
-            m_route = 1,
-            m_road = 0,
-            m_square = 0
-        };
+            nextPositions.Add(nextSquare);
+            return nextPositions;
+        }
+
+        // 同じroute内の分岐
+        var roadList = stageData.stageRoute.routeList[playerPos.m_route].roadList;
+        for (int i = 0; i < roadList.Count; i++)
+        {
+            if (i == playerPos.m_road) continue;
+
+            StagePosition branchPos = new StagePosition(playerPos.m_route, i, 0);
+            if (IsValidSquare(branchPos))
+            {
+                nextPositions.Add(branchPos);
+            }
+        }
+
+        // 次のroute
+        int nextRouteIndex = playerPos.m_route + 1;
+        if (nextRouteIndex < stageData.stageRoute.routeList.Count)
+        {
+            var nextRoute = stageData.stageRoute.routeList[nextRouteIndex];
+            for (int i = 0; i < nextRoute.roadList.Count; i++)
+            {
+                StagePosition nextRoutePos = new StagePosition(nextRouteIndex, i, 0);
+                if (IsValidSquare(nextRoutePos))
+                {
+                    nextPositions.Add(nextRoutePos);
+                }
+            }
+        }
+
+        // ループ対応
+        if (nextPositions.Count == 0)
+        {
+            // ループの最初へ戻る
+            StagePosition loopStart = new StagePosition(0, 0, 0);
+            if (IsValidSquare(loopStart))
+            {
+                nextPositions.Add(loopStart);
+            }
+        }
+
+        return nextPositions;
     }
 
     private bool IsValidSquare(StagePosition pos)
@@ -177,7 +204,70 @@ public class StageManager : SystemObject
     }
 
     /// <summary>
-    /// StagePosition����Vector3�ɕϊ�����
+    /// スターを置く位置を決定しマスにスターを付与
+    /// </summary>
+    /// <param name="characterPositionList"></param>
+    public void DecideStarSquare(List<StagePosition> characterPositionList)
+    {
+        // プレイヤーの数分道を保持
+        List<List<StagePosition>> squareListList = new List<List<StagePosition>>();
+
+        for (int i = 0; i < characterPositionList.Count; i++)
+        {
+            // プレイヤーからプレイヤーのマスを取得
+            List<StagePosition> squareList = GetPlayerToPlayerSquare(characterPositionList[i]);
+            squareListList.Add(squareList);
+        }
+
+        // 昇順にソート
+        squareListList.Sort();
+
+        // 一番要素数の多いリストの最後の数のマスにスターを付与
+        int listCount = squareListList[0].Count;
+        Square starSquare = GetSquare(squareListList[0][listCount - 1]);
+
+        // スターマスに設定
+        starSquare.SetIsStarSquare(true);
+    }
+
+    /// <summary>
+    /// プレイヤーとプレイヤーとの間のマスを取得
+    /// </summary>
+    /// <param name="startPosition"></param>
+    /// <returns></returns>
+    private List<StagePosition> GetPlayerToPlayerSquare(StagePosition startPosition)
+    {
+        StagePosition position = startPosition;
+
+        List<StagePosition> playerToPlayerList = new List<StagePosition>();
+
+        // ターゲットマスまで進んだら次
+        while (true)
+        {
+            // 次のマス目を見る
+            Square square = GetSquare(position);
+            List<StagePosition> nextPositionList = square.GetNextPosition();
+            // 分岐先があるならそのルートはスキップ
+            if (nextPositionList.Count > 0)
+            {
+                position.m_route++;
+                continue;
+            }
+
+            // 道を進め、カウントアップする
+            position = nextPositionList[0];
+            playerToPlayerList.Add(position);
+
+            // キャラクターとぶつかったら
+            if (GetSquare(position).standingPlayerList == null) break;
+        }
+
+        // ルートをリストで渡す
+        return playerToPlayerList;
+    }
+
+    /// <summary>
+    /// StagePosition    Vector3 ɕϊ     
     /// </summary>
     /// <param name="squarePosition"></param>
     /// <returns></returns>
