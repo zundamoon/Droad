@@ -26,6 +26,8 @@ public class EventManager
         eventList.Add(new Event009_TurningRoute());
         eventList.Add(new Event010_LuckyEvent());
         eventList.Add(new Event011_UnluckyEvent());
+        eventList.Add(new Event012_BuyStar());
+        eventList.Add(new Event013_Shop());
     }
 
     /// <summary>
