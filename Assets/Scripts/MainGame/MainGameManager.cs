@@ -17,6 +17,8 @@ public class MainGameManager : SystemObject
 
     public override async UniTask Initialize()
     {
+        Application.targetFrameRate = 60;
+
         MasterDataManager.LoadAllData();
         EventManager.Init();
         CardManager.Init();
