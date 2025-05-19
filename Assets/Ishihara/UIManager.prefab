@@ -48,3 +48,4 @@ MonoBehaviour:
   _menuHand: {fileID: 3646455676470727671, guid: 1e63425c6431ed6418bba4baf40afa19, type: 3}
   _messageUI: {fileID: 1480244286524136102, guid: 4e82294820818b2409fa42d192481890, type: 3}
   _menuStatus: {fileID: 1561864525522828191, guid: cac785a3aa7aefe42b63278961ce1097, type: 3}
+  _menuShop: {fileID: 2679556295844602366, guid: 493933632d891f54797c5c68eee7e233, type: 3}

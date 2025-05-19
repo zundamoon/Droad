@@ -27,6 +27,20 @@ public class MenuChoice : BaseMenu
 
     private List<int> _choiceCardIDList = null;
 
+    private List<string> _choiceButtonTex = null;
+
+    private System.Action<int> _OnSelect = null;
+
+    public void SetSelectCallback(System.Action<int> onSelect)
+    {
+        _OnSelect = onSelect;
+    }
+
+    public void SetChoiceButtonText(List<string> strings)
+    {
+        _choiceButtonTex = new List<string>(strings);
+    }
+
     public override async UniTask Initialize()
     {
         await base.Initialize();
@@ -36,13 +50,14 @@ public class MenuChoice : BaseMenu
     }
 
     public void SetChoiceCardID(List<int> setChoiceCardID)
-    {
-        _choiceCardIDList.Clear();
-        _choiceCardIDList = setChoiceCardID;
+    { 
+        _choiceCardIDList = new List<int>(setChoiceCardID); ;
     }
 
     public async override UniTask Open()
     {
+        if (_OnSelect == null) return;
+
         await base.Open();
         // 並べる
         // 選択肢が何行必要か
@@ -55,7 +70,14 @@ public class MenuChoice : BaseMenu
                 // 3つ目の選択肢が無い場合はスキップ
                 if (i + j >= _choiceCardIDList.Count) break;
                 // リスト項目にカード情報をセット
-                item.SetChoiceList(_choiceCardIDList[i + j]);
+                if(IsEnableIndex(_choiceButtonTex, i + j))
+                {
+                    item.SetChoiceList(_choiceCardIDList[i + j] ,_choiceButtonTex[i + j]);
+                }
+                else
+                {
+                    item.SetChoiceList(_choiceCardIDList[i + j]);
+                }
             }
         }
     }
@@ -80,6 +102,7 @@ public class MenuChoice : BaseMenu
             addItem.transform.SetParent(_contentRoot);
         }
         addItem.Initialized();
+        addItem.SetOnselect(_OnSelect);
         _useList.Add(addItem);
         return addItem;
     }
@@ -93,6 +116,7 @@ public class MenuChoice : BaseMenu
         if (!IsEnableIndex(_useList, itemIndex)) return;
         // 使用リストから取り除く
         MenuChoiceList removeItem = _useList[itemIndex];
+        removeItem.RemoveList();
         _useList.RemoveAt(itemIndex);
         // 未使用リストへ追加
         _unuseList.Add(removeItem);
@@ -102,7 +126,7 @@ public class MenuChoice : BaseMenu
     /// <summary>
     /// 全てのリスト項目削除
     /// </summary>
-    protected void RemoveAllItem()
+    public void RemoveAllItem()
     {
         while (!IsEmpty(_useList)) RemoveListItem(0);
     }

@@ -93,6 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardObject: {fileID: 8718583716792011510}
   _button: {fileID: 6704169586999698741}
+  _buttonText: {fileID: 5174391799102302210}
 --- !u!1 &6516976612986677639
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,8 +162,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Select
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2d4e71a51a922944dbab7fa959a29cc8, type: 2}
+  m_sharedMaterial: {fileID: 1177297170361751976, guid: 2d4e71a51a922944dbab7fa959a29cc8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
