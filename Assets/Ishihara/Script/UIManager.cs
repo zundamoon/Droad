@@ -21,6 +21,9 @@ public class UIManager : SystemObject
     [SerializeField]
     private MenuStatus _menuStatus = null;
 
+    [SerializeField]
+    private MenuShop _menuShop = null;
+
     private const float _DEFAULT_DISPLAY_TIME = 0.75f;
 
     public bool IsHandAccept { get; private set; } = false;
@@ -43,15 +46,18 @@ public class UIManager : SystemObject
         _menuChoice = Instantiate(_menuChoice);
         _messageUI = Instantiate(_messageUI);
         _menuStatus = Instantiate(_menuStatus);
+        _menuShop = Instantiate(_menuShop);
 
         await _menuHand.Initialize();
         await _menuChoice.Initialize();
         await _menuStatus.Initialize();
+        await _menuShop.Initialize();
         _menuStatus.SetCharacter(CharacterManager.instance.GetAllCharacter());
 
         await _menuHand.Close();
         await _menuChoice.Close();
         await _messageUI.Inactive();
+        _menuShop.Close();
     }
 
     public GameObject GetHandCanvas()
@@ -216,5 +222,57 @@ public class UIManager : SystemObject
     public async UniTask ScrollAllStatus()
     {
         await _menuStatus.ScrollAllStatus();
+    }
+
+    /// <summary>
+    /// ショップを開く
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask OpenShop()
+    {
+        await _menuShop.Open();
+    }
+
+    /// <summary>
+    /// ショップを閉じる
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask CloseShop()
+    {
+        _menuShop.Close();
+        await UniTask.CompletedTask;
+    }
+
+    /// <summary>
+    /// 購入アイテムの設定
+    /// </summary>
+    /// <param name="itemIDList"></param>
+    /// <returns></returns>
+    public async UniTask SetBuyItem(List<int> itemIDList)
+    {
+        _menuShop.SetBuyCardID(itemIDList);
+        await UniTask.CompletedTask;
+
+    }
+
+    /// <summary>
+    /// 除外アイテムの設定
+    /// </summary>
+    /// <param name="itemIDList"></param>
+    /// <returns></returns>
+    public async UniTask SetRemovaItem(List<int> itemIDList)
+    {
+        _menuShop.SetRemovalCardID(itemIDList);
+        await UniTask.CompletedTask;
+    }
+
+    /// <summary>
+    /// 購入処理コールバックの設定
+    /// </summary>
+    /// <param name="onSelect"></param>
+    /// <returns></returns>
+    public async UniTask SetSelectCallback(System.Action<int, bool> onSelect)
+    {
+        await _menuShop.SetSelectCallback(onSelect);
     }
 }
