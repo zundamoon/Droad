@@ -192,12 +192,14 @@ public class TurnProcessor
     private async UniTask MoveCharacter(int advanceValue, Character moveCharacter, List<Character> targetCharacterList)
     {
         StageManager stageManager = StageManager.instance;
+        int playerID = moveCharacter.playerID;
         // 進む分だけ動く
         for (int i = 0; i < advanceValue; i++)
         {
             // 移動先のマスを取得
-            // StagePosition nextPosition = stageManager.CheckNextPosition(moveCharacter.position);
+            stageManager.GetSquare(moveCharacter.position).DeleteStandingList(playerID);
             StagePosition nextPosition = stageManager.GetNextPosition(moveCharacter.position);
+            stageManager.GetSquare(nextPosition).AddStandingList(playerID);
             Vector3 movePosition = stageManager.GetPosition(nextPosition);
 
             // 移動
@@ -212,7 +214,7 @@ public class TurnProcessor
                 if (target.position == nextPosition) targetCharacterList.Add(target);
             }
 
-            await UniTask.DelayFrame(100);
+            await UniTask.DelayFrame(15);
 
             // 停止マスでなければ次へ
             if (!stageManager.CheckStopSquare(moveCharacter.position)) continue;

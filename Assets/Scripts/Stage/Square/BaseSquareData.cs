@@ -12,4 +12,6 @@ public abstract class BaseSquareData
         squareColor = Color.white;
         eventID = -1;
     }
+
+    public void ChangeColor(Color color) { squareColor = color; }
 }
