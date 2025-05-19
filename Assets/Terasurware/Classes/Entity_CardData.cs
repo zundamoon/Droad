@@ -23,6 +23,7 @@ public class Entity_CardData : ScriptableObject
 		public int rarity;
 		public int eventID;
 		public int star;
+		public int price;
 	}
 }
 

@@ -56,6 +56,7 @@ public class CardData_importer : AssetPostprocessor {
 					cell = row.GetCell(3); p.rarity = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(5); p.eventID = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(6); p.star = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(7); p.price = (int)(cell == null ? 0 : cell.NumericCellValue);
 						s.list.Add (p);
 					}
 					data.sheets.Add(s);

@@ -8,12 +8,17 @@ public class Event001_StealCoin : BaseEvent
     private Character _sourceCharacter = null;
     private int _stealCoinCount = 0;
 
-    public override async UniTask PlayEvent(Character sourceCharacter, int param, Square square = null)
+    public override async UniTask ExecuteEvent(EventContext context, int param)
     {
+        if (context == null) return;
+
+        Character character = context.character;
+        if (character == null) return;
         // ƒvƒŒƒCƒ„[‚ÌˆÚ“®Œã‚Ìˆ—‚Éİ’è
-        sourceCharacter.SetAfterMoveEvent(StealCoin);
-        _sourceCharacter = sourceCharacter;
+        character.SetAfterMoveEvent(StealCoin);
+        _sourceCharacter = character;
         _stealCoinCount = param;
+        await UniTask.CompletedTask;
     }
 
     /// <summary>

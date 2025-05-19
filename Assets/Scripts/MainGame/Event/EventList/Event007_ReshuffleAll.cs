@@ -6,7 +6,7 @@ using static GameConst;
 
 public class Event007_ReshuffleAll : BaseEvent
 {
-    public override async UniTask PlayEvent(Character sourceCharacter, int param, Square square = null)
+    public override async UniTask ExecuteEvent(EventContext context, int param)
     {
         for (int i = 0; i < PLAYER_MAX; i++)
         {

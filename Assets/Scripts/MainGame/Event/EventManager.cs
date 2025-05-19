@@ -9,11 +9,11 @@ using static Entity_EventData;
 public class EventManager
 {
     // イベントのリスト
-    public static List<BaseEvent> eventList { get; private set; } = null;
+    public static List<IEvent> eventList { get; private set; } = null;
 
     public static void Init()
     {
-        eventList = new List<BaseEvent>();
+        eventList = new List<IEvent>();
         eventList.Add(new Event000_DiscardHand());
         eventList.Add(new Event001_StealCoin());
         eventList.Add(new Event002_Reshuffle());
@@ -24,22 +24,23 @@ public class EventManager
         eventList.Add(new Event007_ReshuffleAll());
         eventList.Add(new Event008_LoseCoin());
         eventList.Add(new Event009_TurningRoute());
+        eventList.Add(new Event010_LuckyEvent());
+        eventList.Add(new Event011_UnluckyEvent());
     }
 
     /// <summary>
     /// イベントの実行
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="sourceCharacter"></param>
     /// <param name="eventID"></param>
-    /// <param name="setParam"></param>
-    public static async UniTask ExecuteEvent(Character sourceCharacter, int eventID, Square square = null)
+    /// <param name="context"></param>
+    /// <returns></returns>
+    public static async UniTask ExecuteEvent(int eventID, EventContext context = null)
     {
         Param eventMaster = EventMasterUtility.GetEventMaster(eventID);
         if (eventMaster == null) return;
 
         int eventIndex = eventMaster.eventType;
         int eventParam = eventMaster.param[0];
-        await eventList[eventIndex].PlayEvent(sourceCharacter, eventParam, square);
+        await eventList[eventIndex].ExecuteEvent(context, eventParam);
     }
 }

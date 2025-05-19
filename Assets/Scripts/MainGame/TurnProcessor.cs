@@ -174,7 +174,9 @@ public class TurnProcessor
         CardData card = CardManager.GetCard(cardID);
         if (card == null) return -1;
         // イベント処理
-        await EventManager.ExecuteEvent(useCharacter, card.eventID);
+        EventContext context = new EventContext()
+        { character = useCharacter };
+        await EventManager.ExecuteEvent(card.eventID, context);
         // コイン追加
         useCharacter.AddCoin(card.addCoin);
         return card.advance;
@@ -226,7 +228,10 @@ public class TurnProcessor
     private async UniTask ExcuteSquareEvent(Character target)
     {
         int squareEventID = StageManager.instance.GetSquareEvent(target.position);
-        await EventManager.ExecuteEvent(target, squareEventID);
+        EventContext context = new EventContext()
+        { character = target };
+
+        await EventManager.ExecuteEvent(squareEventID, context);
     }
 
     /// <summary>

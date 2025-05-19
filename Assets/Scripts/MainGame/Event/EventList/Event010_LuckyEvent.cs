@@ -3,18 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Event011_UnluckyEvent : BaseEvent
+public class Event010_LuckyEvent : BaseEvent
 {
     /// <summary>
     /// イベントのIDリスト
     /// </summary>
     private int[] _eventIDList = {  };
 
-    public override async UniTask PlayEvent(Character sourceCharacter, int param, Square square = null)
+    public override async UniTask ExecuteEvent(EventContext context, int param)
     {
         // イベントの抽選
         int eventID = DicideEvent();
-        await EventManager.ExecuteEvent(sourceCharacter, eventID, square);
+        await EventManager.ExecuteEvent(eventID, context);
     }
 
     /// <summary>
