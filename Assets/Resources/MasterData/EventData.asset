@@ -55,3 +55,15 @@ MonoBehaviour:
       textID: -1
       eventType: 9
       param: ffffffffffffffff
+    - ID: 10
+      textID: -1
+      eventType: 10
+      param: ffffffffffffffff
+    - ID: 11
+      textID: -1
+      eventType: 11
+      param: ffffffffffffffff
+    - ID: 12
+      textID: -1
+      eventType: 12
+      param: ffffffffffffffff

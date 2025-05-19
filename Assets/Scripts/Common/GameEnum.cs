@@ -11,6 +11,7 @@ public class GameEnum
         SILVER,
         GOLD,
         LEGENDARY,
+        STAR,
         MAX
     }
 

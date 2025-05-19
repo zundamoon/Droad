@@ -14,6 +14,7 @@ public class TurnProcessor
     private bool _acceptEnd = false;
     private int _handIndex = -1;
 
+    private const int _STAR_EVENT_ID = 12;
     private const int _TURN_ANNOUNCE_ID = 101;
     private const int _ORDER_TURN_ANNOUNCE_ID = 102;
     private const int _PLAY_ANNOUNCE_ID = 103;
@@ -229,11 +230,14 @@ public class TurnProcessor
     /// <param name="target"></param>
     private async UniTask ExcuteSquareEvent(Character target)
     {
-        int squareEventID = StageManager.instance.GetSquareEvent(target.position);
+        Square targetSquare = StageManager.instance.GetSquare(target.position);
+        int eventID = targetSquare.GetEventID();
+        if (targetSquare.isStarSquare) eventID = _STAR_EVENT_ID;
+
         EventContext context = new EventContext()
         { character = target };
 
-        await EventManager.ExecuteEvent(squareEventID, context);
+        await EventManager.ExecuteEvent(eventID, context);
     }
 
     /// <summary>

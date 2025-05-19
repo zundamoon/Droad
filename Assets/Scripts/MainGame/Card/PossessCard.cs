@@ -84,12 +84,12 @@ public class PossessCard
     /// デッキから指定枚数ドローする
     /// </summary>
     /// <param name="drawCount"></param>
-    public void DrawDeck(int drawCount)
+    public async UniTask DrawDeck(int drawCount)
     {
         for (int i = 0; i < drawCount; i++)
         {
             // デッキがないならリシャッフル
-            if (deckCardIDList.Count <= 0) ReshuffleDeck();
+            if (deckCardIDList.Count <= 0) await ReshuffleDeck();
             handCardIDList.Add(deckCardIDList[0]);
             deckCardIDList.RemoveAt(0);
         }
@@ -98,10 +98,10 @@ public class PossessCard
     /// <summary>
     /// 手札が最大枚数になるように引く
     /// </summary>
-    public void DrawDeckMax()
+    public async UniTask DrawDeckMax()
     {
         int drawCount = _HAND_MAX - handCardIDList.Count;
-        DrawDeck(drawCount);
+        await DrawDeck(drawCount);
     }
 
     /// <summary>
@@ -128,12 +128,12 @@ public class PossessCard
     /// デッキから指定枚数捨てる
     /// </summary>
     /// <param name="discardCount"></param>
-    public void DiscardDeck(int discardCount)
+    public async UniTask DiscardDeck(int discardCount)
     {
         for (int i = 0; i < discardCount; i++)
         {
             // デッキがないならリシャッフル
-            if (deckCardIDList.Count <= 0) ReshuffleDeck();
+            if (deckCardIDList.Count <= 0) await ReshuffleDeck();
             discardCardIDList.Add(deckCardIDList[0]);
             deckCardIDList.RemoveAt(0);
         }
@@ -217,5 +217,21 @@ public class PossessCard
     {
         _AddStarCallback = setAddStarCallback;
         _LoseStarCallback = setLoseStarCallback;
+    }
+
+    /// <summary>
+    /// デッキの指定IDのカードを破棄する
+    /// </summary>
+    /// <param name="cardID"></param>
+    public void RemoveDeckCard(int cardID)
+    {
+        // 所持しているカードにIDがあるか判定
+        int index = possessCardIDList.IndexOf(cardID);
+        if (index == -1) return;
+        possessCardIDList.RemoveAt(index);
+
+        index = deckCardIDList.IndexOf(cardID);
+        if (index == -1) return;
+        deckCardIDList.RemoveAt(index);
     }
 }
