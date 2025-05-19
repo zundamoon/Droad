@@ -19,7 +19,8 @@ public class CardManager
             if (cardMaster == null) return;
 
             CardData addCard = new CardData();
-            addCard.Init(i, cardMaster.advance, cardMaster.coin, cardMaster.star, (GameEnum.Rarity)cardMaster.rarity, cardMaster.eventID);
+            addCard.Init(i, cardMaster.advance, cardMaster.coin, cardMaster.star, 
+                (GameEnum.Rarity)cardMaster.rarity, cardMaster.eventID, cardMaster.price);
             cardList.Add(addCard);
         }
     }

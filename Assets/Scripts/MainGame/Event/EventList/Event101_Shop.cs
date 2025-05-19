@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 
 public class Event101_Shop : BaseEvent
 {
-    public override async UniTask PlayEvent(Character sourceCharacter, int param, Square square = null)
+    public override async UniTask ExecuteEvent(EventContext context, int param)
     {
         // 表示カードを抽選
 

@@ -10,8 +10,9 @@ public class CardData
     public int star { get; private set; } = 0;
     public GameEnum.Rarity rarity { get; private set; } = 0;
     public int eventID { get; private set; } = -1;
+    public int price { get; private set; } = 0;
     
-    public void Init(int setID, int setAdvance, int setAddCoin, int setStar, GameEnum.Rarity setRarity, int setEventID)
+    public void Init(int setID, int setAdvance, int setAddCoin, int setStar, GameEnum.Rarity setRarity, int setEventID, int setPrice)
     {
         ID = setID;
         advance = setAdvance;
@@ -19,6 +20,7 @@ public class CardData
         star = setStar;
         rarity = setRarity;
         eventID = setEventID;
+        price = setPrice;
     }
 
     /// <summary>
