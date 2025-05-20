@@ -276,4 +276,15 @@ public class UIManager : SystemObject
     {
         await _menuShop.SetSelectCallback(onSelect);
     }
+
+    /// <summary>
+    /// ショップのアイテム削除
+    /// </summary>
+    /// <param name="cardID"></param>
+    /// <param name="isRemove"></param>
+    /// <returns></returns>
+    public async UniTask RemoveShopItem(int cardID, bool isRemove = false)
+    {
+        await _menuShop.RemoveShopItem(cardID, isRemove);
+    }
 }
