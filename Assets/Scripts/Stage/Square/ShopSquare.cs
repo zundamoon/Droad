@@ -5,6 +5,6 @@ public class ShopSquare : BaseSquareData
     public ShopSquare()
     {
         squareColor = Color.yellow;
-        eventID = 101;
+        eventID = 13;
     }
 }

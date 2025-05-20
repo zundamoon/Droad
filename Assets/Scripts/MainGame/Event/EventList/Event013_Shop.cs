@@ -13,6 +13,7 @@ public class Event013_Shop : BaseEvent
     private const int _CARD_COUNT = 6;
 
     private int _cardID = -1;
+    private bool _acceptInput = false;
 
     public override async UniTask ExecuteEvent(EventContext context, int param)
     {
@@ -26,6 +27,7 @@ public class Event013_Shop : BaseEvent
         GetRandCard(ref cardIDList);
 
         // Uiにカード情報を渡す
+        await UIManager.instance.SetRemovaItem(character.possessCard.deckCardIDList);
         await UIManager.instance.SetSelectCallback((cardID, isRemove) =>
         {
             if (isRemove) character.possessCard.RemoveDeckCard(cardID);
@@ -34,11 +36,6 @@ public class Event013_Shop : BaseEvent
         await UIManager.instance.SetBuyItem(cardIDList);
         // ショップUIを表示
         await UIManager.instance.OpenShop();
-        // 入力待ち
-        while (true)
-        {
-            await UniTask.DelayFrame(1);
-        }
     }
 
     /// <summary>
