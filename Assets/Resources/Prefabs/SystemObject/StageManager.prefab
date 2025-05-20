@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stagePrefab: {fileID: 8765084483583139767, guid: a7fe74dd8edce8c42af78b4182e54f8e, type: 3}
+  _cameraAnchor: {fileID: 0}

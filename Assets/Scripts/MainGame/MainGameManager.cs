@@ -37,6 +37,7 @@ public class MainGameManager : SystemObject
     /// </summary>
     private async UniTask MainGameProc()
     {
+        StageManager.instance.DecideStarSquare();
         while (currentTurn < _TURN_MAX)
         {
             await TurnCountUp();
