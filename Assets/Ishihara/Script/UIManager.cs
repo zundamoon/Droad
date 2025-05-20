@@ -287,4 +287,14 @@ public class UIManager : SystemObject
     {
         await _menuShop.RemoveShopItem(cardID, isRemove);
     }
+
+    /// <summary>
+    /// カード使用の設定
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask SetOnUseCard(System.Action<int> action)
+    {
+        _menuHand.SetOnUseCard(action);
+        await UniTask.CompletedTask;
+    }
 }

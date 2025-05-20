@@ -1,32 +1,83 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardObject : MonoBehaviour
 {
-    private static Action<int> _OnUseCard = null;
-
     [SerializeField]
     private TextMeshProUGUI _advanceText = null;
     [SerializeField]
     private TextMeshProUGUI _coinText = null;
     [SerializeField]
     private TextMeshProUGUI _eventText = null;
+    [SerializeField]
+    private GameObject _highLight = null;
+
     private int _ID = -1;
     private Transform _handArea;
     private int _handIndex = -1;
 
-    // ドラッグ
+    private Action<int> _OnUseCard = null;
+
+    public void OnEnable()
+    {
+        _highLight.SetActive(false);
+    }
+
+    /// <summary>
+    /// カーソルがあっているとき
+    /// </summary>
+    public void OnPointEnter()
+    {
+        if (!UIManager.instance.IsHandAccept) return;
+
+        _highLight.SetActive(true);
+    }
+
+    /// <summary>
+    /// カーソルが外れた時
+    /// </summary>
+    public void OnPointExit()
+    {
+        if (!UIManager.instance.IsHandAccept) return;
+
+        _highLight.SetActive(false);
+    }
+
+    /// <summary>
+    /// ドラッグ
+    /// </summary>
     public void OnDrag()
     {
         if (!UIManager.instance.IsHandAccept) return;
-        
-        transform.position = Input.mousePosition;
+
+        Vector3 mousePos = Input.mousePosition;
+
+        // 移動量から傾き方向を計算（画面座標でOK）
+        Vector3 move = mousePos - transform.position;
+
+        float tiltFactor = 1; 
+        float maxTilt = 20f;
+
+        float tiltX = Mathf.Clamp(move.y * tiltFactor, -maxTilt, maxTilt);
+        float tiltY = Mathf.Clamp(-move.x * tiltFactor, -maxTilt, maxTilt);
+
+        // 傾ける
+        transform.localRotation = Quaternion.Euler(tiltX, tiltY, 0);
+
+        // マウス位置に追従（スクリーン座標ベースでOK）
+        transform.position = mousePos;
     }
 
-    // ドラッグ開始されたとき
+
+    /// <summary>
+    /// ドラッグ開始されたとき
+    /// </summary>
     public void OnStartDrop()
     {
         if (!UIManager.instance.IsHandAccept) return;
@@ -36,16 +87,19 @@ public class CardObject : MonoBehaviour
         _handArea = transform.parent;
         transform.SetParent(field);
         // 大きくする
-        transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
     }
 
-    // ドラッグ解除されたとき
-    public void OnEndDrop()
+    /// <summary>
+    /// ドラッグ解除されたとき
+    /// </summary>
+    public async void OnEndDrop()
     {
         if (!UIManager.instance.IsHandAccept) return;
 
         // 元のサイズに戻す
         transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        transform.localRotation = Quaternion.identity;
 
         // 使用エリアなら
         if (!UIManager.instance.CheckPlayArea(Input.mousePosition))
@@ -54,13 +108,49 @@ public class CardObject : MonoBehaviour
             transform.SetParent(_handArea);
             return;
         }
-        
+
+        await UseCard();
+    }
+
+    private async UniTask UseCard()
+    {
+        Vector3 startPos = transform.position;
+        Vector3 endPos = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
+        transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+
+        float duration = 0.5f;
+        float elapsed = 0f;
+
+        // 最初に裏向きにする（Y軸180度）
+        transform.localRotation = Quaternion.Euler(0, 180f, 0);
+
+        // 表向きに回転しながら中央へ移動
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime * 2;
+            float t = Mathf.Clamp01(elapsed / duration);
+
+            // 裏向きから表向きへ
+            float yRot = Mathf.Lerp(180f, 0f, t);
+            transform.localRotation = Quaternion.Euler(0, yRot, 0);
+
+            // 位置も中央へ補間
+            transform.position = Vector3.Lerp(startPos, endPos, t);
+
+            await UniTask.Yield();
+        }
+        // 待つ
+        await UniTask.Delay(200);
+
+        // 消してエフェクト再生
+        gameObject.SetActive(false);
+        transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        // スクリーン上に再生
+        EffectManager.instance.CreateScreenEffect(0, endPos, Quaternion.identity);
         // 使用カードをターンに通知
         _OnUseCard(_handIndex);
         // 入力受付終了
         UIManager.instance.EndHandAccept();
-  
-        gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -99,7 +189,7 @@ public class CardObject : MonoBehaviour
     /// カードを使った際のコールバック設定
     /// </summary>
     /// <param name="setCallback"></param>
-    public static void SetOnUseCard(Action<int> setCallback)
+    public void SetOnUseCard(Action<int> setCallback)
     {
         _OnUseCard = setCallback;
     }

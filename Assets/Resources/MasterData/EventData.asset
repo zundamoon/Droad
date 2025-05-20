@@ -67,3 +67,7 @@ MonoBehaviour:
       textID: -1
       eventType: 12
       param: ffffffffffffffff
+    - ID: 13
+      textID: -1
+      eventType: 13
+      param: ffffffffffffffff

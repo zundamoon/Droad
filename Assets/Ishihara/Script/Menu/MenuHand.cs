@@ -37,6 +37,13 @@ public class MenuHand : BaseMenu
     private PossessCard _possessCard = null;
     private readonly int _MAX_HAND_CARD = 4;
 
+    private System.Action<int> _OnUse;
+
+    public void SetOnUseCard(System.Action<int> action)
+    {
+        _OnUse = action;
+    }
+
     public void SetTurnPlayerCard(PossessCard setPossessCard)
     {
         _possessCard = setPossessCard;
@@ -89,6 +96,11 @@ public class MenuHand : BaseMenu
             addItem.transform.SetParent(_contentRoot);
         }
         addItem.gameObject.SetActive(true);
+        addItem.SetOnUseCard((index) =>
+        {
+            _OnUse(index);
+            RemoveListItem(index);
+        });
         _useList.Add(addItem);
         return addItem;
     }
@@ -114,7 +126,6 @@ public class MenuHand : BaseMenu
     protected void RemoveAllItem()
     {
         while (!IsEmpty(_useList)) RemoveListItem(0);
-
     }
 
     public RectTransform GetPlayArea()
