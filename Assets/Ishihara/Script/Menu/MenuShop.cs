@@ -43,9 +43,12 @@ public class MenuShop : BaseMenu
     {
         _menuChoice.SetSelectCallback((cardID) =>
         {
-            onSelect(cardID, _buyButton.interactable);
-            // ショップ閉じる
-            Close();
+            bool isRemove = _buyButton.interactable;
+            onSelect(cardID, isRemove);
+            if (isRemove)
+                RemovalActive();
+            else
+                BuyActive();
         });
 
         await UniTask.CompletedTask;
@@ -101,7 +104,7 @@ public class MenuShop : BaseMenu
 
         _menuChoice.RemoveAllItem();
         List<string> ButtonText = new List<string>(_buyCardIDList.Count);
-        for (int i = 0; i < ButtonText.Count; i++)
+        for (int i = 0; i < _buyCardIDList.Count; i++)
         {
             int CardID = _buyCardIDList[i];
             var Card = CardManager.GetCard(CardID);
@@ -123,12 +126,36 @@ public class MenuShop : BaseMenu
 
         _menuChoice.RemoveAllItem();
         List<string> ButtonText = new List<string>(_removalCardIDList.Count);
-        for (int i = 0; i < ButtonText.Count; i++)
+        for (int i = 0; i < _removalCardIDList.Count; i++)
         {
-            ButtonText.Add("select");
+            int CardID = _removalCardIDList[i];
+            var Card = CardManager.GetCard(CardID);
+            ButtonText.Add(Card.price.ToString());
         }
         _menuChoice.SetChoiceButtonText(ButtonText);
         _menuChoice.SetChoiceCardID(_removalCardIDList);
         _menuChoice.Open().Forget();
+    }
+
+    /// <summary>
+    /// ショップのアイテム削除
+    /// </summary>
+    /// <param name="cardID"></param>
+    /// <param name="isRemove"></param>
+    /// <returns></returns>
+    public async UniTask RemoveShopItem(int cardID, bool isRemove)
+    {
+        if (isRemove)
+        {
+            _removalCardIDList.Remove(cardID);
+            RemovalActive();
+        }
+        else
+        {
+            _buyCardIDList.Remove(cardID);
+            BuyActive();
+        }
+
+        await UniTask.CompletedTask;
     }
 }
