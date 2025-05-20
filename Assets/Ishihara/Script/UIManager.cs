@@ -57,6 +57,7 @@ public class UIManager : SystemObject
         await _menuHand.Close();
         await _menuChoice.Close();
         await _messageUI.Inactive();
+        _menuShop.Open();
         _menuShop.Close();
     }
 

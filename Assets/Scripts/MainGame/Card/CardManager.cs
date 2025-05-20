@@ -16,7 +16,14 @@ public class CardManager
     {
         // マスターデータからカードを生成
         cardList = new List<CardData>(_CARD_MAX);
-        rarityCardIDList = new List<List<int>>((int)Rarity.MAX);
+        List<int> tempList = new List<int>(_CARD_MAX);
+        int rarityCount = (int)Rarity.MAX;
+        rarityCardIDList = new List<List<int>>(rarityCount);
+        for (int i = 0; i < rarityCount; i++)
+        {
+            rarityCardIDList.Add(new List<int>(_CARD_MAX));
+        }
+
         for (int i = 0; i < _CARD_MAX; i++)
         {
             Param cardMaster = CardMasterUtility.GetCardMaster(i);
