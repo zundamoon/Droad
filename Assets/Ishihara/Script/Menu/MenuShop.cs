@@ -26,6 +26,8 @@ public class MenuShop : BaseMenu
     private List<int> _buyCardIDList = null;
     private List<int> _removalCardIDList = null;
 
+    private UniTaskCompletionSource _isShopActive = null;
+
     /// <summary>
     /// 非同期初期化
     /// </summary>
@@ -42,6 +44,8 @@ public class MenuShop : BaseMenu
         _menuChoice.SetSelectCallback((cardID) =>
         {
             onSelect(cardID, _buyButton.interactable);
+            // ショップ閉じる
+            Close();
         });
 
         await UniTask.CompletedTask;
@@ -68,9 +72,13 @@ public class MenuShop : BaseMenu
     /// </summary>
     public override async UniTask Open()
     {
+        _isShopActive = new UniTaskCompletionSource();
         await base.Open();
         // デフォルトで購入モードを表示
         BuyActive(); 
+
+        // 購入されるまで待つ
+        await _isShopActive.Task;
     }
 
     /// <summary>
@@ -79,6 +87,7 @@ public class MenuShop : BaseMenu
     public async void Close()
     {
         await base.Close(); 
+        _isShopActive.TrySetResult();
         await UniTask.Yield();
     }
 
