@@ -114,6 +114,8 @@ public class CardObject : MonoBehaviour
 
     private async UniTask UseCard()
     {
+        // 入力受付終了
+        UIManager.instance.EndHandAccept();
         Vector3 startPos = transform.position;
         Vector3 endPos = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
         transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
@@ -146,11 +148,9 @@ public class CardObject : MonoBehaviour
         gameObject.SetActive(false);
         transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         // スクリーン上に再生
-        EffectManager.instance.CreateScreenEffect(0, endPos, Quaternion.identity);
+        await EffectManager.instance.CreateScreenEffect(0, endPos, Quaternion.identity);
         // 使用カードをターンに通知
         _OnUseCard(_handIndex);
-        // 入力受付終了
-        UIManager.instance.EndHandAccept();
     }
 
     /// <summary>
