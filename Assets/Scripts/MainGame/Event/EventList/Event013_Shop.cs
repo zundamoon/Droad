@@ -28,13 +28,12 @@ public class Event013_Shop : BaseEvent
         // Uiにカード情報を渡す
         await UIManager.instance.SetSelectCallback((cardID, isRemove) =>
         {
-            if (isRemove)
-                character.possessCard.R
+            if (isRemove) character.possessCard.RemoveDeckCard(cardID);
+            else character.possessCard.AddCard(cardID);
         });
         await UIManager.instance.SetBuyItem(cardIDList);
-        await UIManager.instance.OpenShop();
         // ショップUIを表示
-
+        await UIManager.instance.OpenShop();
         // 入力待ち
         while (true)
         {
@@ -42,6 +41,10 @@ public class Event013_Shop : BaseEvent
         }
     }
 
+    /// <summary>
+    /// ショップのカードリストを取得
+    /// </summary>
+    /// <param name="cardIDList"></param>
     private void GetRandCard(ref List<int> cardIDList)
     {
         // ブロンズ
