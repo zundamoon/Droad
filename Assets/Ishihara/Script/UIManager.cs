@@ -332,4 +332,16 @@ public class UIManager : SystemObject
     {
         await _menuCardText.Close();
     }
+
+    public async UniTask HandDiscard(int handIndex)
+    {
+        // カードを手札から除外
+        await _menuHand.DiscardHandCard(handIndex);
+    }
+
+    public async UniTask HandDraw(int cardID)
+    {
+        // カードを手札に追加
+        await _menuHand.AddHandCard(cardID);
+    }
 }

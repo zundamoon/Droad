@@ -132,4 +132,25 @@ public class MenuHand : BaseMenu
     {
         return _playArea;
     }
+
+    /// <summary>
+    /// 手札のカードを捨てる
+    /// </summary>
+    /// <param name="handIndex"></param>
+    /// <returns></returns>
+    public async UniTask DiscardHandCard(int handIndex)
+    {
+        RemoveListItem(handIndex);
+        await UniTask.CompletedTask;
+    }
+
+    public async UniTask AddHandCard(int cardID)
+    {
+        // 手札に追加
+        var item = AddListItem();
+        // カード情報更新
+        item.SetCard(cardID);
+        item.SetHandIndex(_unuseList.Count - 1);
+        await UniTask.CompletedTask;
+    }
 }

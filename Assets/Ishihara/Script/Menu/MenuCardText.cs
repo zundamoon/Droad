@@ -13,6 +13,9 @@ public class MenuCardText : BaseMenu
     [SerializeField]
     private TextMeshProUGUI _coinText = null;
 
+    [SerializeField]
+    private TextMeshProUGUI _nameText = null;
+
     private const int _ADVANCE_TEXT_ID = 200;
     private const int _CON_TEXT_ID = 201;
 
@@ -23,7 +26,7 @@ public class MenuCardText : BaseMenu
         // ÉJÅ[ÉhèÓïÒéÊìæ
         CardData card = CardManager.GetCard(ID);
         if (card == null) return;
-
+        _nameText.text = card.nameID.ToText();
         _advanceText.text = string.Format(_ADVANCE_TEXT_ID.ToText(), card.advance);
         _coinText.text = string.Format(_CON_TEXT_ID.ToText(), card.addCoin);
         Entity_EventData.Param param = EventMasterUtility.GetEventMaster(card.eventID);
