@@ -89,3 +89,67 @@ MonoBehaviour:
       text: "\u6368\u3066\u308B\u30AB\u30FC\u30C9\u3092\u9078\u3093\u3067\u306D\uFF01"
     - ID: 115
       text: "\u30B3\u30A4\u30F3\u3092{0}\u679A\u596A\u3063\u305F\uFF01"
+    - ID: 200
+      text: "{0}\u30DE\u30B9"
+    - ID: 201
+      text: "{0}\u30B3\u30A4\u30F3"
+    - ID: 300
+      text: "\u30D6\u30ED\u30F3\u30BA1"
+    - ID: 301
+      text: "\u30D6\u30ED\u30F3\u30BA2"
+    - ID: 302
+      text: "\u30D6\u30ED\u30F3\u30BA3"
+    - ID: 303
+      text: "\u30D6\u30ED\u30F3\u30BA4"
+    - ID: 304
+      text: "\u30D6\u30ED\u30F3\u30BA5"
+    - ID: 305
+      text: "\u30D6\u30ED\u30F3\u30BA6"
+    - ID: 306
+      text: "\u30B7\u30EB\u30D0\u30FC1"
+    - ID: 307
+      text: "\u30B7\u30EB\u30D0\u30FC2"
+    - ID: 308
+      text: "\u30B7\u30EB\u30D0\u30FC3"
+    - ID: 309
+      text: "\u30B7\u30EB\u30D0\u30FC4"
+    - ID: 310
+      text: "\u30B7\u30EB\u30D0\u30FC5"
+    - ID: 311
+      text: "\u30B7\u30EB\u30D0\u30FC6"
+    - ID: 312
+      text: "\u30B4\u30FC\u30EB\u30C91"
+    - ID: 313
+      text: "\u30B4\u30FC\u30EB\u30C92"
+    - ID: 314
+      text: "\u30B4\u30FC\u30EB\u30C93"
+    - ID: 315
+      text: "\u30B4\u30FC\u30EB\u30C94"
+    - ID: 316
+      text: "\u30B4\u30FC\u30EB\u30C95"
+    - ID: 317
+      text: "\u30B4\u30FC\u30EB\u30C96"
+    - ID: 318
+      text: "\u30EC\u30B8\u30A7\u30F3\u30C91"
+    - ID: 319
+      text: "\u30EC\u30B8\u30A7\u30F3\u30C92"
+    - ID: 320
+      text: "\u30EC\u30B8\u30A7\u30F3\u30C93"
+    - ID: 321
+      text: "\u30EC\u30B8\u30A7\u30F3\u30C94"
+    - ID: 322
+      text: "\u30EC\u30B8\u30A7\u30F3\u30C95"
+    - ID: 323
+      text: "\u30EC\u30B8\u30A7\u30F3\u30C96"
+    - ID: 324
+      text: "\u30B9\u30BF\u30FC1"
+    - ID: 325
+      text: "\u30B9\u30BF\u30FC2"
+    - ID: 326
+      text: "\u30B9\u30BF\u30FC3"
+    - ID: 327
+      text: "\u30B9\u30BF\u30FC4"
+    - ID: 328
+      text: "\u30B9\u30BF\u30FC5"
+    - ID: 329
+      text: "\u30B9\u30BF\u30FC6"
