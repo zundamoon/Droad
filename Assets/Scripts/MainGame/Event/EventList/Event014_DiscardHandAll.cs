@@ -1,12 +1,11 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cysharp.Threading.Tasks;
 
-public class Event003_DiscardDeck : BaseEvent
+public class Event014_DiscardHandAll : BaseEvent
 {
-    private const int _TEXT_ID = 116;
-
+    private const int _TEXT_ID = 117;
     public override async UniTask ExecuteEvent(EventContext context, int param)
     {
         if (context == null) return;
@@ -14,7 +13,7 @@ public class Event003_DiscardDeck : BaseEvent
         Character character = context.character;
         if (character == null) return;
 
-        await character.possessCard.DiscardDeck(param);
-        await UIManager.instance.RunMessage(string.Format(_TEXT_ID.ToText(), param));
+        character.possessCard.DiscardHandAll();
+        await UIManager.instance.RunMessage(_TEXT_ID.ToText());
     }
 }
