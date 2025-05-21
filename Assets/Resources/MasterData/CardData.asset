@@ -26,42 +26,42 @@ MonoBehaviour:
       advance: 2
       coin: 2
       rarity: 0
-      eventID: 0
+      eventID: 1
       star: 0
       price: 5
     - ID: 2
       advance: 3
       coin: 2
       rarity: 0
-      eventID: 0
+      eventID: 2
       star: 0
       price: 5
     - ID: 3
       advance: 4
       coin: 2
       rarity: 0
-      eventID: 0
+      eventID: 3
       star: 0
       price: 5
     - ID: 4
       advance: 5
       coin: 2
       rarity: 0
-      eventID: 0
+      eventID: 4
       star: 0
       price: 5
     - ID: 5
       advance: 6
       coin: 2
       rarity: 0
-      eventID: 0
+      eventID: 5
       star: 0
       price: 5
     - ID: 6
       advance: 1
       coin: 3
       rarity: 1
-      eventID: 0
+      eventID: -1
       star: 0
       price: 10
     - ID: 7

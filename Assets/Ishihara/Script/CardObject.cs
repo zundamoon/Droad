@@ -194,4 +194,18 @@ public class CardObject : MonoBehaviour
     {
         _OnUseCard = setCallback;
     }
+    /// <summary>
+    /// ‘I‘ð‚³‚ê‚½‚Æ‚«
+    /// </summary>
+    public void OnSelect()
+    {
+        if (!UIManager.instance.IsHandAccept) return;
+        UIManager.instance.OpenCardText(_ID);
+    }
+
+    public void OnDeselect()
+    {
+        if (!UIManager.instance.IsHandAccept) return;
+        UIManager.instance.CloseCardText();
+    }
 }

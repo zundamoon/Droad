@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _effectOrigin:
   - {fileID: 8771972552311404799, guid: 44d0e71c51a4c264c972e0743a72684f, type: 3}
+  - {fileID: 8771972552311404799, guid: d939839f468c5194faaf9847c28d6d62, type: 3}
   _UICanvas: {fileID: 7972012997241130583}
 --- !u!1 &2760055371856971609
 GameObject:

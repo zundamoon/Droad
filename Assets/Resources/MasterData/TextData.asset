@@ -77,3 +77,15 @@ MonoBehaviour:
       text: "\u30C9\u30ED\u30FC\uFF01"
     - ID: 109
       text: "\u30B3\u30A4\u30F3\u4E0D\u8DB3\uFF01"
+    - ID: 110
+      text: "\u30E9\u30C3\u30AD\u30FC\u30DE\u30B9\uFF01"
+    - ID: 111
+      text: "\u30A2\u30F3\u30E9\u30C3\u30AD\u30FC\u30DE\u30B9\uFF01"
+    - ID: 112
+      text: "\u30B9\u30BF\u30FC\u30DE\u30B9\u5230\u7740\uFF01"
+    - ID: 113
+      text: "\u30B7\u30E7\u30C3\u30D7"
+    - ID: 114
+      text: "\u6368\u3066\u308B\u30AB\u30FC\u30C9\u3092\u9078\u3093\u3067\u306D\uFF01"
+    - ID: 115
+      text: "\u30B3\u30A4\u30F3\u3092{0}\u679A\u596A\u3063\u305F\uFF01"

@@ -9,20 +9,24 @@ public class UIManager : SystemObject
 {
     public static UIManager instance { get; private set; } = null;
 
+    // 選択肢
     [SerializeField]
     private MenuChoice _menuChoice = null;
-
+    // 手札UI
     [SerializeField]
     private MenuHand _menuHand = null;
-
+    // メッセージUI
     [SerializeField]
     private MessageUI _messageUI = null;
-
+    // 順番UI
     [SerializeField]
     private MenuStatus _menuStatus = null;
-
+    // ショップ
     [SerializeField]
     private MenuShop _menuShop = null;
+    // カードテキスト
+    [SerializeField]
+    private MenuCardText _menuCardText = null;
 
     private UniTaskCompletionSource _uniTaskCompletionSource = null;
 
@@ -49,16 +53,19 @@ public class UIManager : SystemObject
         _messageUI = Instantiate(_messageUI);
         _menuStatus = Instantiate(_menuStatus);
         _menuShop = Instantiate(_menuShop);
+        _menuCardText = Instantiate(_menuCardText);
 
         await _menuHand.Initialize();
         await _menuChoice.Initialize();
         await _menuStatus.Initialize();
         await _menuShop.Initialize();
+        await _menuCardText.Initialize();
         _menuStatus.SetCharacter(CharacterManager.instance.GetAllCharacter());
 
         await _menuHand.Close();
         await _menuChoice.Close();
         await _messageUI.Inactive();
+        await _menuCardText.Close();
         _menuShop.Open();
         _menuShop.Close();
     }
@@ -314,5 +321,15 @@ public class UIManager : SystemObject
     {
         _menuHand.SetOnUseCard(action);
         await UniTask.CompletedTask;
+    }
+    public async UniTask OpenCardText(int cardID)
+    {
+        await _menuCardText.SetText(cardID);
+        await _menuCardText.Open();
+    }
+
+    public async UniTask CloseCardText()
+    {
+        await _menuCardText.Close();
     }
 }

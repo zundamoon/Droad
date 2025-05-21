@@ -49,3 +49,4 @@ MonoBehaviour:
   _messageUI: {fileID: 1480244286524136102, guid: 4e82294820818b2409fa42d192481890, type: 3}
   _menuStatus: {fileID: 1561864525522828191, guid: cac785a3aa7aefe42b63278961ce1097, type: 3}
   _menuShop: {fileID: 2679556295844602366, guid: 493933632d891f54797c5c68eee7e233, type: 3}
+  _menuCardText: {fileID: 7868829751268456658, guid: 3e65295390c18c5458419418c603e762, type: 3}
