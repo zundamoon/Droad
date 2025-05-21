@@ -16,58 +16,58 @@ MonoBehaviour:
   - name: EventData
     list:
     - ID: 0
-      textID: -1
+      textID: 0
       eventType: 0
       param: 01000000ffffffff
     - ID: 1
-      textID: -1
+      textID: 1
       eventType: 1
       param: 03000000ffffffff
     - ID: 2
-      textID: -1
+      textID: 2
       eventType: 2
       param: ffffffffffffffff
     - ID: 3
-      textID: -1
+      textID: 3
       eventType: 3
       param: 03000000ffffffff
     - ID: 4
-      textID: -1
+      textID: 4
       eventType: 4
       param: ffffffffffffffff
     - ID: 5
-      textID: -1
+      textID: 5
       eventType: 5
       param: ffffffffffffffff
     - ID: 6
-      textID: -1
+      textID: 6
       eventType: 6
       param: 03000000ffffffff
     - ID: 7
-      textID: -1
+      textID: 7
       eventType: 7
       param: ffffffffffffffff
     - ID: 8
-      textID: -1
+      textID: 8
       eventType: 8
       param: 03000000ffffffff
     - ID: 9
-      textID: -1
+      textID: 9
       eventType: 9
       param: ffffffffffffffff
     - ID: 10
-      textID: -1
+      textID: 110
       eventType: 10
       param: ffffffffffffffff
     - ID: 11
-      textID: -1
+      textID: 111
       eventType: 11
       param: ffffffffffffffff
     - ID: 12
-      textID: -1
+      textID: 112
       eventType: 12
       param: ffffffffffffffff
     - ID: 13
-      textID: -1
+      textID: 113
       eventType: 13
       param: ffffffffffffffff

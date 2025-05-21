@@ -83,6 +83,7 @@ public class MenuStatus : BaseMenu
     public async UniTask ScrollStatus()
     {
         if (!IsEnableIndex(_statusOrderList, 0)) return;
+        await UIManager.instance.CloseCardText();
 
         _statusOrderList[0].ReSize(0.8f);
         _statusOrderList.RemoveAt(0);
