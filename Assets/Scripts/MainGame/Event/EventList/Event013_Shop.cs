@@ -12,9 +12,6 @@ public class Event013_Shop : BaseEvent
     private const int _LEGENDARY_CARD_COUNT = 1;
     private const int _CARD_COUNT = 6;
 
-    private int _cardID = -1;
-    private bool _acceptInput = false;
-
     public override async UniTask ExecuteEvent(EventContext context, int param)
     {
         if (context == null) return;
@@ -22,18 +19,25 @@ public class Event013_Shop : BaseEvent
         Character character = context.character;
         if (character == null) return;
 
+        // リシャッフル
+        await character.possessCard.ReshuffleDeck();
+
         // 表示カードを抽選
         List<int> cardIDList = new List<int>(_CARD_COUNT);
         GetRandCard(ref cardIDList);
 
         // Uiにカード情報を渡す
-        await UIManager.instance.SetRemovaItem(character.possessCard.deckCardIDList);
-        await UIManager.instance.SetSelectCallback((cardID, isRemove) =>
-        {
-            if (isRemove) character.possessCard.RemoveDeckCard(cardID);
-            else character.possessCard.AddCard(cardID);
-        });
         await UIManager.instance.SetBuyItem(cardIDList);
+        await UIManager.instance.SetRemovaItem(character.possessCard.deckCardIDList);
+        await UIManager.instance.SetSelectCallback(async (cardID, isRemove) =>
+        {
+            CardData card = CardManager.GetCard(cardID);
+            if (!await character.Pay(card.price)) return;
+
+            if (isRemove) character.possessCard.RemoveDeckCard(cardID);
+            else await character.possessCard.AddCard(cardID);
+            await UIManager.instance.RemoveShopItem(cardID, isRemove);
+        });
         // ショップUIを表示
         await UIManager.instance.OpenShop();
     }
