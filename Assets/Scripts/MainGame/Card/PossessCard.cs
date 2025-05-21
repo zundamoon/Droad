@@ -90,6 +90,7 @@ public class PossessCard
         {
             // デッキがないならリシャッフル
             if (deckCardIDList.Count <= 0) await ReshuffleDeck();
+            if (deckCardIDList.Count <= 0) return;
             handCardIDList.Add(deckCardIDList[0]);
             deckCardIDList.RemoveAt(0);
         }
@@ -105,14 +106,24 @@ public class PossessCard
     }
 
     /// <summary>
-    /// 手札の指定のカードを捨てる
+    /// 順番指定で手札のカードを捨てる
     /// </summary>
     /// <param name="handCount"></param>
-    public void DiscardHand(int handCount)
+    public void DiscardHandIndex(int handCount)
     {
         if (handCardIDList.Count <= handCount) return;
         discardCardIDList.Add(handCardIDList[handCount]);
         handCardIDList.RemoveAt(handCount);
+    }
+
+    /// <summary>
+    /// ID指定で手札のカードを捨てる
+    /// </summary>
+    /// <param name="cardID"></param>
+    public void DiscardHandID(int cardID)
+    {
+        handCardIDList.Remove(cardID);
+        discardCardIDList.Add(cardID);
     }
 
     /// <summary>

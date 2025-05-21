@@ -24,6 +24,8 @@ public class UIManager : SystemObject
     [SerializeField]
     private MenuShop _menuShop = null;
 
+    private UniTaskCompletionSource _uniTaskCompletionSource = null;
+
     private const float _DEFAULT_DISPLAY_TIME = 0.75f;
 
     public bool IsHandAccept { get; private set; } = false;
@@ -115,8 +117,23 @@ public class UIManager : SystemObject
     /// <returns></returns>
     public async UniTask OpenChoiceArea(List<int> choiceCardIDList)
     {
+        _uniTaskCompletionSource = new UniTaskCompletionSource();
+
         _menuChoice.SetChoiceCardID(choiceCardIDList);
         await _menuChoice.Open();
+
+        await _uniTaskCompletionSource.Task;
+    }
+
+    public async UniTask SetChoiceCallback(System.Action<int> action)
+    {
+        _menuChoice.SetSelectCallback(async (index) =>
+        {
+            action(index);
+            _uniTaskCompletionSource.TrySetResult();
+            await CloseChoiceArea();
+        });
+        await UniTask.CompletedTask;
     }
 
     /// <summary>
@@ -125,6 +142,7 @@ public class UIManager : SystemObject
     /// <returns></returns>
     public async UniTask CloseChoiceArea()
     {
+        _menuChoice.RemoveAllItem();
         await _menuChoice.Close();
     }
 

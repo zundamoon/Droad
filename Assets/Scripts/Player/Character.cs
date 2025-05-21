@@ -33,6 +33,7 @@ public class Character : MonoBehaviour
     public StagePosition nextPosition;
     private float moveSpeed = 10.0f;
     private float goalDistance = 0.05f;
+    private const int _NO_COIN_TEXT_ID = 109;
 
     public void Init(int setPlayerID)
     {
@@ -148,5 +149,18 @@ public class Character : MonoBehaviour
         {
             renderer.material.color = playerColor;
         }
+    }
+    /// <summary>
+    /// 支払いをする
+    /// </summary>
+    /// <param name="price"></param>
+    /// <returns></returns>
+    public async UniTask<bool> Pay(int price)
+    {
+        bool result = coins >= price;
+        if (result) RemoveCoin(price);
+        else await UIManager.instance.RunMessage(_NO_COIN_TEXT_ID.ToText());
+
+        return result;
     }
 }

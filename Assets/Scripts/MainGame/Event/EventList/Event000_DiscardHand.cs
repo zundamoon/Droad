@@ -9,13 +9,16 @@ public class Event000_DiscardHand : BaseEvent
     {
         if (context == null) return;
 
-        // 選択の呼び出し
-        int handIndex = 0;
         Character character = context.character;
         if (character == null) return;
 
-        // 選択されたカードを捨てる
-        character.possessCard.DiscardHand(handIndex);
+        // 選択の呼び出し
+        await UIManager.instance.SetChoiceCallback((cardID) =>
+        {
+            character.possessCard.DiscardHandID(cardID);
+        });
+
+        await UIManager.instance.OpenChoiceArea(character.possessCard.handCardIDList);
         await UniTask.CompletedTask;
     }
 }

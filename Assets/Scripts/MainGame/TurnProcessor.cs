@@ -40,7 +40,7 @@ public class TurnProcessor
         for (int i = 0; i < PLAYER_MAX; i++)
         {
             Character character = CharacterManager.instance.GetCharacter(i);
-            character.possessCard.DrawDeckMax();
+            await character.possessCard.DrawDeckMax();
         }
 
         // 手番決め
@@ -126,7 +126,7 @@ public class TurnProcessor
     {
         PossessCard possess = playCharacter.possessCard;
         int ID = possess.handCardIDList[handIndex];
-        possess.DiscardHand(handIndex);
+        possess.DiscardHandIndex(handIndex);
         return CardManager.GetCard(ID).advance;
     }
 
@@ -171,16 +171,17 @@ public class TurnProcessor
         // カードのIDから処理を実行
         PossessCard possess = useCharacter.possessCard;
         int cardID = possess.handCardIDList[handIndex];
-        possess.DiscardHand(handIndex);
-        CardData card = CardManager.GetCard(cardID);
-        if (card == null) return -1;
+        possess.DiscardHandIndex(handIndex);
+        CardData useCard = CardManager.GetCard(cardID);
+        if (useCard == null) return -1;
         // イベント処理
         EventContext context = new EventContext()
-        { character = useCharacter };
-        await EventManager.ExecuteEvent(card.eventID, context);
+        { character = useCharacter,
+          card = useCard };
+        await EventManager.ExecuteEvent(useCard.eventID, context);
         // コイン追加
-        useCharacter.AddCoin(card.addCoin);
-        return card.advance;
+        useCharacter.AddCoin(useCard.addCoin);
+        return useCard.advance;
     }
 
     /// <summary>
