@@ -16,7 +16,24 @@ public class CardObject : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _eventText = null;
     [SerializeField]
+    private TextMeshProUGUI _cardNameText = null;
+    [SerializeField]
+    private Image _BGFrame = null;
+    [SerializeField]
+    private Image _cardImage = null;
+    [SerializeField]
     private GameObject _highLight = null;
+
+    [SerializeField]
+    private Color _cardBronzeMaterial = Color.white;
+    [SerializeField]
+    private Color _cardSilverMaterial = Color.white;
+    [SerializeField]
+    private Color _cardGoldMaterial = Color.white;
+    [SerializeField]
+    private Color _cardLegendaryMaterial = Color.white;
+    [SerializeField]
+    private Color _cardStarMaterial = Color.white;
 
     private int _ID = -1;
     private Transform _handArea;
@@ -73,7 +90,6 @@ public class CardObject : MonoBehaviour
         // マウス位置に追従（スクリーン座標ベースでOK）
         transform.position = mousePos;
     }
-
 
     /// <summary>
     /// ドラッグ開始されたとき
@@ -164,8 +180,27 @@ public class CardObject : MonoBehaviour
         CardData card = CardManager.GetCard(_ID);
         if (card == null) return;
 
+        _cardNameText.text = card.nameID.ToText();
         _advanceText.text = card.advance.ToString();
         _coinText.text = card.addCoin.ToString();
+        switch(card.rarity)
+        {
+            case GameEnum.Rarity.BRONZE:
+                _BGFrame.color = _cardBronzeMaterial;
+                break;
+            case GameEnum.Rarity.SILVER:
+                _BGFrame.color = _cardSilverMaterial;
+                break;
+            case GameEnum.Rarity.GOLD:
+                _BGFrame.color = _cardGoldMaterial;
+                break;
+            case GameEnum.Rarity.LEGENDARY:
+                _BGFrame.color = _cardLegendaryMaterial;
+                break;
+            case GameEnum.Rarity.STAR:
+                _BGFrame.color = _cardStarMaterial;
+                break;
+        }
         Entity_EventData.Param param = EventMasterUtility.GetEventMaster(card.eventID);
         if (param == null)
         {
