@@ -28,6 +28,8 @@ public class EventManager
         eventList.Add(new Event011_UnluckyEvent());
         eventList.Add(new Event012_BuyStar());
         eventList.Add(new Event013_Shop());
+        eventList.Add(new Event014_DiscardHandAll());
+        eventList.Add(new Event015_NoPassAddCoin());
     }
 
     /// <summary>

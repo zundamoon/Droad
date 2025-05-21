@@ -271,7 +271,7 @@ public class PossessCard
     /// デッキの指定IDのカードを破棄する
     /// </summary>
     /// <param name="cardID"></param>
-    public void RemoveDeckCard(int cardID)
+    public async UniTask RemoveDeckCard(int cardID)
     {
         // 所持しているカードにIDがあるか判定
         int index = possessCardIDList.IndexOf(cardID);
@@ -281,5 +281,8 @@ public class PossessCard
         index = deckCardIDList.IndexOf(cardID);
         if (index == -1) return;
         deckCardIDList.RemoveAt(index);
+
+        if (deckCardIDList.Count > 0) return;
+        await ReshuffleDeck();
     }
 }
