@@ -36,6 +36,8 @@ public class Event001_StealCoin : BaseEvent
         {
             addCoin += targetCharacterList[i].RemoveCoin(_stealCoinCount);
         }
+        if (addCoin <= 0) return;
+
         _sourceCharacter.AddCoin(addCoin);
         await UIManager.instance.RunMessage(string.Format(_STEAL_TEXT_ID.ToText(), addCoin));
     }

@@ -20,8 +20,8 @@ public class Event000_DiscardHand : BaseEvent
             character.possessCard.DiscardHandID(cardID);
         });
 
-        await UIManager.instance.OpenChoiceArea(character.possessCard.handCardIDList);
         await UIManager.instance.RunMessage(_TEXT_ID.ToText());
+        await UIManager.instance.OpenChoiceArea(character.possessCard.handCardIDList);
         await UniTask.CompletedTask;
     }
 }
