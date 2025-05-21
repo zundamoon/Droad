@@ -9855,16 +9855,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: squareData
-      value: 1314523668816592903
+      value: 1314523803081244672
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592903]
       value: Assembly-CSharp RedSquare
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
+      propertyPath: managedReferences[1314523803081244672]
+      value: Assembly-CSharp BranchSquare
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592903].eventID
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
+      propertyPath: managedReferences[1314523803081244672].branchArrow
+      value: 
+      objectReference: {fileID: 6584334235858680139, guid: 6c1b2bb9c608d5c4bb6de86f95a1b6df, type: 3}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592903].squareColor.a
       value: 1

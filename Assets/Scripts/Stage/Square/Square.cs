@@ -6,20 +6,14 @@ using static CommonModule;
 
 public class Square : MonoBehaviour
 {
-    public bool isStarSquare;
-    public bool isStopSquare;
     [SerializeField] public List<int> standingPlayerList = null;
     [SerializeField] public List<GameObject> standAnchorList = null;
     [SerializeField] private new Renderer renderer;
     [SerializeReference, SubclassSelector] private BaseSquareData squareData;
-    // ステージ上のマスの位置
-    public StagePosition squarePosition { get; protected set; }
-    // 次に移動できるマスの候補
-    public List<StagePosition> nextPositionList { get; protected set; }
 
     public void Init()
     {
-        isStarSquare = false;
+        GetSquareData().isStarSquare = false;
         ChangeLooks();
     }
     /// <summary>
@@ -27,13 +21,13 @@ public class Square : MonoBehaviour
     /// </summary>
     public void ChangeStarSquare()
     {
-        if (isStarSquare)
+        if (GetIsStarSquare())
         {
-            isStarSquare = false;
+            GetSquareData().isStarSquare = false;
         }
         else
         {
-            isStarSquare = true;
+            GetSquareData().isStarSquare = true;
             squareData.ChangeColor(Color.magenta);
         }
         ChangeLooks();
@@ -74,16 +68,16 @@ public class Square : MonoBehaviour
     /// </summary>
     private void ChangeLooks() { renderer.material.color = squareData.squareColor; }
 
-    public void SetPosition(StagePosition position) { squarePosition = position; }
-
-    public void SetNextPosition(List<StagePosition> positions) { nextPositionList = positions; }
     public BaseSquareData GetSquareData() { return squareData; }
-    public StagePosition GetSquarePosition() { return squarePosition; }
-    public List<StagePosition> GetNextPosition() { return nextPositionList; }
-    public int GetEventID() { return squareData.eventID; }
-    public bool GetIsStarSquare() { return isStarSquare; }
-    public void SetIsStarSquare(bool state) { isStarSquare = state; }
+    public void SetPosition(StagePosition position) { GetSquareData().squarePosition = position; }
 
-    public bool GetIsStopSquare() { return isStopSquare; }
-    public void SetIsStopSquare(bool state) { isStopSquare = state; }
+    public void SetNextPosition(List<StagePosition> positions) { GetSquareData().nextPositionList = positions; }
+    public StagePosition GetSquarePosition() { return GetSquareData().squarePosition; }
+    public List<StagePosition> GetNextPosition() { return GetSquareData().nextPositionList; }
+    public int GetEventID() { return squareData.eventID; }
+    public bool GetIsStarSquare() { return GetSquareData().isStarSquare; }
+    public void SetIsStarSquare(bool state) { GetSquareData().isStarSquare = state; }
+
+    public bool GetIsStopSquare() { return GetSquareData().isStopSquare; }
+    public void SetIsStopSquare(bool state) { GetSquareData().isStopSquare = state; }
 }
