@@ -106,6 +106,33 @@ public class PossessCard
     }
 
     /// <summary>
+    /// 手札の順番指定でカードを使用
+    /// </summary>
+    /// <param name="handIndex"></param>
+    /// <param name="useCharacter"></param>
+    /// <returns></returns>
+    public async UniTask<int> UseCard(int handIndex, Character useCharacter)
+    {
+        int cardID = handCardIDList[handIndex];
+        // 手札から一時的に破棄
+        handCardIDList.Remove(cardID);
+        CardData useCard = CardManager.GetCard(cardID);
+        if (useCard == null) return -1;
+        // イベント処理
+        EventContext context = new EventContext()
+        {
+            character = useCharacter,
+            card = useCard
+        };
+        await EventManager.ExecuteEvent(useCard.eventID, context);
+        // コイン追加
+        useCharacter.AddCoin(useCard.addCoin);
+        // カードを捨て札に追加
+        discardCardIDList.Add(cardID);
+        return useCard.advance;
+    }
+
+    /// <summary>
     /// 順番指定で手札のカードを捨てる
     /// </summary>
     /// <param name="handCount"></param>
@@ -165,6 +192,16 @@ public class PossessCard
 
         _AddStarCallback(1);
         await UIManager.instance.RunMessage(_GET_STAR_TEXT_ID.ToText());
+    }
+
+    /// <summary>
+    /// ID指定で手札のカードを破棄
+    /// </summary>
+    /// <param name="cardID"></param>
+    public void RemoveHandID(int cardID)
+    {
+        possessCardIDList.Remove(cardID);
+        handCardIDList.Remove(cardID);
     }
 
     /// <summary>

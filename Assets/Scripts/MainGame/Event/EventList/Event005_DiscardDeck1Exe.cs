@@ -14,7 +14,7 @@ public class Event005_DiscardDeck1Exe : BaseEvent
 
         PossessCard sourcePossessCard = character.possessCard;
         int discardID = sourcePossessCard.deckCardIDList[0];
-        sourcePossessCard.DiscardDeck(1);
+        await sourcePossessCard.DiscardDeck(1);
         // Ì‚Ä‚½ƒJ[ƒh‚ÌID‚©‚çŒø‰Ê”­“®
         int eventID = CardMasterUtility.GetCardMaster(discardID).eventID;
         await EventManager.ExecuteEvent(eventID, context);
