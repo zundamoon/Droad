@@ -13,9 +13,9 @@ public class Event009_TurningRoute : BaseEvent
         Square square = context.square;
         if (character == null || square == null) return;
 
-        // マスの次のマスを取得
-
-        // キャラクターに次のマスを渡す
+        BaseSquareData squareData = square.GetSquareData();
+        BranchSquare branchSquare = squareData as BranchSquare;
+        await branchSquare.SelectBranch(character);
 
     }
 }

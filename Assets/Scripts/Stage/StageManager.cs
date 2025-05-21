@@ -133,7 +133,7 @@ public class StageManager : SystemObject
 
     public StagePosition GetNextPosition(StagePosition playerPos)
     {
-        return GetSquare(playerPos).nextPositionList[0];
+        return GetSquare(playerPos).GetSquareData().nextPositionList[0];
     }
 
     /// <summary>
@@ -145,6 +145,7 @@ public class StageManager : SystemObject
     {
         List<StagePosition> nextPositions = new List<StagePosition>();
 
+        // 同じroad内の次マスが存在するならそれだけ返す
         StagePosition nextInSameRoad = new StagePosition(playerPos.m_route, playerPos.m_road, playerPos.m_square + 1);
         if (IsValidSquare(nextInSameRoad))
         {
@@ -152,22 +153,13 @@ public class StageManager : SystemObject
             return nextPositions;
         }
 
-        var roadList = stageData.stageRoute.routeList[playerPos.m_route].roadList;
-        for (int roadIndex = 0; roadIndex < roadList.Count; roadIndex++)
-        {
-            if (roadIndex == playerPos.m_road) continue;
-
-            StagePosition branchPos = new StagePosition(playerPos.m_route, roadIndex, 0);
-            if (IsValidSquare(branchPos))
-            {
-                nextPositions.Add(branchPos);
-            }
-        }
-
+        // この道の終端だったら、次のrouteに進む
         int nextRouteIndex = playerPos.m_route + 1;
         if (nextRouteIndex < stageData.stageRoute.routeList.Count)
         {
             var nextRoute = stageData.stageRoute.routeList[nextRouteIndex];
+
+            // 次のrouteのすべてのroadの先頭マスを取得
             for (int roadIndex = 0; roadIndex < nextRoute.roadList.Count; roadIndex++)
             {
                 StagePosition nextRoutePos = new StagePosition(nextRouteIndex, roadIndex, 0);
@@ -178,9 +170,10 @@ public class StageManager : SystemObject
             }
         }
 
+        // 全てのルートが終わっていた場合はループ（ステージ最初に戻る）
         if (nextPositions.Count == 0)
         {
-            StagePosition loopPos = new StagePosition(1, 0, 0);
+            StagePosition loopPos = new StagePosition(0, 0, 0); // 最初のマス
             if (IsValidSquare(loopPos))
             {
                 nextPositions.Add(loopPos);
@@ -239,7 +232,8 @@ public class StageManager : SystemObject
 
             StagePosition lastSquarePos = squareList[squareList.Count - value];
             Square square = GetSquare(lastSquarePos);
-            square.SetIsStarSquare(true);
+            // square.SetIsStarSquare(true);
+            square.ChangeStarSquare();
         }
     }
 

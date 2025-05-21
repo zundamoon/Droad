@@ -46,6 +46,7 @@ public class Character : MonoBehaviour
         position.m_square = 0;
         Vector3 initPosition = StageManager.instance.GetPosition(position);
         SetPosition(initPosition);
+        nextPosition = StageManager.instance.GetNextPosition(position);
         AdaptPlayerColor();
 
         coins = DEFAULT_COINS;

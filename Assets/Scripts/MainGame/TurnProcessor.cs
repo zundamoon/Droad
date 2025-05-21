@@ -176,7 +176,8 @@ public class TurnProcessor
         {
             // 移動先のマスを取得
             stageManager.GetSquare(moveCharacter.position).DeleteStandingList(playerID);
-            StagePosition nextPosition = stageManager.GetNextPosition(moveCharacter.position);
+            // StagePosition nextPosition = stageManager.GetNextPosition(moveCharacter.position);
+            StagePosition nextPosition = moveCharacter.nextPosition;
             stageManager.GetSquare(nextPosition).AddStandingList(playerID);
             Vector3 movePosition = stageManager.GetPosition(nextPosition);
 
@@ -194,6 +195,9 @@ public class TurnProcessor
 
             await UniTask.DelayFrame(15);
 
+            var nextPositionList = stageManager.GetSquare(moveCharacter.position).GetNextPosition();
+            if (nextPositionList.Count == 1) moveCharacter.nextPosition = nextPositionList[0];
+
             // 停止マスでなければ次へ
             if (!stageManager.CheckStopSquare(moveCharacter.position)) continue;
 
@@ -209,10 +213,13 @@ public class TurnProcessor
     {
         Square targetSquare = StageManager.instance.GetSquare(target.position);
         int eventID = targetSquare.GetEventID();
-        if (targetSquare.isStarSquare) eventID = _STAR_EVENT_ID;
+        if (targetSquare.GetIsStarSquare()) eventID = _STAR_EVENT_ID;
 
         EventContext context = new EventContext()
-        { character = target };
+        {
+            character = target,
+            square = targetSquare,
+        };
 
         await EventManager.ExecuteEvent(eventID, context);
     }
