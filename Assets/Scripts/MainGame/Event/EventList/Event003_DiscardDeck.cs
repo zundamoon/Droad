@@ -12,6 +12,6 @@ public class Event003_DiscardDeck : BaseEvent
         Character character = context.character;
         if (character == null) return;
 
-        character.possessCard.DiscardDeck(param);
+        await character.possessCard.DiscardDeck(param);
     }
 }

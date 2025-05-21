@@ -61,8 +61,7 @@ public class TurnProcessor
             await CameraManager.SetAnchor(character.GetCameraAnchor());
             await UIManager.instance.OpenHandArea(character.possessCard);
             await UIManager.instance.ReSizeTop();
-            await UIManager.instance.RunMessage(string.Format(_TURN_ANNOUNCE_ID.ToText(), orderIndex + 1));
-            await EachTurn(character);
+            await EachTurn(character, orderIndex);
             await UIManager.instance.ScrollStatus();
             await UIManager.instance.AddStatus(playerOrder[i]);
         }
@@ -81,8 +80,8 @@ public class TurnProcessor
             // UIの表示
             await UIManager.instance.OpenHandArea(character.possessCard);
             await UIManager.instance.ReSizeTop();
-            await UIManager.instance.RunMessage(string.Format(_PLAY_ANNOUNCE_ID.ToText()));
             UIManager.instance.StartHandAccept();
+            await UIManager.instance.RunMessage(string.Format(_PLAY_ANNOUNCE_ID.ToText()));
             while (!_acceptEnd)
             {
                 await UniTask.DelayFrame(1);
@@ -134,9 +133,10 @@ public class TurnProcessor
     /// キャラクターのターン処理
     /// </summary>
     /// <param name="turnCharacter"></param>
-    private async UniTask EachTurn(Character turnCharacter)
+    private async UniTask EachTurn(Character turnCharacter, int order)
     {
         UIManager.instance.StartHandAccept();
+        await UIManager.instance.RunMessage(string.Format(_TURN_ANNOUNCE_ID.ToText(), order + 1));
         // 手札が使われるまで待機
         while (!_acceptEnd)
         {
@@ -145,7 +145,7 @@ public class TurnProcessor
         _acceptEnd = false;
 
         // カードの使用
-        int advanceValue = await UseCard(_handIndex, turnCharacter);
+        int advanceValue = await turnCharacter.possessCard.UseCard(_handIndex, turnCharacter);
         if (advanceValue <= 0) return;
 
         // キャラクターを動かす
@@ -158,30 +158,6 @@ public class TurnProcessor
         // イベント可能でなければ終了
         if (!turnCharacter.CanEvent()) return;
         await ExcuteSquareEvent(turnCharacter);
-    }
-
-    /// <summary>
-    /// カードを使い、進マス数を返す
-    /// </summary>
-    /// <param name="cardID"></param>
-    /// <param name="useCharacter"></param>
-    /// <returns></returns>
-    private async UniTask<int> UseCard(int handIndex, Character useCharacter)
-    {
-        // カードのIDから処理を実行
-        PossessCard possess = useCharacter.possessCard;
-        int cardID = possess.handCardIDList[handIndex];
-        possess.DiscardHandIndex(handIndex);
-        CardData useCard = CardManager.GetCard(cardID);
-        if (useCard == null) return -1;
-        // イベント処理
-        EventContext context = new EventContext()
-        { character = useCharacter,
-          card = useCard };
-        await EventManager.ExecuteEvent(useCard.eventID, context);
-        // コイン追加
-        useCharacter.AddCoin(useCard.addCoin);
-        return useCard.advance;
     }
 
     /// <summary>

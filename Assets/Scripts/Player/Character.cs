@@ -26,7 +26,7 @@ public class Character : MonoBehaviour
     // 効果無効フラグ
     public bool eventCancel { get; private set; } = false;
     // 移動後のイベント
-    public Action<List<Character>> AfterMoveEvent { get; private set; } = null;
+    public Func<List<Character>, UniTask> AfterMoveEvent { get; private set; } = null;
     // 位置情報
     public StagePosition position;
     // 次の移動先を保持
@@ -55,7 +55,7 @@ public class Character : MonoBehaviour
     /// 移動後イベントの設定
     /// </summary>
     /// <param name="setEvent"></param>
-    public void SetAfterMoveEvent(Action<List<Character>> setEvent) { AfterMoveEvent = setEvent; }
+    public void SetAfterMoveEvent(Func<List<Character>, UniTask> setEvent) { AfterMoveEvent = setEvent; }
     public void ExecuteAfterMoveEvent(List<Character> targetCharacterList)
     {
         if (AfterMoveEvent == null) return;

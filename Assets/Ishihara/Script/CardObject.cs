@@ -173,7 +173,8 @@ public class CardObject : MonoBehaviour
             return;
         }
         int eventTextID = param.textID;
-        _eventText.text = eventTextID.ToText();
+        int[] paramList = param.param;
+        _eventText.text = string.Format(eventTextID.ToText(), paramList[0], paramList[1]);
     }
 
     /// <summary>

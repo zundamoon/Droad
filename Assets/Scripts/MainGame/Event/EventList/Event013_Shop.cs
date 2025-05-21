@@ -11,6 +11,7 @@ public class Event013_Shop : BaseEvent
     private const int _GOLD_CARD_COUNT = 1;
     private const int _LEGENDARY_CARD_COUNT = 1;
     private const int _CARD_COUNT = 6;
+    private const int _TEXT_ID = 113;
 
     public override async UniTask ExecuteEvent(EventContext context, int param)
     {
@@ -19,6 +20,7 @@ public class Event013_Shop : BaseEvent
         Character character = context.character;
         if (character == null) return;
 
+        await UIManager.instance.RunMessage(_TEXT_ID.ToText());
         // ƒŠƒVƒƒƒbƒtƒ‹
         await character.possessCard.ReshuffleDeck();
 
