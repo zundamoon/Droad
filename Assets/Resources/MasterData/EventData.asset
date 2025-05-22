@@ -40,15 +40,15 @@ MonoBehaviour:
       eventType: 5
       param: ffffffffffffffff
     - ID: 6
-      textID: 6
+      textID: -1
       eventType: 6
       param: 03000000ffffffff
     - ID: 7
-      textID: 7
+      textID: -1
       eventType: 7
       param: ffffffffffffffff
     - ID: 8
-      textID: 8
+      textID: -1
       eventType: 8
       param: 03000000ffffffff
     - ID: 9
@@ -71,3 +71,55 @@ MonoBehaviour:
       textID: 113
       eventType: 13
       param: ffffffffffffffff
+    - ID: 14
+      textID: 6
+      eventType: 14
+      param: ffffffffffffffff
+    - ID: 15
+      textID: 11
+      eventType: 15
+      param: 0a000000ffffffff
+    - ID: 16
+      textID: 12
+      eventType: 16
+      param: 02000000ffffffff
+    - ID: 17
+      textID: 13
+      eventType: 17
+      param: 01000000ffffffff
+    - ID: 18
+      textID: 10
+      eventType: 18
+      param: 01000000ffffffff
+    - ID: 19
+      textID: 14
+      eventType: 19
+      param: ffffffffffffffff
+    - ID: 20
+      textID: 15
+      eventType: 20
+      param: ffffffffffffffff
+    - ID: 21
+      textID: 16
+      eventType: 21
+      param: ffffffffffffffff
+    - ID: 22
+      textID: 8
+      eventType: 22
+      param: ffffffffffffffff
+    - ID: 23
+      textID: 9
+      eventType: 23
+      param: ffffffffffffffff
+    - ID: 24
+      textID: 17
+      eventType: 24
+      param: ffffffffffffffff
+    - ID: 25
+      textID: 18
+      eventType: 25
+      param: 0a000000ffffffff
+    - ID: 26
+      textID: 19
+      eventType: 26
+      param: 03000000ffffffff

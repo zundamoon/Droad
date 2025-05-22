@@ -22,7 +22,6 @@ public class PossessCard
     /// 捨てカードリスト
     /// </summary>
     public List<int> discardCardIDList { get; private set; } = null;
-    public List<int> starCardIDList { get; private set; } = null;
 
     private Action<int> _AddStarCallback = null;
     private Func<int, int> _LoseStarCallback = null;
@@ -44,8 +43,8 @@ public class PossessCard
         {
             for (int j = 0; j < 2; j++)
             {
-                possessCardIDList.Add(i);
                 deckCardIDList.Add(i);
+                possessCardIDList.Add(i);
             }
         }
         ShuffleDeck();
@@ -126,10 +125,10 @@ public class PossessCard
         };
         await EventManager.ExecuteEvent(useCard.eventID, context);
         // コイン追加
-        useCharacter.AddCoin(useCard.addCoin);
+        useCharacter.AddCoin(context.card.addCoin);
         // カードを捨て札に追加
         discardCardIDList.Add(cardID);
-        return useCard.advance;
+        return context.card.advance;
     }
 
     /// <summary>
@@ -163,10 +162,26 @@ public class PossessCard
     }
 
     /// <summary>
+    /// 手札から指定枚数ランダムに捨てる
+    /// </summary>
+    /// <param name="discardCount"></param>
+    public void DiscardRandHand(int discardCount)
+    {
+        for (int i = 0; i < discardCount; i++)
+        {
+            int handCount = handCardIDList.Count;
+            if (handCount <= 0) return;
+
+            int randIndex = UnityEngine.Random.Range(0, handCount);
+            DiscardHandIndex(randIndex);
+        }
+    }
+
+    /// <summary>
     /// デッキから指定枚数捨てる
     /// </summary>
     /// <param name="discardCount"></param>
-    public async UniTask DiscardDeck(int discardCount)
+    public async UniTask DiscardDeckTop(int discardCount)
     {
         for (int i = 0; i < discardCount; i++)
         {
@@ -178,10 +193,10 @@ public class PossessCard
     }
 
     /// <summary>
-    /// 指定IDを所持カードに加える
+    /// 指定IDを捨て札に加える
     /// </summary>
     /// <param name="ID"></param>
-    public async UniTask AddCard(int ID)
+    public async UniTask AddCardDiscard(int ID)
     {
         discardCardIDList.Add(ID);
         possessCardIDList.Add(ID);
@@ -191,7 +206,24 @@ public class PossessCard
         if (!card.IsStar()) return;
 
         _AddStarCallback(1);
-        await UIManager.instance.RunMessage(_GET_STAR_TEXT_ID.ToText());
+        await UniTask.CompletedTask;
+    }
+
+    /// <summary>
+    /// 指定IDを手札に加える
+    /// </summary>
+    /// <param name="ID"></param>
+    public async UniTask AddCardHand(int ID)
+    {
+        handCardIDList.Add(ID);
+        possessCardIDList.Add(ID);
+
+        // スターカードならUI更新
+        CardData card = CardManager.GetCard(ID);
+        if (!card.IsStar()) return;
+
+        _AddStarCallback(1);
+        await UniTask.CompletedTask;
     }
 
     /// <summary>
@@ -209,9 +241,10 @@ public class PossessCard
     /// </summary>
     public void RemoveHandAll()
     {
+        var handCardIDTemp = new List<int>(handCardIDList);
         for (int i = 0, max = handCardIDList.Count; i < max; i++)
         {
-            int handCardID = handCardIDList[i];
+            int handCardID = handCardIDTemp[i];
             possessCardIDList.Remove(handCardID);
             handCardIDList.Remove(handCardID);
 
@@ -273,16 +306,21 @@ public class PossessCard
     /// <param name="cardID"></param>
     public async UniTask RemoveDeckCard(int cardID)
     {
-        // 所持しているカードにIDがあるか判定
-        int index = possessCardIDList.IndexOf(cardID);
-        if (index == -1) return;
-        possessCardIDList.RemoveAt(index);
+        possessCardIDList.Remove(cardID);
+        deckCardIDList.Remove(cardID);
 
-        index = deckCardIDList.IndexOf(cardID);
-        if (index == -1) return;
-        deckCardIDList.RemoveAt(index);
+        if (deckCardIDList.Count > 0) ShuffleDeck();
+        else await ReshuffleDeck();
+    }
 
-        if (deckCardIDList.Count > 0) return;
-        await ReshuffleDeck();
+    /// <summary>
+    /// ID指定で捨て札からデッキに戻す
+    /// </summary>
+    /// <param name="cardID"></param>
+    public void ReturnDiscardToDeck(int cardID)
+    {
+        discardCardIDList.Remove(cardID);
+        deckCardIDList.Add(cardID);
+        ShuffleDeck();
     }
 }
