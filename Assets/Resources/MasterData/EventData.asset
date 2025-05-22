@@ -123,3 +123,11 @@ MonoBehaviour:
       textID: 19
       eventType: 26
       param: 03000000ffffffff
+    - ID: 27
+      textID: 20
+      eventType: 27
+      param: ffffffffffffffff
+    - ID: 28
+      textID: 12
+      eventType: 16
+      param: 03000000ffffffff
