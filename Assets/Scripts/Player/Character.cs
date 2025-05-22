@@ -25,6 +25,8 @@ public class Character : MonoBehaviour
     public int playerID { get; private set; } = -1;
     // 効果無効フラグ
     public bool eventCancel { get; private set; } = false;
+    // マス効果実行回数
+    public int eventRepeatCount { get; private set; } = 1;
     // 移動後のイベント
     public Func<List<Character>, UniTask> AfterMoveEvent { get; private set; } = null;
     // 位置情報
@@ -37,9 +39,11 @@ public class Character : MonoBehaviour
 
     public void Init(int setPlayerID)
     {
+        coins = DEFAULT_COINS;
+        stars = DEFAULT_STARS;
         possessCard = new PossessCard();
-        possessCard.Init();
         possessCard.SetCallback(AddStar, RemoveStar);
+        possessCard.Init();
         playerID = setPlayerID;
         position.m_route = 0;
         position.m_road = 0;
@@ -48,9 +52,6 @@ public class Character : MonoBehaviour
         SetPosition(initPosition);
         nextPosition = StageManager.instance.GetNextPosition(position);
         AdaptPlayerColor();
-
-        coins = DEFAULT_COINS;
-        stars = DEFAULT_STARS;
     }
     /// <summary>
     /// 移動後イベントの設定
@@ -94,6 +95,15 @@ public class Character : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+    /// <summary>
+    /// イベントの繰り返し数設定
+    /// </summary>
+    /// <param name="count"></param>
+    public void SetRepeatEventCount(int count)
+    {
+        eventRepeatCount = count;
     }
 
     public int GetStarCount() { return possessCard.CountStar(); }

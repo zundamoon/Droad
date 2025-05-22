@@ -19,9 +19,6 @@ public class MainGameManager : SystemObject
     {
         Application.targetFrameRate = 60;
 
-        MasterDataManager.LoadAllData();
-        EventManager.Init();
-        CardManager.Init();
         CameraManager.Init();
 
         _turnProcessor = new TurnProcessor();
@@ -29,6 +26,7 @@ public class MainGameManager : SystemObject
         // カードのコールバックを設定
         await UIManager.instance.SetOnUseCard(_turnProcessor.AcceptCard);
         await CameraManager.SetAnchor(StageManager.instance.GetCameraAnchor(), 0);
+
         await MainGameProc();
     }
 

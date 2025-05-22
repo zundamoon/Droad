@@ -213,15 +213,25 @@ public class TurnProcessor
     {
         Square targetSquare = StageManager.instance.GetSquare(target.position);
         int eventID = targetSquare.GetEventID();
-        if (targetSquare.GetIsStarSquare()) eventID = _STAR_EVENT_ID;
 
-        EventContext context = new EventContext()
+        // イベントの繰り返し
+        for (int i = 0, max = target.eventRepeatCount; i < max; i++)
         {
-            character = target,
-            square = targetSquare,
-        };
+            // スターマスならスターイベントを実行
+            if (targetSquare.GetIsStarSquare()) eventID = _STAR_EVENT_ID;
 
-        await EventManager.ExecuteEvent(eventID, context);
+            EventContext context = new EventContext()
+            {
+                character = target,
+                square = targetSquare,
+            };
+
+            await EventManager.ExecuteEvent(eventID, context);
+
+            // 複数実行可マス出ないなら終わる
+            //if (!targetSquare.GetSquareData().canRepeatSquare) break;
+        }
+        target.SetRepeatEventCount(1);
     }
 
     /// <summary>

@@ -30,4 +30,6 @@ public class CardData
     /// </summary>
     /// <returns></returns>
     public bool IsStar() { return star != 0; }
+
+    public void SetAdvance(int setAdvance) { advance = setAdvance; }
 }

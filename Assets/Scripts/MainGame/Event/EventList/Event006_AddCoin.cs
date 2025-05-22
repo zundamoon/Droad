@@ -11,10 +11,10 @@ public class Event006_AddCoin : BaseEvent
     {
         if (context == null) return;
 
-        await UIManager.instance.RunMessage(string.Format(_ADD_COIN_TEXT_ID.ToText(), param));
         Character character = context.character;
         if (character == null) return;
 
         character.AddCoin(param);
+        await UIManager.instance.RunMessage(string.Format(_ADD_COIN_TEXT_ID.ToText(), param));
     }
 }

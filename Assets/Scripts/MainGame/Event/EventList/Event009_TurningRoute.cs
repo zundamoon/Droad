@@ -16,6 +16,5 @@ public class Event009_TurningRoute : BaseEvent
         BaseSquareData squareData = square.GetSquareData();
         BranchSquare branchSquare = squareData as BranchSquare;
         await branchSquare.SelectBranch(character);
-
     }
 }

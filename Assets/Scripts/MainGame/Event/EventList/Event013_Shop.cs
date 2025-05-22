@@ -37,7 +37,7 @@ public class Event013_Shop : BaseEvent
             if (!await character.Pay(card.price)) return;
 
             if (isRemove) await character.possessCard.RemoveDeckCard(cardID);
-            else await character.possessCard.AddCard(cardID);
+            else await character.possessCard.AddCardDiscard(cardID);
             await UIManager.instance.RemoveShopItem(cardID, isRemove);
         });
         // ショップUIを表示

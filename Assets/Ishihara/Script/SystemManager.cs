@@ -10,6 +10,10 @@ public class SystemManager : MonoBehaviour
 
     void Start()
     {
+        // 各種データの初期化
+        MasterDataManager.LoadAllData();
+        EventManager.Init();
+        CardManager.Init();
         UniTask task = Initialize();
     }
 
