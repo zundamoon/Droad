@@ -13,7 +13,8 @@ public class Event012_BuyStar : BaseEvent
         if (context == null) return;
 
         Character character = context.character;
-        if (character == null) return;
+        Square square = context.square;
+        if (character == null || square == null) return;
 
         // 表示カードを抽選
         List<int> cardIDList = new List<int>(1);
@@ -27,8 +28,10 @@ public class Event012_BuyStar : BaseEvent
         {
             CardData card = CardManager.GetCard(cardID);
             if (!await character.Pay(card.price)) return;
-            await character.possessCard.AddCardDiscard(cardID);
             await UIManager.instance.RemoveShopItem(cardID, isRemove);
+            await character.possessCard.AddCardDiscard(cardID);
+            StageManager.instance.DecideStarSquare();
+            square.ChangeStarSquare();
         });
         // ショップUIを表示
         await UIManager.instance.OpenShop();
