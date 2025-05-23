@@ -6,6 +6,8 @@ public class HappeningSquare : BaseSquareData
     {
         squareColor = Color.green;
         eventID = 2;
+        isStopSquare = false;
+        canRepeatSquare = true;
     }
 }
 

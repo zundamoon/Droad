@@ -79,5 +79,4 @@ public class Square : MonoBehaviour
     public void SetIsStarSquare(bool state) { GetSquareData().isStarSquare = state; }
 
     public bool GetIsStopSquare() { return GetSquareData().isStopSquare; }
-    public void SetIsStopSquare(bool state) { GetSquareData().isStopSquare = state; }
 }

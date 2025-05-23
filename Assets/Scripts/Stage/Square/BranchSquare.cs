@@ -11,6 +11,8 @@ public class BranchSquare : BaseSquareData
     {
         squareColor = Color.white;
         eventID = 9;
+        isStopSquare = true;
+        canRepeatSquare = false;
         _generatedObjectList = new List<GameObject>();
     }
 

@@ -170,10 +170,10 @@ public class StageManager : SystemObject
             }
         }
 
-        // 全てのルートが終わっていた場合はループ（ステージ最初に戻る）
+        // 全てのルートが終わっていた場合はループ
         if (nextPositions.Count == 0)
         {
-            StagePosition loopPos = new StagePosition(0, 0, 0); // 最初のマス
+            StagePosition loopPos = new StagePosition(1, 0, 0); // 最初のマス
             if (IsValidSquare(loopPos))
             {
                 nextPositions.Add(loopPos);

@@ -6,6 +6,7 @@ public class InvalidSquare : BaseSquareData
     {
         squareColor = Color.grey;
         eventID = -1;
+        isStopSquare = false;
     }
 }
 
