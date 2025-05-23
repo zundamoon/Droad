@@ -250,6 +250,11 @@ public class MenuStatus : BaseMenu
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="playerID"></param>
+    /// <returns></returns>
     public async UniTask SetCharaStatus(int playerID)
     {
         if (!IsEnableIndex(_characters, playerID)) return;
@@ -258,6 +263,23 @@ public class MenuStatus : BaseMenu
             if (_characters[i].playerID == playerID)
             {
                 await AddStatus(_characters[i]);
+                break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// î•ñ‚ğXV‚·‚é
+    /// </summary>
+    /// <param name="chara"></param>
+    /// <returns></returns>
+    public async UniTask UpdateStatus(Character chara)
+    {
+        for (int i = 0; i < _useCharaList.Count; i++)
+        {
+            if (chara.playerID == _useCharaList[i]._charaID)
+            {
+                _useCharaList[i].SetChara(chara);
                 break;
             }
         }
