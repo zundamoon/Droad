@@ -15,8 +15,8 @@ public abstract class BaseSquareData
     public int eventID { get; protected set; }
 
     public bool isStarSquare;
-    public bool isStopSquare;
-    public bool canRepeatSquare;
+    public bool isStopSquare { get; protected set; }
+    public bool canRepeatSquare { get; protected set; }
 
 
     public BaseSquareData()

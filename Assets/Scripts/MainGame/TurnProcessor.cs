@@ -229,7 +229,7 @@ public class TurnProcessor
             await EventManager.ExecuteEvent(eventID, context);
 
             // 複数実行可マス出ないなら終わる
-            //if (!targetSquare.GetSquareData().canRepeatSquare) break;
+            if (!targetSquare.GetSquareData().canRepeatSquare) break;
         }
         target.SetRepeatEventCount(1);
     }

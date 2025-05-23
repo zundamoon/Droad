@@ -6,5 +6,7 @@ public class ShopSquare : BaseSquareData
     {
         squareColor = Color.yellow;
         eventID = 13;
+        isStopSquare = false;
+        canRepeatSquare = false;
     }
 }

@@ -6,6 +6,8 @@ public class RedSquare : BaseSquareData
     {
         squareColor = Color.red;
         eventID = 8;
+        isStopSquare = false;
+        canRepeatSquare = true;
     }
 }
 
