@@ -1,7 +1,10 @@
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+
+using static CommonModule;
 
 public class MenuShop : BaseMenu
 {
@@ -157,5 +160,10 @@ public class MenuShop : BaseMenu
         }
 
         await UniTask.CompletedTask;
+    }
+
+    public async UniTask RemoveAllShopItem()
+    {
+        _menuChoice.RemoveAllItem();
     }
 }

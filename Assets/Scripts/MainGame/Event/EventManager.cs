@@ -42,6 +42,8 @@ public class EventManager
         eventList.Add(new Event025_SameAdvanceAddCoin());
         eventList.Add(new Event026_ReturnDiscardToDeck());
         eventList.Add(new Event027_LoseHalfCoinToAdvance());
+        eventList.Add(new Event028_GiftCard());
+        eventList.Add(new Event029_DoubleCoin());
 
     }
 

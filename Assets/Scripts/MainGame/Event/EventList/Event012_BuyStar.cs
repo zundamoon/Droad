@@ -6,33 +6,31 @@ using UnityEngine.TextCore.Text;
 
 public class Event012_BuyStar : BaseEvent
 {
-    private int[] _starCardIDList = { 24, 25, 26, 27, 28, 29 };
+    private readonly int[] _STAR_CARD_ID_LIST = { 24, 25, 26, 27, 28, 29 };
 
     public override async UniTask ExecuteEvent(EventContext context, int param)
     {
         if (context == null) return;
 
         Character character = context.character;
-        CardData card = context.card;
-        if (character == null || card == null) return;
+        if (character == null) return;
 
-        // UI表示
+        // 表示カードを抽選
+        List<int> cardIDList = new List<int>(1);
+        int starID = _STAR_CARD_ID_LIST[Random.Range(0, _STAR_CARD_ID_LIST.Length)];
+        cardIDList.Add(starID);
 
-        // SetCallback(
-        //  character.RemoveCoin(card.price);
-        //  await character.possessCard.AddCard(card.ID);
-        //  acceptEnd = true;
-        // )
-        bool acceptEnd = false;
-        // キャンセルの設定
-        // SetCalback(
-        //  acceptEnd = true;
-        // )
-
-        // 入力待ち
-        while (!acceptEnd)
+        // Uiにカード情報を渡す
+        await UIManager.instance.RemoveAllShopItem();
+        await UIManager.instance.SetBuyItem(cardIDList);
+        await UIManager.instance.SetSelectCallback(async (cardID, isRemove) =>
         {
-            await UniTask.DelayFrame(1);
-        }
+            CardData card = CardManager.GetCard(cardID);
+            if (!await character.Pay(card.price)) return;
+            await character.possessCard.AddCardDiscard(cardID);
+            await UIManager.instance.RemoveShopItem(cardID, isRemove);
+        });
+        // ショップUIを表示
+        await UIManager.instance.OpenShop();
     }
 }

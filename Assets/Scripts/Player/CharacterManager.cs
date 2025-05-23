@@ -5,6 +5,7 @@ using Cysharp.Threading.Tasks;
 
 using static GameConst;
 using UnityEngine.Rendering;
+using System.Linq;
 
 public class CharacterManager : SystemObject
 {
@@ -42,5 +43,36 @@ public class CharacterManager : SystemObject
     public Color GetCharacterColor(int playerID)
     {
         return _characterList[playerID].playerColor;
+    }
+
+    /// <summary>
+    /// 順位を更新する
+    /// </summary>
+    public void UpdateRank()
+    {
+        // 順位でソート
+        var rankList = _characterList.OrderByDescending(p => p.stars)
+            .ThenByDescending(p => p.coins).ToList();
+
+        for (int i = 0; i < PLAYER_MAX; i++)
+        {
+            // 同率判定
+            if (i > 0 &&
+                rankList[i].stars == rankList[i - 1].stars &&
+                rankList[i].coins == rankList[i - 1].coins
+                )
+                rankList[i].SetRank(rankList[i - 1].rank);
+            else
+                rankList[i].SetRank(i + 1);
+        }
+
+        // プレイヤーに反映
+        for (int i = 0; i < PLAYER_MAX; i++)
+        {
+            var rankPlayer = rankList.First(p => p.playerID == _characterList[i].playerID);
+            if (rankPlayer == null) return;
+
+            _characterList[i].SetRank(rankPlayer.rank);
+        }
     }
 }
