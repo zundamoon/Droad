@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
@@ -31,12 +32,18 @@ public class Event021_PassExchangeHand : BaseEvent
         await UniTask.CompletedTask;
     }
 
+    /// <summary>
+    /// ŽèŽD‚ðŒðŠ·‚·‚é
+    /// </summary>
+    /// <param name="sourceCharacter"></param>
+    /// <param name="targetCharacter"></param>
+    /// <returns></returns>
     private async UniTask ExchangeHand(Character sourceCharacter, Character targetCharacter)
     {
         // ŽèŽD‚ðŒðŠ·
-        List<int> targetHand = targetCharacter.possessCard.handCardIDList;
+        List<int> targetHand = targetCharacter.possessCard.handCardIDList.ToList();
+        List<int> sourceHand = sourceCharacter.possessCard.handCardIDList.ToList();
         targetCharacter.possessCard.RemoveHandAll();
-        List<int> sourceHand = sourceCharacter.possessCard.handCardIDList;
         for (int i = 0, max = sourceHand.Count; i < max; i++)
         {
             await targetCharacter.possessCard.AddCardHand(sourceHand[i]);

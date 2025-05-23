@@ -17,6 +17,8 @@ public class Character : MonoBehaviour
     public Color playerColor { get; private set; }
     // 所持カード
     public PossessCard possessCard { get; private set; } = null;
+    // 順位
+    public int rank { get; private set; } = 0;
     // コイン
     public int coins { get; private set; } = -1;
     // スター
@@ -64,7 +66,7 @@ public class Character : MonoBehaviour
         AfterMoveEvent(targetCharacterList);
         AfterMoveEvent = null;
     }
-
+    public void SetRank(int setRank) { rank = setRank; }
     public void SetCoin(int value) { coins = value; }
     public void AddCoin(int value) 
     { 

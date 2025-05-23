@@ -314,6 +314,17 @@ public class UIManager : SystemObject
     }
 
     /// <summary>
+    /// ショップの全アイテム削除
+    /// </summary>
+    /// <param name="cardID"></param>
+    /// <param name="isRemove"></param>
+    /// <returns></returns>
+    public async UniTask RemoveAllShopItem()
+    {
+        await _menuShop.RemoveAllShopItem();
+    }
+
+    /// <summary>
     /// カード使用の設定
     /// </summary>
     /// <returns></returns>

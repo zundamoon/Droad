@@ -31,6 +31,7 @@ public class PossessCard
     private const int _HAND_MAX = 4;
     private const int _GET_STAR_TEXT_ID = 106;
     private const int _RESHUFFLE_TEXT_ID = 107;
+    private const int _GET_CARD_TEXT_ID = 127;
 
     public void Init()
     {
@@ -211,13 +212,14 @@ public class PossessCard
         discardCardIDList.Add(ID);
         possessCardIDList.Add(ID);
         _CardCallback();
+        int cardNameID = CardManager.GetCard(ID).nameID;
+        await UIManager.instance.RunMessage(string.Format(_GET_CARD_TEXT_ID.ToText(), cardNameID.ToText()));
 
         // スターカードならUI更新
         CardData card = CardManager.GetCard(ID);
         if (!card.IsStar()) return;
 
         _AddStarCallback(1);
-        await UniTask.CompletedTask;
     }
 
     /// <summary>
