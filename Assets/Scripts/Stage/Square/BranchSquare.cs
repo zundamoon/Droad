@@ -7,6 +7,7 @@ public class BranchSquare : BaseSquareData
 {
     [SerializeField] public GameObject branchArrow;
     private List<GameObject> _generatedObjectList;
+    private float radius = 2.5f;
     public BranchSquare()
     {
         squareColor = Color.white;
@@ -23,9 +24,15 @@ public class BranchSquare : BaseSquareData
 
         for (int i = 0; i < nextPositionList.Count; i++)
         {
-            Vector3 objectPos = StageManager.instance.GetPosition(nextPositionList[i]);
-            objectPos.y += 3;
-            GameObject arrowObject = MonoBehaviour.Instantiate(branchArrow, objectPos, Quaternion.identity);
+            Vector3 targetPos = StageManager.instance.GetPosition(nextPositionList[i]);
+            Vector3 myPos = StageManager.instance.GetPosition(squarePosition);
+
+            Vector3 direction = (targetPos - myPos).normalized;
+            Vector3 spawnPos = myPos + direction * radius;
+
+            Quaternion rotation = Quaternion.LookRotation(direction);
+
+            GameObject arrowObject = MonoBehaviour.Instantiate(branchArrow, spawnPos, rotation);
             ArrowData arrowData = arrowObject.GetComponent<ArrowData>();
             arrowData.nextPosition = nextPositionList[i];
             arrowData.number = i;

@@ -1770,10 +1770,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[8065910003617497088].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592899].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -1787,10 +1783,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592899].squareColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[8065910003617497088].canRepeatSquare
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4592,10 +4584,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592904].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592904].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -4610,10 +4598,6 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592904].squareColor.r
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592904].canRepeatSquare
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -6345,10 +6329,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592904].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592904].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -6363,10 +6343,6 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592904].squareColor.r
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592904].canRepeatSquare
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -7238,10 +7214,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592909].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592909].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -7255,10 +7227,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592909].squareColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592909].canRepeatSquare
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7361,10 +7329,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592916].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592916].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -7379,10 +7343,6 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592916].squareColor.r
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592916].canRepeatSquare
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -7484,10 +7444,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592911].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592911].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -7501,10 +7457,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592911].squareColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592911].canRepeatSquare
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7607,10 +7559,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592920].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592920].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -7624,10 +7572,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592920].squareColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592920].canRepeatSquare
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7734,10 +7678,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592900].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592900].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -7751,10 +7691,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592900].squareColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592900].canRepeatSquare
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7857,10 +7793,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592917].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592917].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -7875,10 +7807,6 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592917].squareColor.r
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592917].canRepeatSquare
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -7980,10 +7908,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592922].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592922].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -7997,10 +7921,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592922].squareColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592922].canRepeatSquare
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8103,10 +8023,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592913].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592913].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -8120,10 +8036,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592913].squareColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592913].canRepeatSquare
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8226,10 +8138,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592914].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592914].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -8243,10 +8151,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592914].squareColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592914].canRepeatSquare
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8334,22 +8238,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: squareData
-      value: 1314523668816592905
+      value: 1314523848840052736
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592905]
       value: Assembly-CSharp RedSquare
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
+      propertyPath: managedReferences[1314523848840052736]
+      value: Assembly-CSharp GiftSquare
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592905].eventID
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592905].isStarSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592905].isStopSquare
+      propertyPath: managedReferences[1314523848840052736].isStarSquare
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -8367,10 +8271,6 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592905].squareColor.r
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592905].canRepeatSquare
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -8472,10 +8372,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592918].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592918].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -8490,10 +8386,6 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592918].squareColor.r
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592918].canRepeatSquare
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -8599,10 +8491,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592901].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592901].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -8616,10 +8504,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592901].squareColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592901].canRepeatSquare
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8722,10 +8606,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592912].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592912].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -8739,10 +8619,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592912].squareColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592912].canRepeatSquare
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8837,10 +8713,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592897].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592897].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -8855,10 +8727,6 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592897].squareColor.r
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592897].canRepeatSquare
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -8960,10 +8828,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592904].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592904].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -8978,10 +8842,6 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592904].squareColor.r
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592904].canRepeatSquare
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -9083,10 +8943,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592910].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592910].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -9100,10 +8956,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592910].squareColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592910].canRepeatSquare
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -9206,10 +9058,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592919].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592919].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -9224,10 +9072,6 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592919].squareColor.r
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592919].canRepeatSquare
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -9329,10 +9173,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592907].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592907].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -9347,10 +9187,6 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592907].squareColor.r
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592907].canRepeatSquare
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -9452,10 +9288,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592921].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592921].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -9469,10 +9301,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592921].squareColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592921].canRepeatSquare
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -9575,10 +9403,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592906].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592906].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -9593,10 +9417,6 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592906].squareColor.r
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592906].canRepeatSquare
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -9698,10 +9518,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592898].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592898].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -9715,10 +9531,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592898].squareColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592898].canRepeatSquare
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -9825,10 +9637,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592902].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592902].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -9842,10 +9650,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592902].squareColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592902].canRepeatSquare
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -9948,10 +9752,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592915].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592915].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -9966,10 +9766,6 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592915].squareColor.r
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592915].canRepeatSquare
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -10071,10 +9867,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592908].isStopSquare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592908].squareColor.a
       value: 1
       objectReference: {fileID: 0}
@@ -10088,10 +9880,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592908].squareColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
-      propertyPath: managedReferences[1314523668816592908].canRepeatSquare
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
