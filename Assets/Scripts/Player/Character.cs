@@ -42,7 +42,7 @@ public class Character : MonoBehaviour
         coins = DEFAULT_COINS;
         stars = DEFAULT_STARS;
         possessCard = new PossessCard();
-        possessCard.SetCallback(AddStar, RemoveStar);
+        possessCard.SetCallback(AddStar, RemoveStar, SetCard);
         possessCard.Init();
         playerID = setPlayerID;
         position.m_route = 0;
@@ -66,20 +66,30 @@ public class Character : MonoBehaviour
     }
 
     public void SetCoin(int value) { coins = value; }
-    public void AddCoin(int value) { coins += value; }
+    public void AddCoin(int value) 
+    { 
+        coins += value;
+        UIManager.instance.UpdateStatus(this);
+    }
     public int RemoveCoin(int value)
     {
         int result = Math.Max(0, coins - value);
         int removeCoin = coins - result;
         coins = result;
+        UIManager.instance.UpdateStatus(this);
         return removeCoin;
     }
-    public void AddStar(int value) { stars += value; }
+    public void AddStar(int value) 
+    { 
+        stars += value;
+        UIManager.instance.UpdateStatus(this);
+    }
     public int RemoveStar(int value)
     {
         int result = Math.Max(0, stars - value);
         int removeStar = stars - result;
         stars = result;
+        UIManager.instance.UpdateStatus(this);
         return removeStar;
     }
     public void SetCancelEvent() { eventCancel = true; }
@@ -111,6 +121,11 @@ public class Character : MonoBehaviour
     public void SetPosition(Vector3 position)
     {
         gameObject.transform.position = position;
+    }
+
+    public void SetCard()
+    {
+        UIManager.instance.UpdateStatus(this);
     }
 
     /// <summary>

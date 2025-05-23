@@ -322,26 +322,55 @@ public class UIManager : SystemObject
         _menuHand.SetOnUseCard(action);
         await UniTask.CompletedTask;
     }
+    /// <summary>
+    /// カードテキストを開く
+    /// </summary>
+    /// <param name="cardID"></param>
+    /// <returns></returns>
     public async UniTask OpenCardText(int cardID)
     {
         await _menuCardText.SetText(cardID);
         await _menuCardText.Open();
     }
 
+    /// <summary>
+    /// カードテキストを閉じる
+    /// </summary>
+    /// <returns></returns>
     public async UniTask CloseCardText()
     {
         await _menuCardText.Close();
     }
 
+    /// <summary>
+    /// 手札にカードを捨てる
+    /// </summary>
+    /// <param name="handIndex"></param>
+    /// <returns></returns>
     public async UniTask HandDiscard(int handIndex)
     {
         // カードを手札から除外
         await _menuHand.DiscardHandCard(handIndex);
     }
 
+    /// <summary>
+    /// 手札にカードを追加する
+    /// </summary>
+    /// <param name="cardID"></param>
+    /// <returns></returns>
     public async UniTask HandDraw(int cardID)
     {
         // カードを手札に追加
         await _menuHand.AddHandCard(cardID);
+    }
+
+    /// <summary>
+    /// キャラのステータスを更新する
+    /// </summary>
+    /// <param name="chara"></param>
+    /// <returns></returns>
+    public async UniTask UpdateStatus(Character chara)
+    {
+        await _menuStatus.UpdateStatus(chara);
     }
 }

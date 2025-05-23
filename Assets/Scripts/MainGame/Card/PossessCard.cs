@@ -25,6 +25,7 @@ public class PossessCard
 
     private Action<int> _AddStarCallback = null;
     private Func<int, int> _LoseStarCallback = null;
+    private Action _CardCallback = null;
 
     private const int _DEFAULT_DECK_MAX = 12;
     private const int _HAND_MAX = 4;
@@ -41,7 +42,7 @@ public class PossessCard
         // 初期手札設定
         for (int i = 0; i < 6; i++)
         {
-            for (int j = 0; j < 2; j++)
+            for (int j = 0; j < 1; j++)
             {
                 deckCardIDList.Add(i);
                 possessCardIDList.Add(i);
@@ -92,6 +93,7 @@ public class PossessCard
             if (deckCardIDList.Count <= 0) return;
             handCardIDList.Add(deckCardIDList[0]);
             deckCardIDList.RemoveAt(0);
+            _CardCallback();
         }
     }
 
@@ -128,6 +130,7 @@ public class PossessCard
         useCharacter.AddCoin(context.card.addCoin);
         // カードを捨て札に追加
         discardCardIDList.Add(cardID);
+        _CardCallback();
         return context.card.advance;
     }
 
@@ -139,7 +142,9 @@ public class PossessCard
     {
         if (handCardIDList.Count <= handCount) return;
         discardCardIDList.Add(handCardIDList[handCount]);
+        UIManager.instance.HandDiscard(handCount);
         handCardIDList.RemoveAt(handCount);
+        _CardCallback();
     }
 
     /// <summary>
@@ -148,8 +153,11 @@ public class PossessCard
     /// <param name="cardID"></param>
     public void DiscardHandID(int cardID)
     {
-        handCardIDList.Remove(cardID);
+        int handIndex = handCardIDList.IndexOf(cardID);
+        UIManager.instance.HandDiscard(handIndex);
         discardCardIDList.Add(cardID);
+        handCardIDList.Remove(cardID);
+        _CardCallback();
     }
 
     /// <summary>
@@ -157,8 +165,10 @@ public class PossessCard
     /// </summary>
     public void DiscardHandAll()
     {
-        discardCardIDList.AddRange(handCardIDList);
-        handCardIDList.Clear();
+        for (int i = 0; i < handCardIDList.Count; i++)
+        {
+            DiscardHandIndex(i);
+        }
     }
 
     /// <summary>
@@ -200,6 +210,7 @@ public class PossessCard
     {
         discardCardIDList.Add(ID);
         possessCardIDList.Add(ID);
+        _CardCallback();
 
         // スターカードならUI更新
         CardData card = CardManager.GetCard(ID);
@@ -217,6 +228,8 @@ public class PossessCard
     {
         handCardIDList.Add(ID);
         possessCardIDList.Add(ID);
+        UIManager.instance.HandDraw(ID);
+        _CardCallback();
 
         // スターカードならUI更新
         CardData card = CardManager.GetCard(ID);
@@ -233,7 +246,10 @@ public class PossessCard
     public void RemoveHandID(int cardID)
     {
         possessCardIDList.Remove(cardID);
+        int handIndex = handCardIDList.IndexOf(cardID);
+        UIManager.instance.HandDiscard(handIndex);
         handCardIDList.Remove(cardID);
+        _CardCallback();
     }
 
     /// <summary>
@@ -246,7 +262,10 @@ public class PossessCard
         {
             int handCardID = handCardIDTemp[i];
             possessCardIDList.Remove(handCardID);
+            int handIndex = handCardIDList.IndexOf(handCardID);
+            UIManager.instance.HandDiscard(handIndex);
             handCardIDList.Remove(handCardID);
+            _CardCallback();
 
             CardData card = CardManager.GetCard(handCardID);
             if (!card.IsStar()) continue;
@@ -267,8 +286,11 @@ public class PossessCard
             if (!card.IsStar()) continue;
 
             possessCardIDList.Remove(handCardID);
-            handCardIDList.Remove(handCardID);
+            int handIndex = handCardIDList.IndexOf(handCardID);
+            UIManager.instance.HandDiscard(handIndex);
+            handCardIDList.Remove(handCardID); ;
             _LoseStarCallback(1);
+            _CardCallback();
 
             return handCardID;
         }
@@ -294,10 +316,11 @@ public class PossessCard
     /// コールバックを設定
     /// </summary>
     /// <param name="setCallback"></param>
-    public void SetCallback(Action<int> setAddStarCallback, Func<int, int> setLoseStarCallback)
+    public void SetCallback(Action<int> setAddStarCallback, Func<int, int> setLoseStarCallback, Action setCardCallback)
     {
         _AddStarCallback = setAddStarCallback;
         _LoseStarCallback = setLoseStarCallback;
+        _CardCallback = setCardCallback;
     }
 
     /// <summary>
