@@ -7,7 +7,7 @@ using static CommonModule;
 public class ArrowData : MonoBehaviour
 {
     public StagePosition nextPosition;
-    public int number;
+    public int number = -1;
 
     public void Init(StagePosition stagePosition, int arrayNumber)
     {
