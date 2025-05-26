@@ -198,8 +198,8 @@ public class TurnProcessor
             var nextPositionList = stageManager.GetSquare(moveCharacter.position).GetNextPosition();
             if (nextPositionList.Count == 1) moveCharacter.nextPosition = nextPositionList[0];
 
-            // 停止マスでなければ次へ
-            if (!stageManager.CheckStopSquare(moveCharacter.position)) continue;
+            // 最後のマスでないか停止マスでなければ次へ
+            if (i >= advanceValue - 1 || !stageManager.CheckStopSquare(moveCharacter.position)) continue;
 
             await ExcuteSquareEvent(moveCharacter);
         }

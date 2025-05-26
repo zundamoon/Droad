@@ -40,7 +40,7 @@ public class BranchSquare : BaseSquareData
         }
 
         // “ü—Í‘Ò‚¿
-        while(true)
+        while(index == -1)
         {
             if (Input.GetMouseButtonDown(0)) 
             {
@@ -52,9 +52,9 @@ public class BranchSquare : BaseSquareData
                 {
                     if(hit.collider.tag == "Arrow")
                     {
+                        Debug.Log(hit);
                         ArrowData arrowData = hit.transform.GetComponent<ArrowData>();
                         index = arrowData.number;
-                        break;
                     }
                 }
             }
