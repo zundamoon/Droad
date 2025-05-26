@@ -165,5 +165,7 @@ public class MenuShop : BaseMenu
     public async UniTask RemoveAllShopItem()
     {
         _menuChoice.RemoveAllItem();
+        _buyCardIDList.Clear();
+        _removalCardIDList.Clear();
     }
 }

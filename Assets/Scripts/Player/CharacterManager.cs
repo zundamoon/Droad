@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks;
 using static GameConst;
 using UnityEngine.Rendering;
 using System.Linq;
+using System.Threading.Tasks;
 
 public class CharacterManager : SystemObject
 {
@@ -53,7 +54,7 @@ public class CharacterManager : SystemObject
     /// <summary>
     /// 順位を更新する
     /// </summary>
-    public void UpdateRank()
+    public async Task UpdateRank()
     {
         // 順位でソート
         var rankList = _characterList.OrderByDescending(p => p.stars)
@@ -78,6 +79,7 @@ public class CharacterManager : SystemObject
             if (rankPlayer == null) return;
 
             _characterList[i].SetRank(rankPlayer.rank);
+            await UIManager.instance.UpdateStatus(_characterList[i]);
         }
     }
 }

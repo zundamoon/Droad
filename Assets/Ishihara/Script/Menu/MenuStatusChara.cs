@@ -11,6 +11,8 @@ public class MenuStatusChara : MenuStatusItem
     private TextMeshProUGUI _coinText = null;
     [SerializeField]
     private TextMeshProUGUI _starText = null;
+    [SerializeField]
+    private TextMeshProUGUI _rankText = null;
 
     [SerializeField]
     private Image _bgImage = null;
@@ -38,9 +40,11 @@ public class MenuStatusChara : MenuStatusItem
         Color charaColor = chara.playerColor;
         int charaCion = chara.coins;
         int charaStar = chara.stars;
+        int charaRank = chara.rank;
 
         _coinText.text = charaCion.ToString();
         _starText.text = charaStar.ToString();
+        _rankText.text = charaRank.ToString();
         _bgImage.color = charaColor;
 
         // ÉJÅ[ÉhÇÃê›íË
