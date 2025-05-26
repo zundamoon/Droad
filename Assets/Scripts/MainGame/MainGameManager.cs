@@ -12,7 +12,7 @@ public class MainGameManager : SystemObject
 
     public int currentTurn { get; private set; } = 0;
 
-    private const int _TURN_MAX = 15;
+    private const int _TURN_MAX = 30;
     private const int _TURN_TEXT_ID = 100;
 
     public override async UniTask Initialize()

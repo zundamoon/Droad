@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameConst
 {
-    public const int PLAYER_MAX = 4;
-    public const int DEFAULT_COINS = 30;
+    public const int PLAYER_MAX = 3;
+    public const int DEFAULT_COINS = 10;
     public const int DEFAULT_STARS = 0;
 }
