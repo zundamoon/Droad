@@ -35,6 +35,8 @@ public class Character : MonoBehaviour
     public StagePosition position;
     // 次の移動先を保持
     public StagePosition nextPosition;
+    // ステータス更新のコールバック
+    public Action<Character> UpdateStatus { get; private set; } = null;
     private float moveSpeed = 10.0f;
     private float goalDistance = 0.05f;
     private const int _NO_COIN_TEXT_ID = 109;
@@ -60,38 +62,49 @@ public class Character : MonoBehaviour
     /// </summary>
     /// <param name="setEvent"></param>
     public void SetAfterMoveEvent(Func<List<Character>, UniTask> setEvent) { AfterMoveEvent = setEvent; }
+
+    /// <summary>
+    /// 移動後のイベント実行
+    /// </summary>
+    /// <param name="targetCharacterList"></param>
     public void ExecuteAfterMoveEvent(List<Character> targetCharacterList)
     {
         if (AfterMoveEvent == null) return;
         AfterMoveEvent(targetCharacterList);
         AfterMoveEvent = null;
     }
+    
+    public void SetUpdateStatus(Action<Character> setCallback)
+    {
+        UpdateStatus = setCallback;
+    }
+
     public void SetRank(int setRank) { rank = setRank; }
     public void SetCoin(int value) { coins = value; }
     public void AddCoin(int value) 
     { 
         coins += value;
-        UIManager.instance.UpdateStatus(this);
+        UpdateStatus(this);
     }
     public int RemoveCoin(int value)
     {
         int result = Math.Max(0, coins - value);
         int removeCoin = coins - result;
         coins = result;
-        UIManager.instance.UpdateStatus(this);
+        UpdateStatus(this);
         return removeCoin;
     }
     public void AddStar(int value) 
     { 
         stars += value;
-        UIManager.instance.UpdateStatus(this);
+        UpdateStatus(this);
     }
     public int RemoveStar(int value)
     {
         int result = Math.Max(0, stars - value);
         int removeStar = stars - result;
         stars = result;
-        UIManager.instance.UpdateStatus(this);
+        UpdateStatus(this);
         return removeStar;
     }
     public void SetCancelEvent() { eventCancel = true; }

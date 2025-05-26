@@ -33,6 +33,11 @@ public class CharacterManager : SystemObject
         Color passColor = _playerColorList[setID];
         character.SetPlayerColor(passColor);
         character.Init(setID);
+        character.SetUpdateStatus(async (character) =>
+        {
+            await UIManager.instance.UpdateStatus(character);
+            instance.UpdateRank();
+        });
         _characterList.Add(character);
     }
 
