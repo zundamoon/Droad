@@ -17,7 +17,7 @@ public class Event027_LoseHalfCoinToAdvance : BaseEvent
         character.RemoveCoin(halfCoin);
 
         CardData newCard = new CardData();
-        newCard.SetAdvance(card.advance + halfCoin);
+        newCard.SetAdvance(halfCoin);
         context.card = newCard;
 
         await UniTask.CompletedTask;

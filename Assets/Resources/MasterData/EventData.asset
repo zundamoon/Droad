@@ -22,7 +22,7 @@ MonoBehaviour:
     - ID: 1
       textID: 1
       eventType: 1
-      param: 03000000ffffffff
+      param: 05000000ffffffff
     - ID: 2
       textID: 2
       eventType: 2
@@ -42,7 +42,7 @@ MonoBehaviour:
     - ID: 6
       textID: -1
       eventType: 6
-      param: 03000000ffffffff
+      param: 05000000ffffffff
     - ID: 7
       textID: -1
       eventType: 7
@@ -50,7 +50,7 @@ MonoBehaviour:
     - ID: 8
       textID: -1
       eventType: 8
-      param: 03000000ffffffff
+      param: 05000000ffffffff
     - ID: 9
       textID: 9
       eventType: 9
