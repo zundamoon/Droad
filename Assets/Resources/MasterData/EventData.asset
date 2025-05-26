@@ -131,3 +131,23 @@ MonoBehaviour:
       textID: 12
       eventType: 16
       param: 03000000ffffffff
+    - ID: 29
+      textID: -1
+      eventType: 28
+      param: ffffffffffffffff
+    - ID: 30
+      textID: -1
+      eventType: 29
+      param: ffffffffffffffff
+    - ID: 31
+      textID: -1
+      eventType: 30
+      param: 03000000ffffffff
+    - ID: 32
+      textID: -1
+      eventType: 31
+      param: 03000000ffffffff
+    - ID: 33
+      textID: -1
+      eventType: 32
+      param: ffffffffffffffff

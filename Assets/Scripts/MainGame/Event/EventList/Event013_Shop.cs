@@ -36,9 +36,9 @@ public class Event013_Shop : BaseEvent
             CardData card = CardManager.GetCard(cardID);
             if (!await character.Pay(card.price)) return;
 
+            await UIManager.instance.RemoveShopItem(cardID, isRemove);
             if (isRemove) await character.possessCard.RemoveDeckCard(cardID);
             else await character.possessCard.AddCardDiscard(cardID);
-            await UIManager.instance.RemoveShopItem(cardID, isRemove);
         });
         // ショップUIを表示
         await UIManager.instance.OpenShop();
