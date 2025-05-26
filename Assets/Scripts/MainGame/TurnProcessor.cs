@@ -104,14 +104,14 @@ public class TurnProcessor
             {
                 if (playCardList[i] != maxValue) continue;
                 indexList.Add(i);
+                // 複数ならランダムに決定
+                while (indexList.Count > 0)
+                {
+                    int index = Random.Range(0, indexList.Count);
+                    playerOrder.Add(indexList[index]);
+                    indexList.RemoveAt(index);
+                }
                 playCardList[i] = -1;
-            }
-            // 複数ならランダムに決定
-            while (indexList.Count > 0)
-            {
-                int index = Random.Range(0, indexList.Count);
-                playerOrder.Add(indexList[index]);
-                indexList.RemoveAt(index);
             }
         }
     }
@@ -135,6 +135,9 @@ public class TurnProcessor
     /// <param name="turnCharacter"></param>
     private async UniTask EachTurn(Character turnCharacter, int order)
     {
+        // 手札がないならスキップ
+        if (turnCharacter.possessCard.handCardIDList.Count <= 0) return;
+
         UIManager.instance.StartHandAccept();
         await UIManager.instance.RunMessage(string.Format(_TURN_ANNOUNCE_ID.ToText(), order + 1));
         // 手札が使われるまで待機

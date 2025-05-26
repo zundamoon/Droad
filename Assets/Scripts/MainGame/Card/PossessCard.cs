@@ -166,7 +166,7 @@ public class PossessCard
     /// </summary>
     public void DiscardHandAll()
     {
-        for (int i = 0; i < handCardIDList.Count; i++)
+        for (int i = 0, max = handCardIDList.Count; i < max; i++)
         {
             DiscardHandIndex(i);
         }
@@ -276,27 +276,40 @@ public class PossessCard
     }
 
     /// <summary>
-    /// 手札のスターカードを破棄
+    /// 所持しているスターカードを破棄
     /// </summary>
     /// <returns></returns>
-    public int RemoveHandStarCard()
+    public int RemoveRandomStarCard()
     {
-        for (int i = 0, max = handCardIDList.Count; i < max; i++)
+        // スターカードIDを取得
+        int max = possessCardIDList.Count;
+        List<int> starIDList = new List<int>(max);
+        for (int i = 0; i < max; i++)
         {
-            int handCardID = handCardIDList[i];
-            CardData card = CardManager.GetCard(handCardID);
-            if (!card.IsStar()) continue;
+            if (!CardManager.GetCard(possessCardIDList[i]).IsStar()) continue;
 
-            possessCardIDList.Remove(handCardID);
-            int handIndex = handCardIDList.IndexOf(handCardID);
-            UIManager.instance.HandDiscard(handIndex);
-            handCardIDList.Remove(handCardID); ;
-            _LoseStarCallback(1);
-            _CardCallback();
-
-            return handCardID;
+            starIDList.Add(i);
         }
-        return -1;
+        int starCount = starIDList.Count;
+        if (starCount <= 0) return -1;
+        int randomID = UnityEngine.Random.Range(0, starCount);
+
+        // 指定IDを見つけ除外する
+        RemoveCardID(randomID);
+        possessCardIDList.Remove(randomID);
+
+        return randomID;
+    }
+
+    /// <summary>
+    /// ID指定のカード除外
+    /// </summary>
+    /// <param name="cardID"></param>
+    private void RemoveCardID(int cardID)
+    {
+        if (handCardIDList.Remove(cardID)) return;
+        if (discardCardIDList.Remove(cardID)) return;
+        if (deckCardIDList.Remove(cardID)) return;
     }
 
     /// <summary>

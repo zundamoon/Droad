@@ -26,7 +26,7 @@ public class Event018_PassStealStar : BaseEvent
                 for (int j = 0; j < param; j++)
                 {
                     // スターカードを奪う
-                    int cardID = targetCharacterList[i].possessCard.RemoveHandStarCard();
+                    int cardID = targetCharacterList[i].possessCard.RemoveRandomStarCard();
                     if (cardID <= 0) continue;
 
                     stealCount++;
