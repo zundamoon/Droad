@@ -6,7 +6,12 @@ using static GameEnum;
 
 public class Event028_GiftCard : BaseEvent
 {
-    private readonly int[] _RARITY_RATIO = { 25, 25, 25, 25 };
+    private static Dictionary<Rarity, int> rarityWeights = new Dictionary<Rarity, int>
+    {
+        { Rarity.SILVER, 50 },
+        { Rarity.GOLD, 30 },
+        { Rarity.LEGENDARY, 20 }
+    };
 
     public override async UniTask ExecuteEvent(EventContext context, int param)
     {
@@ -19,28 +24,30 @@ public class Event028_GiftCard : BaseEvent
         await character.possessCard.AddCardDiscard(cardID);
     }
 
+    /// <summary>
+    /// ランダムなレアリティを取得
+    /// </summary>
+    /// <returns></returns>
     private Rarity GetRarity()
     {
         // 重みを取得
-        int rarityMax = _RARITY_RATIO.Length;
         int totalRatio = 0;
-        for (int i = 0; i < rarityMax; i++)
+        foreach (var weight in rarityWeights.Values)
         {
-            totalRatio += _RARITY_RATIO[i];
+            totalRatio += weight;
         }
-        int randomvalue = Random.Range(0, totalRatio);
+        int randomValue = Random.Range(0, totalRatio);
 
         // 重みからレアリティを選出
         int currentRatio = 0;
-        Rarity rarity = Rarity.INVALID;
-        for (int i = 0; i < rarityMax; i++)
+        foreach (var pair in rarityWeights)
         {
-            currentRatio += _RARITY_RATIO[i];
-            if (randomvalue < currentRatio)
+            currentRatio += pair.Value;
+            if (randomValue < currentRatio)
             {
-                return (Rarity)i;
+                return pair.Key;
             }
         }
-        return rarity;
+        return Rarity.INVALID;
     }
 }
