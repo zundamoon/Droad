@@ -6,7 +6,6 @@ using Cysharp.Threading.Tasks;
 
 using static CommonModule;
 using static GameConst;
-using UnityEngine.TextCore.Text;
 
 public class TurnProcessor
 {
@@ -27,6 +26,7 @@ public class TurnProcessor
             playerOrder.Add(i);
         }
         UIManager.instance.AddStatus(playerOrder);
+        CharacterManager.instance.UpdateRank();
     }
 
     /// <summary>
