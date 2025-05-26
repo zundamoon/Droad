@@ -99,7 +99,6 @@ public class MenuHand : BaseMenu
         addItem.SetOnUseCard((index) =>
         {
             _OnUse(index);
-            RemoveListItem(index);
         });
         _useList.Add(addItem);
         return addItem;
