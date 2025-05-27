@@ -16,7 +16,6 @@ public class Event026_ReturnDiscardToDeck : BaseEvent
         if (character == null) return;
 
         List<int> discardCards = character.possessCard.discardCardIDList;
-        await UIManager.instance.RunMessage(_CHOICE_TEXT_ID.ToText());
         for (int i = 0; i < param; i++)
         {
             // ŽÌ‚ÄŽD‚ª‚È‚¢‚È‚çˆ—‚µ‚È‚¢
@@ -32,7 +31,7 @@ public class Event026_ReturnDiscardToDeck : BaseEvent
                 // ƒfƒbƒL‚É–ß‚·
                 character.possessCard.ReturnDiscardToDeck(cardID);
             });
-
+            await UIManager.instance.RunMessage(_CHOICE_TEXT_ID.ToText());
             await UIManager.instance.OpenChoiceArea(discardCards);
         }
     }

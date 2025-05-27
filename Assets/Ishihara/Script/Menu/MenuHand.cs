@@ -122,7 +122,7 @@ public class MenuHand : BaseMenu
     /// <summary>
     /// ‘S‚Ä‚ÌƒŠƒXƒg€–Úíœ
     /// </summary>
-    protected void RemoveAllItem()
+    public void RemoveAllItem()
     {
         while (!IsEmpty(_useList)) RemoveListItem(0);
     }

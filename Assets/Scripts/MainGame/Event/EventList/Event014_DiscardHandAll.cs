@@ -13,7 +13,7 @@ public class Event014_DiscardHandAll : BaseEvent
         Character character = context.character;
         if (character == null) return;
 
-        character.possessCard.DiscardHandAll();
+        await character.possessCard.DiscardHandAll();
         await UIManager.instance.RunMessage(_TEXT_ID.ToText());
     }
 }

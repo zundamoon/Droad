@@ -28,7 +28,8 @@ public class UIManager : SystemObject
     [SerializeField]
     private MenuCardText _menuCardText = null;
 
-    private UniTaskCompletionSource _uniTaskCompletionSource = null;
+    private UniTaskCompletionSource _handUniTaskCompletionSource = null;
+    private UniTaskCompletionSource _choiceUniTaskCompletionSource = null;
 
     private const float _DEFAULT_DISPLAY_TIME = 0.75f;
 
@@ -105,8 +106,13 @@ public class UIManager : SystemObject
     /// <returns></returns>
     public async UniTask OpenHandArea(PossessCard setPossessCard)
     {
+        _handUniTaskCompletionSource = new UniTaskCompletionSource();
+
         _menuHand.SetTurnPlayerCard(setPossessCard);
         await _menuHand.Open();
+        StartHandAccept();
+
+        await _handUniTaskCompletionSource.Task;
     }
 
     /// <summary>
@@ -115,6 +121,7 @@ public class UIManager : SystemObject
     /// <returns></returns>
     public async UniTask CloseHandArea()
     {
+        _menuHand.RemoveAllItem();
         await _menuHand.Close();
     }
 
@@ -124,12 +131,12 @@ public class UIManager : SystemObject
     /// <returns></returns>
     public async UniTask OpenChoiceArea(List<int> choiceCardIDList)
     {
-        _uniTaskCompletionSource = new UniTaskCompletionSource();
+        _choiceUniTaskCompletionSource = new UniTaskCompletionSource();
 
         _menuChoice.SetChoiceCardID(choiceCardIDList);
         await _menuChoice.Open();
 
-        await _uniTaskCompletionSource.Task;
+        await _choiceUniTaskCompletionSource.Task;
     }
 
     public async UniTask SetChoiceCallback(System.Action<int> action)
@@ -137,7 +144,7 @@ public class UIManager : SystemObject
         _menuChoice.SetSelectCallback(async (index) =>
         {
             action(index);
-            _uniTaskCompletionSource.TrySetResult();
+            _choiceUniTaskCompletionSource.TrySetResult();
             await CloseChoiceArea();
         });
         await UniTask.CompletedTask;
@@ -330,7 +337,12 @@ public class UIManager : SystemObject
     /// <returns></returns>
     public async UniTask SetOnUseCard(System.Action<int> action)
     {
-        _menuHand.SetOnUseCard(action);
+        _menuHand.SetOnUseCard(async (index) =>
+        {
+            action(index);
+            _handUniTaskCompletionSource.TrySetResult();
+            await CloseHandArea();
+        });
         await UniTask.CompletedTask;
     }
     /// <summary>

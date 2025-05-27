@@ -61,7 +61,7 @@ public class MenuChoice : BaseMenu
         await base.Open();
         // 並べる
         // 選択肢が何行必要か
-        for(int i = 0; i < _choiceCardIDList.Count; i+= 3)
+        for(int i = 0; i < _choiceCardIDList.Count; i += 3)
         {
             // リスト項目を生成
             MenuChoiceList item = AddListItem();

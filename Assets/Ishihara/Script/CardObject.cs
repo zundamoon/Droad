@@ -72,6 +72,8 @@ public class CardObject : MonoBehaviour
     public void OnDrag()
     {
         if (!UIManager.instance.IsHandAccept) return;
+        if (transform.parent == _handArea) return;
+
 
         Vector3 mousePos = Input.mousePosition;
 
