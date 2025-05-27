@@ -52,7 +52,6 @@ public class BranchSquare : BaseSquareData
                 {
                     if(hit.collider.tag == "Arrow")
                     {
-                        Debug.Log(hit);
                         ArrowData arrowData = hit.transform.GetComponent<ArrowData>();
                         index = arrowData.number;
                     }

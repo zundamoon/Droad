@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks;
 
 using static CommonModule;
 using static GameConst;
+using UnityEngine.TextCore.Text;
 
 public class TurnProcessor
 {
@@ -143,8 +144,14 @@ public class TurnProcessor
         // 手札が使われるまで待機
         while (!_acceptEnd)
         {
+            CameraManager.instance.CameraDrag();
+            CameraManager.instance.CameraZoom();
             await UniTask.DelayFrame(1);
         }
+
+        // カメラの位置を戻す
+        await CameraManager.SetAnchor(turnCharacter.GetCameraAnchor());
+
         _acceptEnd = false;
 
         // カードの使用

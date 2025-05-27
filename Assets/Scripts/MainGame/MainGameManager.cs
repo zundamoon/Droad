@@ -22,8 +22,6 @@ public class MainGameManager : SystemObject
     {
         Application.targetFrameRate = 60;
 
-        CameraManager.Init();
-
         _turnProcessor = new TurnProcessor();
         _turnProcessor.Init();
         // カードのコールバックを設定
