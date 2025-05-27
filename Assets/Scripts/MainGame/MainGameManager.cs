@@ -12,8 +12,11 @@ public class MainGameManager : SystemObject
 
     public int currentTurn { get; private set; } = 0;
 
-    private const int _TURN_MAX = 30;
+    private const int _TURN_MAX = 1;
     private const int _TURN_TEXT_ID = 100;
+    private const int _END_GAME_TEXT_ID = 128;
+    private const int _WIN_PLAYER_TEXT_ID = 129;
+    private const string _RESULT_SCENE_NAME = "ResultScene";
 
     public override async UniTask Initialize()
     {
@@ -41,8 +44,10 @@ public class MainGameManager : SystemObject
             await TurnCountUp();
             await _turnProcessor.TurnProc();
         }
+        // ゲーム終了処理
+        await EndGame();
     }
-    
+
     /// <summary>
     /// ターンをカウントアップ
     /// </summary>
@@ -52,5 +57,21 @@ public class MainGameManager : SystemObject
         // UIに通知
         await UIManager.instance.RunMessage(string.Format(_TURN_TEXT_ID.ToText(), currentTurn, _TURN_MAX));
         await UIManager.instance.AddStatus(string.Format(_TURN_TEXT_ID.ToText(), currentTurn, _TURN_MAX));
+    }
+
+    /// <summary>
+    /// ゲーム終了の処理
+    /// </summary>
+    /// <returns></returns>
+    private async UniTask EndGame()
+    {
+        // 順位の表示
+        await UIManager.instance.RunMessage(_END_GAME_TEXT_ID.ToText());
+        Character top = CharacterManager.instance.GetTopPlayer();
+        //await UIManager.instance.RunMessage(string.Format(_WIN_PLAYER_TEXT_ID.ToText()), top.playerID + 1);
+        // ランクを保持
+        SendData.rankList = CharacterManager.instance.GetRankList();
+        // シーン遷移
+        FadeSceneChange.NoneFadeChangeScene(_RESULT_SCENE_NAME);
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 
 using static GameConst;
-using UnityEngine.Rendering;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -81,5 +80,37 @@ public class CharacterManager : SystemObject
             _characterList[i].SetRank(rankPlayer.rank);
             await UIManager.instance.UpdateStatus(_characterList[i]);
         }
+    }
+
+    /// <summary>
+    /// ランクリストを取得
+    /// </summary>
+    /// <returns></returns>
+    public List<int> GetRankList()
+    {
+        List<int> rank = new List<int>(PLAYER_MAX);
+        for (int i = 0; i < PLAYER_MAX; i++)
+        {
+            for (int j = 0; j < PLAYER_MAX; j++)
+            {
+                if (_characterList[j].rank != i + 1) continue;
+                rank.Add(j);
+            }
+        }
+        return rank;
+    }
+
+    /// <summary>
+    /// 1位のプレイヤー取得
+    /// </summary>
+    /// <returns></returns>
+    public Character GetTopPlayer()
+    {
+        for (int i = 0; i < PLAYER_MAX; i++)
+        {
+            if (_characterList[i].rank != 1) continue;
+            return _characterList[i];
+        }
+        return null;
     }
 }

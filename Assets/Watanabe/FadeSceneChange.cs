@@ -60,7 +60,7 @@ public class FadeSceneChange : MonoBehaviour
 #endif
     }
 
-    public void NoneFadeChangeScene(string sceneName)
+    public static void NoneFadeChangeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
