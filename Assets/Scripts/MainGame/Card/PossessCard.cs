@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 
 public class PossessCard
 {
@@ -139,11 +140,11 @@ public class PossessCard
     /// 順番指定で手札のカードを捨てる
     /// </summary>
     /// <param name="handCount"></param>
-    public void DiscardHandIndex(int handCount)
+    public async UniTask DiscardHandIndex(int handCount)
     {
         if (handCardIDList.Count <= handCount) return;
         discardCardIDList.Add(handCardIDList[handCount]);
-        UIManager.instance.HandDiscard(handCount);
+        await UIManager.instance.HandDiscard(handCount);
         handCardIDList.RemoveAt(handCount);
         _CardCallback();
     }
@@ -152,10 +153,10 @@ public class PossessCard
     /// ID指定で手札のカードを捨てる
     /// </summary>
     /// <param name="cardID"></param>
-    public void DiscardHandID(int cardID)
+    public async UniTask DiscardHandID(int cardID)
     {
         int handIndex = handCardIDList.IndexOf(cardID);
-        UIManager.instance.HandDiscard(handIndex);
+        await UIManager.instance.HandDiscard(handIndex);
         discardCardIDList.Add(cardID);
         handCardIDList.Remove(cardID);
         _CardCallback();
@@ -164,11 +165,12 @@ public class PossessCard
     /// <summary>
     /// 手札をすべて捨てる
     /// </summary>
-    public void DiscardHandAll()
+    public async UniTask DiscardHandAll()
     {
-        for (int i = 0, max = handCardIDList.Count; i < max; i++)
+        // 手札のインデックスを逆順に処理する
+        for (int i = handCardIDList.Count - 1; i >= 0; i--)
         {
-            DiscardHandIndex(i);
+            await DiscardHandIndex(i);
         }
     }
 

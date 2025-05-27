@@ -11,8 +11,6 @@ using UnityEngine.TextCore.Text;
 public class TurnProcessor
 {
     public static List<int> playerOrder = null;
-    private bool _acceptEnd = false;
-    private int _handIndex = -1;
 
     private const int _STAR_EVENT_ID = 12;
     private const int _TURN_ANNOUNCE_ID = 101;
@@ -60,7 +58,6 @@ public class TurnProcessor
 
             // UI表示
             await CameraManager.SetAnchor(character.GetCameraAnchor());
-            await UIManager.instance.OpenHandArea(character.possessCard);
             await UIManager.instance.ReSizeTop();
             await EachTurn(character, orderIndex);
             await UIManager.instance.ScrollStatus();
@@ -79,16 +76,15 @@ public class TurnProcessor
             Character character = CharacterManager.instance.GetCharacter(playerOrder[i]);
             // 手札の選択
             // UIの表示
-            await UIManager.instance.OpenHandArea(character.possessCard);
             await UIManager.instance.ReSizeTop();
-            UIManager.instance.StartHandAccept();
             await UIManager.instance.RunMessage(string.Format(_PLAY_ANNOUNCE_ID.ToText()));
-            while (!_acceptEnd)
+            int handIndex = -1;
+            await UIManager.instance.SetOnUseCard((index) =>
             {
-                await UniTask.DelayFrame(1);
-            }
-            _acceptEnd = false;
-            int playCardCount = GetOrderCount(_handIndex, character);
+                handIndex = index;
+            });
+            await UIManager.instance.OpenHandArea(character.possessCard);
+            int playCardCount = GetOrderCount(handIndex, character);
             playCardList.Add(playCardCount);
             await UIManager.instance.ScrollStatus();
             await UIManager.instance.AddStatus(playerOrder[i]);
@@ -97,22 +93,23 @@ public class TurnProcessor
         // 出されたカードから順番を決める
         while (playerOrder.Count < PLAYER_MAX)
         {
-            // 最大値のインデックスを取得
             int maxValue = playCardList.Max();
-            int playCount = playCardList.Count;
-            List<int> indexList = new List<int>(playCount);
+            List<int> indexList = new();
             for (int i = 0; i < playCardList.Count; i++)
             {
-                if (playCardList[i] != maxValue) continue;
-                indexList.Add(i);
-                // 複数ならランダムに決定
-                while (indexList.Count > 0)
+                if (playCardList[i] == maxValue)
                 {
-                    int index = Random.Range(0, indexList.Count);
-                    playerOrder.Add(indexList[index]);
-                    indexList.RemoveAt(index);
+                    indexList.Add(i);
                 }
-                playCardList[i] = -1;
+            }
+            // indexList からランダムな順番で playerOrder に追加
+            while (indexList.Count > 0)
+            {
+                int rand = Random.Range(0, indexList.Count);
+                int chosenIndex = indexList[rand];
+                playerOrder.Add(chosenIndex);
+                playCardList[chosenIndex] = -1;
+                indexList.RemoveAt(rand);
             }
         }
     }
@@ -139,23 +136,15 @@ public class TurnProcessor
         // 手札がないならスキップ
         if (turnCharacter.possessCard.handCardIDList.Count <= 0) return;
 
-        UIManager.instance.StartHandAccept();
         await UIManager.instance.RunMessage(string.Format(_TURN_ANNOUNCE_ID.ToText(), order + 1));
-        // 手札が使われるまで待機
-        while (!_acceptEnd)
+        int handIndex = -1;
+        await UIManager.instance.SetOnUseCard((index) =>
         {
-            CameraManager.instance.CameraDrag();
-            CameraManager.instance.CameraZoom();
-            await UniTask.DelayFrame(1);
-        }
-
-        // カメラの位置を戻す
-        await CameraManager.SetAnchor(turnCharacter.GetCameraAnchor());
-
-        _acceptEnd = false;
-
+            handIndex = index;
+        });
+        await UIManager.instance.OpenHandArea(turnCharacter.possessCard);
         // カードの使用
-        int advanceValue = await turnCharacter.possessCard.UseCard(_handIndex, turnCharacter);
+        int advanceValue = await turnCharacter.possessCard.UseCard(handIndex, turnCharacter);
         if (advanceValue <= 0) return;
 
         // キャラクターを動かす
@@ -242,15 +231,5 @@ public class TurnProcessor
             if (!targetSquare.GetSquareData().canRepeatSquare) break;
         }
         target.SetRepeatEventCount(1);
-    }
-
-    /// <summary>
-    /// カード使用
-    /// </summary>
-    /// <param name="index"></param>
-    public void AcceptCard(int index)
-    {
-        _acceptEnd = true;
-        _handIndex = index;
     }
 }

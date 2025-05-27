@@ -18,9 +18,14 @@ public class MenuDetail : BaseMenu
     // 手札の入力が受付中かどうか
     private bool _IsHandAccept = false;
 
+    private Character character = null;
+
     public override async UniTask Initialize()
     {
         await base.Initialize();
+        _choice = Instantiate(_choice);
+        await _choice.Initialize();
+        await _choice.Close();
         // チョイスメニューのボタン設定
         _choice.SetSelectCallback(async (index) =>
         {
