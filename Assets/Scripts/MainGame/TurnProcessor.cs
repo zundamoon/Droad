@@ -43,11 +43,11 @@ public class TurnProcessor
         }
 
         // 手番決め
-        await UIManager.instance.RunMessage(_ORDER_TURN_ANNOUNCE_ID.ToText());
-        await DesidePlayerOrder();
-        await UIManager.instance.ScrollAllStatus();
-        await UIManager.instance.AddStatus(playerOrder);
-        await UIManager.instance.AddStatus(_ORDER_TURN_ANNOUNCE_ID.ToText());
+        //await UIManager.instance.RunMessage(_ORDER_TURN_ANNOUNCE_ID.ToText());
+        //await DesidePlayerOrder();
+        //await UIManager.instance.ScrollAllStatus();
+        //await UIManager.instance.AddStatus(playerOrder);
+        //await UIManager.instance.AddStatus(_ORDER_TURN_ANNOUNCE_ID.ToText());
 
         // 各手番
         for (int i = 0; i < PLAYER_MAX; i++)
@@ -57,6 +57,9 @@ public class TurnProcessor
             if (character == null) return;
 
             // UI表示
+            PossessCard possessCard = character.possessCard;
+            UIManager.instance.SetPossessCard(ref possessCard);
+            await UIManager.instance.CloseDetail();
             await CameraManager.SetAnchor(character.GetCameraAnchor());
             await UIManager.instance.ReSizeTop();
             await EachTurn(character, orderIndex);
@@ -76,6 +79,9 @@ public class TurnProcessor
             Character character = CharacterManager.instance.GetCharacter(playerOrder[i]);
             // 手札の選択
             // UIの表示
+            PossessCard possessCard = character.possessCard;
+            UIManager.instance.SetPossessCard(ref possessCard);
+            await UIManager.instance.CloseDetail();
             await UIManager.instance.ReSizeTop();
             await UIManager.instance.RunMessage(string.Format(_PLAY_ANNOUNCE_ID.ToText()));
             int handIndex = -1;
@@ -86,6 +92,7 @@ public class TurnProcessor
             await UIManager.instance.OpenHandArea(character.possessCard);
             int playCardCount = GetOrderCount(handIndex, character);
             playCardList.Add(playCardCount);
+            await UIManager.instance.CloseDetail();
             await UIManager.instance.ScrollStatus();
             await UIManager.instance.AddStatus(playerOrder[i]);
         }
@@ -149,9 +156,10 @@ public class TurnProcessor
         // 終了まで毎フレームカメラ処理
         while (!task.Status.IsCompleted())
         {
+            await UniTask.DelayFrame(1);
+            if (!UIManager.instance.IsHandAccept) continue;
             CameraManager.instance.CameraDrag();
             CameraManager.instance.CameraZoom();
-            await UniTask.Yield();
         }
 
         // カメラの位置をプレイヤーの元に戻す
@@ -160,7 +168,7 @@ public class TurnProcessor
         // カードの使用
         int advanceValue = await turnCharacter.possessCard.UseCard(handIndex, turnCharacter);
         if (advanceValue <= 0) return;
-
+        await UIManager.instance.CloseDetail();
         // キャラクターを動かす
         List<Character> targetCharacterList = new List<Character>(PLAYER_MAX);
         await MoveCharacter(advanceValue, turnCharacter, targetCharacterList);

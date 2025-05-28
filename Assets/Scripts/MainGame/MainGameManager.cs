@@ -12,7 +12,7 @@ public class MainGameManager : SystemObject
 
     public int currentTurn { get; private set; } = 0;
 
-    private const int _TURN_MAX = 1;
+    private const int _TURN_MAX = 30;
     private const int _TURN_TEXT_ID = 100;
     private const int _END_GAME_TEXT_ID = 128;
     private const int _WIN_PLAYER_TEXT_ID = 129;
