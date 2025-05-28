@@ -4,14 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
-using static Entity_EventData;
-
 public class EventManager
 {
     // イベントのリスト
     public static List<IEvent> eventList { get; private set; } = null;
+    // 条件のリスト
+    public static List<ICondition> conditionList { get; private set; } = null;
 
     public static void Init()
+    {
+        EventInit();
+        ConditionInit();
+    }
+
+    /// <summary>
+    /// イベントリストの初期化
+    /// </summary>
+    private static void EventInit()
     {
         eventList = new List<IEvent>();
         eventList.Add(new Event000_DiscardHand());
@@ -45,7 +54,15 @@ public class EventManager
         eventList.Add(new Event028_GiftCard());
         eventList.Add(new Event029_DoubleCoin());
         eventList.Add(new Event030_LoseCoinEveryone());
+    }
 
+    /// <summary>
+    /// 条件リストの初期化
+    /// </summary>
+    private static void ConditionInit()
+    {
+        conditionList = new List<ICondition>();
+        conditionList.Add(new Condition000_CheckCoin());
     }
 
     /// <summary>
@@ -56,11 +73,31 @@ public class EventManager
     /// <returns></returns>
     public static async UniTask ExecuteEvent(int eventID, EventContext context = null)
     {
-        Param eventMaster = EventMasterUtility.GetEventMaster(eventID);
+        var eventMaster = EventMasterUtility.GetEventMaster(eventID);
         if (eventMaster == null) return;
+
+        // 条件達成できないなら処理しない
+        int conditionID = eventMaster.conditionID;
+        if (conditionID >= 0 && !await IsCompleteCondition(conditionID, context)) return;
 
         int eventIndex = eventMaster.eventType;
         int eventParam = eventMaster.param[0];
         await eventList[eventIndex].ExecuteEvent(context, eventParam);
+    }
+
+    /// <summary>
+    /// 条件を達成したかどうか
+    /// </summary>
+    /// <returns></returns>
+    private static async UniTask<bool> IsCompleteCondition(int conditionID, EventContext context)
+    {
+        // 条件IDから情報を取得
+        var conditionMaster = ConditionMasterUtility.GetConditionMaster(conditionID);
+        if (conditionMaster == null) return false;
+
+        int conditionType = conditionMaster.type;
+        int conditionParam = conditionMaster.param;
+
+        return await conditionList[conditionType].IsCompleteCondition(context, conditionParam); ;
     }
 }

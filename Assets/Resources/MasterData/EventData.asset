@@ -18,136 +18,180 @@ MonoBehaviour:
     - ID: 0
       textID: 0
       eventType: 0
+      conditionID: -1
       param: 01000000ffffffff
     - ID: 1
       textID: 1
       eventType: 1
+      conditionID: -1
       param: 05000000ffffffff
     - ID: 2
       textID: 2
       eventType: 2
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 3
       textID: 3
       eventType: 3
+      conditionID: -1
       param: 03000000ffffffff
     - ID: 4
       textID: 4
       eventType: 4
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 5
       textID: 5
       eventType: 5
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 6
       textID: -1
       eventType: 6
+      conditionID: -1
       param: 05000000ffffffff
     - ID: 7
       textID: -1
       eventType: 7
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 8
       textID: -1
       eventType: 8
+      conditionID: -1
       param: 05000000ffffffff
     - ID: 9
       textID: 9
       eventType: 9
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 10
       textID: 110
       eventType: 10
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 11
       textID: 111
       eventType: 11
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 12
       textID: 112
       eventType: 12
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 13
       textID: 113
       eventType: 13
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 14
       textID: 6
       eventType: 14
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 15
       textID: 11
       eventType: 15
+      conditionID: -1
       param: 0a000000ffffffff
     - ID: 16
       textID: 12
       eventType: 16
+      conditionID: -1
       param: 02000000ffffffff
     - ID: 17
       textID: 13
       eventType: 17
+      conditionID: -1
       param: 01000000ffffffff
     - ID: 18
       textID: 10
       eventType: 18
+      conditionID: -1
       param: 01000000ffffffff
     - ID: 19
       textID: 14
       eventType: 19
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 20
       textID: 15
       eventType: 20
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 21
       textID: 16
       eventType: 21
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 22
       textID: 8
       eventType: 22
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 23
       textID: 9
       eventType: 23
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 24
       textID: 17
       eventType: 24
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 25
       textID: 18
       eventType: 25
+      conditionID: -1
       param: 0a000000ffffffff
     - ID: 26
       textID: 19
       eventType: 26
+      conditionID: -1
       param: 03000000ffffffff
     - ID: 27
       textID: 20
       eventType: 27
+      conditionID: 0
       param: ffffffffffffffff
     - ID: 28
       textID: 12
       eventType: 16
+      conditionID: -1
       param: 03000000ffffffff
     - ID: 29
       textID: -1
       eventType: 28
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 30
       textID: -1
       eventType: 29
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 31
       textID: -1
       eventType: 30
+      conditionID: -1
       param: 03000000ffffffff
     - ID: 32
       textID: -1
       eventType: 31
+      conditionID: -1
       param: 03000000ffffffff
     - ID: 33
       textID: -1
       eventType: 32
+      conditionID: -1
       param: ffffffffffffffff
+    - ID: 34
+      textID: -1
+      eventType: 6
+      conditionID: -1
+      param: 0a000000ffffffff
+    - ID: 35
+      textID: -1
+      eventType: 8
+      conditionID: -1
+      param: 0a000000ffffffff

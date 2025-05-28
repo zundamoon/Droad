@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Entity_EventData : ScriptableObject
+public class Entity_ConditionData : ScriptableObject
 {	
 	public List<Sheet> sheets = new List<Sheet> ();
 
@@ -19,9 +19,8 @@ public class Entity_EventData : ScriptableObject
 		
 		public int ID;
 		public int textID;
-		public int eventType;
-		public int conditionID;
-		public int[] param;
+		public int type;
+		public int param;
 	}
 }
 
