@@ -54,6 +54,9 @@ public class EventManager
         eventList.Add(new Event028_GiftCard());
         eventList.Add(new Event029_DoubleCoin());
         eventList.Add(new Event030_LoseCoinEveryone());
+        eventList.Add(new Event031_StealCoinEveryone());
+        eventList.Add(new Event032_LoseHalfCoin());
+
     }
 
     /// <summary>
@@ -62,7 +65,7 @@ public class EventManager
     private static void ConditionInit()
     {
         conditionList = new List<ICondition>();
-        conditionList.Add(new Condition000_CheckCoin());
+        conditionList.Add(new Condition000_CoinHigher());
     }
 
     /// <summary>

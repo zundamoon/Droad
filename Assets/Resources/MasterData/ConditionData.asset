@@ -12,4 +12,106 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed4afade706f6e7448a896e2ac8cf3b2, type: 3}
   m_Name: ConditionData
   m_EditorClassIdentifier: 
-  sheets: []
+  sheets:
+  - name: ConditionData
+    list:
+    - ID: 0
+      textID: 400
+      type: 0
+      param: 30
+    - ID: 1
+      textID: 401
+      type: 1
+      param: 10
+    - ID: 2
+      textID: 402
+      type: 2
+      param: 1
+    - ID: 3
+      textID: 403
+      type: 3
+      param: -1
+    - ID: 4
+      textID: 404
+      type: 4
+      param: -1
+    - ID: 5
+      textID: 405
+      type: 5
+      param: 3
+    - ID: 6
+      textID: 406
+      type: 6
+      param: 4
+    - ID: 7
+      textID: 407
+      type: 7
+      param: -1
+    - ID: 8
+      textID: 408
+      type: 8
+      param: -1
+    - ID: 9
+      textID: 409
+      type: 9
+      param: 3
+    - ID: 10
+      textID: 410
+      type: 10
+      param: 10
+    - ID: 11
+      textID: 411
+      type: 11
+      param: 5
+    - ID: 12
+      textID: 412
+      type: 12
+      param: 3
+    - ID: 13
+      textID: 413
+      type: 13
+      param: -1
+    - ID: 14
+      textID: 414
+      type: 14
+      param: -1
+    - ID: 15
+      textID: 415
+      type: 15
+      param: -1
+    - ID: 16
+      textID: 416
+      type: 16
+      param: -1
+    - ID: 17
+      textID: 417
+      type: 17
+      param: 8
+    - ID: 18
+      textID: 418
+      type: 18
+      param: 6
+    - ID: 19
+      textID: 419
+      type: 19
+      param: 7
+    - ID: 20
+      textID: 420
+      type: 20
+      param: 50
+    - ID: 21
+      textID: 421
+      type: 21
+      param: 1
+    - ID: 22
+      textID: 422
+      type: 22
+      param: -1
+    - ID: 23
+      textID: 423
+      type: 23
+      param: 10
+    - ID: 24
+      textID: 424
+      type: 24
+      param: 1

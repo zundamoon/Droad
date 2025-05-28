@@ -12,9 +12,6 @@ public class Event011_UnluckyEvent : BaseEvent
     {
         { 33, 10 },
         { 35, 20 },
-        { 2, 20 },
-        { 13, 20 },
-        { 34, 20 },
     };
 
     public override async UniTask ExecuteEvent(EventContext context, int param)

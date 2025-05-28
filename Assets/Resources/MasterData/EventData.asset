@@ -153,7 +153,7 @@ MonoBehaviour:
     - ID: 27
       textID: 20
       eventType: 27
-      conditionID: 0
+      conditionID: -1
       param: ffffffffffffffff
     - ID: 28
       textID: 12
