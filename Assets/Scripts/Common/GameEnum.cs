@@ -25,17 +25,15 @@ public class GameEnum
         MAX
     }
 
-    public enum EventID
+    public enum BGM
     {
-        INVALID = -1,
-        DISCARD_HAND = 0,
-        STEAL_COIN = 1,
-        RESHUFFLE = 2,
-        DISCARD_DECK = 3,
-        CANCEL_NEXT_SQUARE_EVENT = 4,
-        DISCARD_DECK_1EXE = 5,
-        ADD_COIN = 6,
-        BUY_STAR = 100,
-        SHOP = 101,
+        
+        MAX
+    }
+
+    public enum SE
+    {
+        
+        MAX
     }
 }

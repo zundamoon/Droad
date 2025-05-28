@@ -9,7 +9,8 @@ public class FadeSceneChange : MonoBehaviour
     public static FadeSceneChange instance = null;
     [SerializeField] private bool cursorLock = true;
 
-    private readonly float DEFAULT_DELAY_SECOND = 2.0f;
+    private const float DEFAULT_DELAY_SECOND = 0;
+    private const float DEFAULT_FADE_SECOND = 1.0f;
     private void Start()
     {
         instance = this;
@@ -30,7 +31,7 @@ public class FadeSceneChange : MonoBehaviour
         }
     }
 
-    public void ChangeSceneEvent(string sceneName)
+    public static void ChangeSceneEvent(string sceneName)
     {
         _ = ChangeScene(sceneName);
     }
@@ -40,16 +41,16 @@ public class FadeSceneChange : MonoBehaviour
         _ = EndGame();
     }
 
-    private async UniTask ChangeScene(string sceneName, float sec = 2.0f)
+    private static async UniTask ChangeScene(string sceneName, float sec = DEFAULT_DELAY_SECOND)
     {
     
-        await FadeScreen.instance.FadeOut(0.7f);
+        await FadeScreen.instance.FadeOut(DEFAULT_FADE_SECOND);
         await Task.Delay(TimeSpan.FromSeconds(sec));
         SceneManager.LoadScene(sceneName);
-        await FadeScreen.instance.FadeIn(2.0f);
+        await FadeScreen.instance.FadeIn(DEFAULT_FADE_SECOND);
     }
 
-    private async UniTask EndGame(float sec = 2.0f)
+    private async UniTask EndGame(float sec = DEFAULT_DELAY_SECOND)
     {
         await FadeScreen.instance.FadeOut();
         await Task.Delay(TimeSpan.FromSeconds(sec));
