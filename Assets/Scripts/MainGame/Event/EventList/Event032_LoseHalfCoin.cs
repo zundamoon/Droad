@@ -10,8 +10,7 @@ public class Event032_LoseHalfCoin : BaseEvent
         if (context == null) return;
 
         Character character = context.character;
-        CardData card = context.card;
-        if (character == null || card == null) return;
+        if (character == null) return;
 
         int halfCoin = character.coins / 2;
         character.RemoveCoin(halfCoin);

@@ -20,48 +20,48 @@ MonoBehaviour:
       advance: 1
       coin: 5
       rarity: 0
-      eventID: -1
-      star: 0
+      eventID: 18
+      star: 1
       price: 5
     - ID: 1
       nameID: 301
       advance: 2
       coin: 5
       rarity: 0
-      eventID: -1
-      star: 0
+      eventID: 18
+      star: 1
       price: 5
     - ID: 2
       nameID: 302
       advance: 3
       coin: 5
       rarity: 0
-      eventID: -1
-      star: 0
+      eventID: 18
+      star: 1
       price: 5
     - ID: 3
       nameID: 303
       advance: 4
       coin: 5
       rarity: 0
-      eventID: 27
-      star: 0
+      eventID: 18
+      star: 1
       price: 5
     - ID: 4
       nameID: 304
       advance: 5
       coin: 5
       rarity: 0
-      eventID: 27
-      star: 0
+      eventID: 18
+      star: 1
       price: 5
     - ID: 5
       nameID: 305
       advance: 6
       coin: 5
       rarity: 0
-      eventID: 27
-      star: 0
+      eventID: 18
+      star: 1
       price: 5
     - ID: 6
       nameID: 306

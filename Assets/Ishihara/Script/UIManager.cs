@@ -118,6 +118,8 @@ public class UIManager : SystemObject
         StartHandAccept();
 
         await _handUniTaskCompletionSource.Task;
+
+        EndHandAccept();
     }
 
     /// <summary>
@@ -268,6 +270,7 @@ public class UIManager : SystemObject
     /// <returns></returns>
     public async UniTask OpenShop()
     {
+        await CloseCardText();
         await _menuShop.Open();
     }
 

@@ -1,10 +1,10 @@
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using static GameConst;
 
-public class Condition000_CheckCoin : BaseCondition
+public class Condition016_RankNoLowest : BaseCondition
 {
     public override async UniTask<bool> IsCompleteCondition(EventContext context, int param)
     {
@@ -13,6 +13,8 @@ public class Condition000_CheckCoin : BaseCondition
         Character character = context.character;
         if (character == null) return false;
 
-        return character.coins >= param;
+        int rank = character.rank;
+
+        return rank != PLAYER_MAX;
     }
 }

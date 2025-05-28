@@ -111,6 +111,8 @@ public class MenuDetail : BaseMenu
         _deckDetail.gameObject.SetActive(true);
         _discardAreaDetail.gameObject.SetActive(true);
         _closeButton.gameObject.SetActive(false);
+
+        await UIManager.instance.CloseCardText();
         // ウィンドウを閉じる
         await _choice.Close();
     }
