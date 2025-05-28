@@ -7,10 +7,10 @@ using NPOI.HSSF.UserModel;
 using NPOI.XSSF.UserModel;
 using NPOI.SS.UserModel;
 
-public class EventData_importer : AssetPostprocessor {
-	private static readonly string filePath = "Assets/Resources/MasterData/EventData.xlsx";
-	private static readonly string exportPath = "Assets/Resources/MasterData/EventData.asset";
-	private static readonly string[] sheetNames = { "EventData", };
+public class ConditionData_importer : AssetPostprocessor {
+	private static readonly string filePath = "Assets/Resources/MasterData/ConditionData.xlsx";
+	private static readonly string exportPath = "Assets/Resources/MasterData/ConditionData.asset";
+	private static readonly string[] sheetNames = { "ConditionData", };
 	
 	static void OnPostprocessAllAssets (string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
 	{
@@ -18,9 +18,9 @@ public class EventData_importer : AssetPostprocessor {
 			if (!filePath.Equals (asset))
 				continue;
 				
-			Entity_EventData data = (Entity_EventData)AssetDatabase.LoadAssetAtPath (exportPath, typeof(Entity_EventData));
+			Entity_ConditionData data = (Entity_ConditionData)AssetDatabase.LoadAssetAtPath (exportPath, typeof(Entity_ConditionData));
 			if (data == null) {
-				data = ScriptableObject.CreateInstance<Entity_EventData> ();
+				data = ScriptableObject.CreateInstance<Entity_ConditionData> ();
 				AssetDatabase.CreateAsset ((ScriptableObject)data, exportPath);
 				data.hideFlags = HideFlags.NotEditable;
 			}
@@ -41,22 +41,19 @@ public class EventData_importer : AssetPostprocessor {
 						continue;
 					}
 
-					Entity_EventData.Sheet s = new Entity_EventData.Sheet ();
+					Entity_ConditionData.Sheet s = new Entity_ConditionData.Sheet ();
 					s.name = sheetName;
 				
 					for (int i=1; i<= sheet.LastRowNum; i++) {
 						IRow row = sheet.GetRow (i);
 						ICell cell = null;
 						
-						Entity_EventData.Param p = new Entity_EventData.Param ();
+						Entity_ConditionData.Param p = new Entity_ConditionData.Param ();
 						
 					cell = row.GetCell(0); p.ID = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(1); p.textID = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(2); p.eventType = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(4); p.conditionID = (int)(cell == null ? 0 : cell.NumericCellValue);
-					p.param = new int[2];
-					cell = row.GetCell(5); p.param[0] = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(6); p.param[1] = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(2); p.type = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(4); p.param = (int)(cell == null ? 0 : cell.NumericCellValue);
 						s.list.Add (p);
 					}
 					data.sheets.Add(s);
