@@ -140,6 +140,8 @@ public class TurnProcessor
     /// <param name="turnCharacter"></param>
     private async UniTask EachTurn(Character turnCharacter, int order)
     {
+        await turnCharacter.SquareStand();
+
         // 手札がないならスキップ
         if (turnCharacter.possessCard.handCardIDList.Count <= 0) return;
 
@@ -179,6 +181,8 @@ public class TurnProcessor
         // イベント可能でなければ終了
         if (!turnCharacter.CanEvent()) return;
         await ExcuteSquareEvent(turnCharacter);
+
+        await turnCharacter.SquareShift();
     }
 
     /// <summary>

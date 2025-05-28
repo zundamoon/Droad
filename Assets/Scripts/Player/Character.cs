@@ -175,6 +175,38 @@ public class Character : MonoBehaviour
         transform.position = targetPos; // 最終位置補正
     }
 
+    public async UniTask SquareStand()
+    {
+        // 立っているマスを取得
+        Square square = StageManager.instance.GetSquare(position);
+        // 立つべきマスの座標を管理
+        Vector3 standPos = StageManager.instance.GetPosition(position);
+        // 移動
+        await Move(standPos, 3);
+    }
+
+    /// <summary>
+    /// マスからずれた位置に立つ
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask SquareShift()
+    {
+        // 立っているマスを取得
+        Square square = StageManager.instance.GetSquare(position);
+        // 立つべきマスの座標を管理
+        Vector3 standPos = StageManager.instance.GetPosition(position);
+
+        for (int i = 0; i < square.standingPlayerList.Count; i++)
+        {
+            if (square.standingPlayerList[i] == playerID)
+            {
+                standPos = square.standAnchorList[i].gameObject.transform.position;
+                break;
+            }
+        }
+        await Move(standPos, 3);
+    }
+
     /// <summary>
     /// カメラアンカーの取得
     /// </summary>
