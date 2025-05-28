@@ -27,6 +27,9 @@ public class UIManager : SystemObject
     // カードテキスト
     [SerializeField]
     private MenuCardText _menuCardText = null;
+    // 詳細メニュー
+    [SerializeField]
+    private MenuDetail _menuDetail = null;
 
     private UniTaskCompletionSource _handUniTaskCompletionSource = null;
     private UniTaskCompletionSource _choiceUniTaskCompletionSource = null;
@@ -55,12 +58,14 @@ public class UIManager : SystemObject
         _menuStatus = Instantiate(_menuStatus);
         _menuShop = Instantiate(_menuShop);
         _menuCardText = Instantiate(_menuCardText);
+        _menuDetail = Instantiate(_menuDetail);
 
         await _menuHand.Initialize();
         await _menuChoice.Initialize();
         await _menuStatus.Initialize();
         await _menuShop.Initialize();
         await _menuCardText.Initialize();
+        await _menuDetail.Initialize();
         _menuStatus.SetCharacter(CharacterManager.instance.GetAllCharacter());
 
         await _menuHand.Close();
@@ -395,5 +400,25 @@ public class UIManager : SystemObject
     public async UniTask UpdateStatus(Character chara)
     {
         await _menuStatus.UpdateStatus(chara);
+    }
+
+    public void SetPossessCard(ref PossessCard setPossessCard)
+    {
+        _menuDetail.SetPosseessCard(ref setPossessCard);
+    }
+    /// <summary>
+    /// 詳細メニューを開く
+    /// </summary>
+    public async UniTask OpenDetail()
+    {
+        await _menuDetail.Open();
+    }
+    /// <summary>
+    /// 詳細メニューを閉じる
+    /// </summary>
+    public async UniTask CloseDetail()
+    {
+        _menuDetail.OnEndDetail();
+        await UniTask.CompletedTask;
     }
 }

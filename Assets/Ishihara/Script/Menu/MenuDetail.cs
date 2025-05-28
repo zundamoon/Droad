@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,15 +16,17 @@ public class MenuDetail : BaseMenu
     [SerializeField]
     private Button _discardAreaDetail = null;
 
+    [SerializeField]
+    private Button _closeButton = null;
+
     // 手札の入力が受付中かどうか
     private bool _IsHandAccept = false;
 
-    private Character character = null;
+    private PossessCard possessCard = null;
 
     public override async UniTask Initialize()
     {
         await base.Initialize();
-        _choice = Instantiate(_choice);
         await _choice.Initialize();
         await _choice.Close();
         // チョイスメニューのボタン設定
@@ -32,46 +35,67 @@ public class MenuDetail : BaseMenu
             // そのカードの説明文を出す
             await UIManager.instance.OpenCardText(index);
         });
+        _closeButton.gameObject.SetActive(false);
+    }
+
+    public void SetPosseessCard(ref PossessCard setPossessCard)
+    {
+        possessCard = setPossessCard;
     }
 
     /// <summary>
     /// デッキボタンが押されたとき
     /// </summary>
-    public void OnShowDeck()
+    public async void OnShowDeck()
     {
+        if (possessCard == null) return;
         // 手札の入力終了
         _IsHandAccept = UIManager.instance.IsHandAccept;
         UIManager.instance.EndHandAccept();
         // ボタンを非表示
         _deckDetail.gameObject.SetActive(false);
         _discardAreaDetail.gameObject.SetActive(false);
-
-        // デッキを表示
-
-        // どこからターンプレイヤーを取得するのか
-        // CardTextをどのタイミングで閉じるのか
-
-        // ターンプレイヤーを取得
-        // デッキ取得
+        _choice.RemoveAllItem();
         // チョイスメニューに設定
-        // 
+        List<int> deck = possessCard.deckCardIDList;
+        _choice.SetChoiceCardID(deck);
+        List<string> deckText = new List<string>(deck.Count);
+        for (int i = 0; i < deck.Count; i++)
+        {
+            deckText.Add("詳細");
+        }
+        _choice.SetChoiceButtonText(deckText);
 
+        _closeButton.gameObject.SetActive(true);
+        await _choice.Open();
     }
 
     /// <summary>
     /// 捨て札ボタンが押されたとき
     /// </summary>
-    public void OnShowDiscard()
+    public async void OnShowDiscard()
     {
+        if (possessCard == null) return;
+
         // 手札の入力終了
         _IsHandAccept = UIManager.instance.IsHandAccept;
         UIManager.instance.EndHandAccept();
         // ボタンを非表示
         _deckDetail.gameObject.SetActive(false);
         _discardAreaDetail.gameObject.SetActive(false);
+        _choice.RemoveAllItem();
 
-        // 捨て札を表示
-
+        // チョイスメニューに設定
+        List<int> deck = possessCard.discardCardIDList;
+        _choice.SetChoiceCardID(deck);
+        List<string> deckText = new List<string>(deck.Count);
+        for (int i = 0; i < deck.Count; i++)
+        {
+            deckText.Add("詳細");
+        }
+        _choice.SetChoiceButtonText(deckText);
+        _closeButton.gameObject.SetActive(true);
+        await _choice.Open();
     }
 
     /// <summary>
@@ -86,8 +110,8 @@ public class MenuDetail : BaseMenu
         // ボタンの表示再開
         _deckDetail.gameObject.SetActive(true);
         _discardAreaDetail.gameObject.SetActive(true);
-
+        _closeButton.gameObject.SetActive(false);
         // ウィンドウを閉じる
-        await Close();
+        await _choice.Close();
     }
 }
