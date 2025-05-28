@@ -837,7 +837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: squareData
-      value: 1314523938113191946
+      value: 1314523962795360258
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592899]
@@ -846,6 +846,10 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523938113191946]
       value: Assembly-CSharp HappeningSquare
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
+      propertyPath: managedReferences[1314523962795360258]
+      value: Assembly-CSharp UnLuckySquare
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[6090552834052587588]
@@ -861,6 +865,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523938113191946].isStarSquare
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
+      propertyPath: managedReferences[1314523962795360258].isStarSquare
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -2574,7 +2582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: squareData
-      value: 1314523938113191945
+      value: 1314523962795360257
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592899]
@@ -2583,6 +2591,10 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523938113191945]
       value: Assembly-CSharp HappeningSquare
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
+      propertyPath: managedReferences[1314523962795360257]
+      value: Assembly-CSharp UnLuckySquare
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[6090552834052587588]
@@ -2598,6 +2610,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523938113191945].isStarSquare
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
+      propertyPath: managedReferences[1314523962795360257].isStarSquare
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -3579,7 +3595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: squareData
-      value: 1314523938113191969
+      value: 1314523962795360256
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592899]
@@ -3592,6 +3608,10 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523938113191969]
       value: Assembly-CSharp HappeningSquare
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
+      propertyPath: managedReferences[1314523962795360256]
+      value: Assembly-CSharp UnLuckySquare
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[6090552834052587588]
@@ -3611,6 +3631,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523938113191969].isStarSquare
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
+      propertyPath: managedReferences[1314523962795360256].isStarSquare
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -3869,7 +3893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: squareData
-      value: 1314523938113191952
+      value: 1314523962795360261
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592899]
@@ -3878,6 +3902,10 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523938113191952]
       value: Assembly-CSharp HappeningSquare
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
+      propertyPath: managedReferences[1314523962795360261]
+      value: Assembly-CSharp UnLuckySquare
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[6090552834052587588]
@@ -3893,6 +3921,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523938113191952].isStarSquare
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
+      propertyPath: managedReferences[1314523962795360261].isStarSquare
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -4445,7 +4477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: squareData
-      value: 1314523938113191951
+      value: 1314523962795360260
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592899]
@@ -4454,6 +4486,10 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523938113191951]
       value: Assembly-CSharp HappeningSquare
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
+      propertyPath: managedReferences[1314523962795360260]
+      value: Assembly-CSharp LuckySquare
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[6090552834052587588]
@@ -4469,6 +4505,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523938113191951].isStarSquare
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
+      propertyPath: managedReferences[1314523962795360260].isStarSquare
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
@@ -4789,7 +4829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: squareData
-      value: 1314523938113191948
+      value: 1314523962795360259
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523668816592899]
@@ -4798,6 +4838,10 @@ PrefabInstance:
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523938113191948]
       value: Assembly-CSharp HappeningSquare
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
+      propertyPath: managedReferences[1314523962795360259]
+      value: Assembly-CSharp LuckySquare
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[6090552834052587588]
@@ -4813,6 +4857,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
       propertyPath: managedReferences[1314523938113191948].isStarSquare
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
+      propertyPath: managedReferences[1314523962795360259].isStarSquare
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7390389724374891244, guid: c519f81dc12030a4abcfd0ab50dc720e, type: 3}
