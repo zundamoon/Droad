@@ -42,7 +42,7 @@ public class CameraManager : SystemObject
         _camera.transform.SetParent(anchorTransform);
     }
 
-    public void CameraDrag()
+    public async UniTask CameraDrag()
     {
         if(Input.GetMouseButton(0)) return;
 
@@ -63,7 +63,7 @@ public class CameraManager : SystemObject
     }
 
 
-    public void CameraZoom()
+    public async UniTask CameraZoom()
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
