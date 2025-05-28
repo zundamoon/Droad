@@ -121,6 +121,8 @@ public class PossessCard
         handCardIDList.Remove(cardID);
         CardData useCard = CardManager.GetCard(cardID);
         if (useCard == null) return -1;
+        // コイン追加
+        useCharacter.AddCoin(useCard.addCoin);
         // イベント処理
         EventContext context = new EventContext()
         {
@@ -128,8 +130,6 @@ public class PossessCard
             card = useCard
         };
         await EventManager.ExecuteEvent(useCard.eventID, context);
-        // コイン追加
-        useCharacter.AddCoin(context.card.addCoin);
         // カードを捨て札に追加
         discardCardIDList.Add(cardID);
         _CardCallback();

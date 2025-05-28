@@ -389,7 +389,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 506992045}
         m_TargetAssemblyTypeName: FadeSceneChange, Assembly-CSharp
-        m_MethodName: NoneFadeChangeScene
+        m_MethodName: ChangeSceneEvent
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7151,7 +7151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2669775045435650554
 Transform:
   m_ObjectHideFlags: 0
@@ -7274,7 +7274,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -100
   m_TargetDisplay: 0
 --- !u!114 &2669775045451165583
 MonoBehaviour:
@@ -7328,7 +7328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d589dc625ea15c64397d58f89131f1c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorLock: 1
+  cursorLock: 0
 --- !u!4 &2669775046417273031
 Transform:
   m_ObjectHideFlags: 0

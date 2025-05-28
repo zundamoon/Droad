@@ -6,14 +6,21 @@ using UnityEngine;
 public class Event010_LuckyEvent : BaseEvent
 {
     /// <summary>
-    /// イベントのIDリスト
+    /// イベントIDと抽選割合
     /// </summary>
-    private int[] _eventIDList = {  };
+    private static Dictionary<int, int> eventWeights = new Dictionary<int, int>
+    {
+        { 30, 10 },
+        { 32, 20 },
+        { 2, 20 },
+        { 13, 20 },
+        { 34, 20 },
+    };
 
     public override async UniTask ExecuteEvent(EventContext context, int param)
     {
         // イベントの抽選
-        int eventID = DicideEvent();
+        int eventID = DicideEventID();
         await EventManager.ExecuteEvent(eventID, context);
     }
 
@@ -21,9 +28,26 @@ public class Event010_LuckyEvent : BaseEvent
     /// イベントIDを決める
     /// </summary>
     /// <returns></returns>
-    public int DicideEvent()
+    private int DicideEventID()
     {
-        int index = Random.Range(0, _eventIDList.Length);
-        return _eventIDList[index];
+        // 重みを取得
+        int totalRatio = 0;
+        foreach (var weight in eventWeights.Values)
+        {
+            totalRatio += weight;
+        }
+        int randomValue = Random.Range(0, totalRatio);
+
+        // 重みからレアリティを選出
+        int currentRatio = 0;
+        foreach (var pair in eventWeights)
+        {
+            currentRatio += pair.Value;
+            if (randomValue < currentRatio)
+            {
+                return pair.Key;
+            }
+        }
+        return -1;
     }
 }

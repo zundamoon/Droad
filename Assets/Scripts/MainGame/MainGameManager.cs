@@ -12,7 +12,7 @@ public class MainGameManager : SystemObject
 
     public int currentTurn { get; private set; } = 0;
 
-    private const int _TURN_MAX = 30;
+    private const int _TURN_MAX = 1;
     private const int _TURN_TEXT_ID = 100;
     private const int _END_GAME_TEXT_ID = 128;
     private const int _WIN_PLAYER_TEXT_ID = 129;
@@ -68,6 +68,6 @@ public class MainGameManager : SystemObject
         // ƒ‰ƒ“ƒN‚ğ•Û
         SendData.rankList = CharacterManager.instance.GetRankList();
         // ƒV[ƒ“‘JˆÚ
-        FadeSceneChange.NoneFadeChangeScene(_RESULT_SCENE_NAME);
+        FadeSceneChange.ChangeSceneEvent(_RESULT_SCENE_NAME);
     }
 }

@@ -6,6 +6,9 @@ using static GameEnum;
 
 public class Event028_GiftCard : BaseEvent
 {
+    /// <summary>
+    /// レアリティと抽選割合
+    /// </summary>
     private static Dictionary<Rarity, int> rarityWeights = new Dictionary<Rarity, int>
     {
         { Rarity.SILVER, 50 },

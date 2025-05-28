@@ -59,7 +59,7 @@ public class FadeScreen : MonoBehaviour
         // ç≈å„Ç…ÇµÇ¡Ç©ÇË ALPHA_VALUE_MIN Ç…ê›íË
         alphaValue = ALPHA_VALUE_MIN;
         fade.color = new Color(0.0f, 0.0f, 0.0f, alphaValue);
-        canvas.sortingOrder = 1;
+        canvas.sortingOrder = -100;
     }
 
     /// <summary>
