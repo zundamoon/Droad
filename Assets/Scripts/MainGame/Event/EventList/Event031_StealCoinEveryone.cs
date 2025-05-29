@@ -15,7 +15,7 @@ public class Event031_StealCoinEveryone : BaseEvent
 
         // ‘SˆõƒRƒCƒ“‚ğŒ¸‚ç‚·
         int stealCount = 0;
-        for (int i = 0; i < PLAYER_MAX; i++)
+        for (int i = 0; i < GameDataManager.instance.playerMax; i++)
         {
             if (character.playerID == i) continue;
             Character targetCharacter = CharacterManager.instance.GetCharacter(i);

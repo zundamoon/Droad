@@ -33,9 +33,9 @@ public class GameSettingManager : MonoBehaviour
         {
             BaseCountUI countUI = countUIList[i];
 
-            if(countUI is PlayerCountUI) SendData.settingPlayerCount = countUI.GetCount();
-            else if(countUI is StageIDCountUI) SendData.settingStageID = countUI.GetCount();
-            else if(countUI is TurnCountUI) SendData.settingTurnCount = countUI.GetCount();
+            if(countUI is PlayerCountUI) _gameData.settingPlayerCount = countUI.GetCount();
+            else if(countUI is StageIDCountUI) _gameData.settingStageID = countUI.GetCount();
+            else if(countUI is TurnCountUI) _gameData.settingTurnCount = countUI.GetCount();
         }
 
         // ÉVÅ[ÉìëJà⁄

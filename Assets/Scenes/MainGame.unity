@@ -399,6 +399,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _systemObjectList:
+  - {fileID: 2543766291767126479, guid: ece6cfabda9fe09409e93e75ad9efc55, type: 3}
+  - {fileID: 5430870326881415407, guid: 3cca609c322e7eb4bbeabc6c21dc14db, type: 3}
+  - {fileID: 7909444046368865225, guid: 0dd63809f4eba6742a83a54e38daa3c3, type: 3}
   - {fileID: 8310585452012224209, guid: b76734c2f0ca6ff45b7dba95c06c9403, type: 3}
   - {fileID: 3943202478346165938, guid: 38ab79fffe8803145b237d6bb5a3bebd, type: 3}
   - {fileID: 7909444046368865225, guid: 0dd63809f4eba6742a83a54e38daa3c3, type: 3}

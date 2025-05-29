@@ -209,7 +209,7 @@ public class StageManager : SystemObject
     {
         List<StagePosition> characterPositionList = new List<StagePosition>();
 
-        for (int i = 0; i < PLAYER_MAX; i++)
+        for (int i = 0; i < GameDataManager.instance.playerMax; i++)
         {
             StagePosition pos = CharacterManager.instance.GetCharacter(i).position;
             characterPositionList.Add(pos);

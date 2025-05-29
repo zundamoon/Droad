@@ -22,7 +22,7 @@ public class ResultManager : MonoBehaviour
     private void SetPlayer()
     {
         // キャラクターの順位で色付け
-        for (int i = 0; i < PLAYER_MAX; i++)
+        for (int i = 0; i < GameDataManager.instance.playerMax; i++)
         {
             GameObject playerObj = Instantiate(_playerObject, _playerAnchors[i].position, Quaternion.identity);
             int rank = SendData.rankList[i];

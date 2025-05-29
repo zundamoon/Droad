@@ -20,8 +20,8 @@ public class TurnProcessor
 
     public void Init()
     {
-        playerOrder = new List<int>(PLAYER_MAX);
-        for (int i = 0; i < PLAYER_MAX; i++)
+        playerOrder = new List<int>(GameDataManager.instance.playerMax);
+        for (int i = 0; i < GameDataManager.instance.playerMax; i++)
         {
             playerOrder.Add(i);
         }
@@ -37,7 +37,7 @@ public class TurnProcessor
         // カメラをステージに向ける
         await CameraManager.SetAnchor(StageManager.instance.GetCameraAnchor());
         // ドロー
-        for (int i = 0; i < PLAYER_MAX; i++)
+        for (int i = 0; i < GameDataManager.instance.playerMax; i++)
         {
             Character character = CharacterManager.instance.GetCharacter(i);
             await character.possessCard.DrawDeckMax();
@@ -51,7 +51,7 @@ public class TurnProcessor
         //await UIManager.instance.AddStatus(_ORDER_TURN_ANNOUNCE_ID.ToText());
 
         // 各手番
-        for (int i = 0; i < PLAYER_MAX; i++)
+        for (int i = 0; i < GameDataManager.instance.playerMax; i++)
         {
             int orderIndex = playerOrder[i];
             Character character = CharacterManager.instance.GetCharacter(orderIndex);
@@ -75,7 +75,7 @@ public class TurnProcessor
     private async UniTask DesidePlayerOrder()
     {
         Dictionary<int, int> playCardMap = new Dictionary<int, int>();
-        for (int i = 0; i < PLAYER_MAX; i++)
+        for (int i = 0; i < GameDataManager.instance.playerMax; i++)
         {
             Character character = CharacterManager.instance.GetCharacter(playerOrder[i]);
             // 手札の選択
@@ -183,7 +183,7 @@ public class TurnProcessor
         if (advanceValue <= 0) return;
         await UIManager.instance.CloseDetail();
         // キャラクターを動かす
-        List<Character> targetCharacterList = new List<Character>(PLAYER_MAX);
+        List<Character> targetCharacterList = new List<Character>(GameDataManager.instance.playerMax);
         await MoveCharacter(advanceValue, turnCharacter, targetCharacterList);
 
         // 移動後処理を実行
@@ -223,7 +223,7 @@ public class TurnProcessor
             await moveCharacter.Move(movePosition);
             moveCharacter.position = nextPosition;
             // マス上にいる他キャラを検出
-            for (int j = 0; j < PLAYER_MAX; j++)
+            for (int j = 0; j < GameDataManager.instance.playerMax; j++)
             {
                 Character target = CharacterManager.instance.GetCharacter(j);
 
