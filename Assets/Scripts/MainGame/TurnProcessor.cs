@@ -89,7 +89,21 @@ public class TurnProcessor
             {
                 handIndex = index;
             });
-            await UIManager.instance.OpenHandArea(character.possessCard);
+
+            var task = UIManager.instance.OpenHandArea(character.possessCard);
+
+            // 終了まで毎フレームカメラ処理
+            while (!task.Status.IsCompleted())
+            {
+                await UniTask.DelayFrame(1);
+                if (!UIManager.instance.IsHandAccept) continue;
+                CameraManager.instance.CameraDrag();
+                CameraManager.instance.CameraZoom();
+            }
+
+            // カメラの位置をプレイヤーの元に戻す
+            await CameraManager.SetAnchor(StageManager.instance.GetCameraAnchor());
+
             int playCardCount = GetOrderCount(handIndex, character);
             playCardList.Add(playCardCount);
             await UIManager.instance.CloseDetail();
