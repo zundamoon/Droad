@@ -12,6 +12,7 @@ public class CameraManager : SystemObject
     public float zoomSpeed = 10f;
     public float zoomMin = 5f;
     public float zoomMax = 100f;
+    private Transform zoomTarget;
 
     private static Camera _camera = null;
 
@@ -23,6 +24,7 @@ public class CameraManager : SystemObject
     {
         instance = this;
         _camera = Camera.main;
+        zoomTarget = StageManager.instance.stagePrefab.transform;
     }
 
     public static async UniTask SetAnchor(Transform anchorTransform, float moveTime = _CHANGE_TARGET_TIME)
@@ -62,19 +64,26 @@ public class CameraManager : SystemObject
         }
     }
 
-
     public async UniTask CameraZoom()
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
         if (Mathf.Abs(scroll) > 0.01f)
         {
+            // カメラの forward に沿ってズーム
             Vector3 direction = _camera.transform.forward;
-            _camera.transform.position += direction * scroll * zoomSpeed;
 
-            float distance = Vector3.Distance(_camera.transform.position, Vector3.zero);
-            if (distance < zoomMin) _camera.transform.position = Vector3.zero + direction * zoomMin;
-            else if (distance > zoomMax) _camera.transform.position = Vector3.zero + direction * zoomMax;
+            // 新しい位置を仮計算
+            Vector3 newPosition = _camera.transform.position + direction * scroll * zoomSpeed;
+
+            // 中心からの距離を計算
+            float distance = Vector3.Distance(newPosition, zoomTarget.position);
+
+            // 距離制限内であれば移動を適用
+            if (distance >= zoomMin && distance <= zoomMax)
+            {
+                _camera.transform.position = newPosition;
+            }
         }
     }
 }
