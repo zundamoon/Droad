@@ -5,9 +5,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardObject : MonoBehaviour
+public class CardObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField]
     private TextMeshProUGUI _advanceText = null;
@@ -66,70 +67,64 @@ public class CardObject : MonoBehaviour
         _highLight.SetActive(false);
     }
 
-    /// <summary>
-    /// ドラッグ
-    /// </summary>
-    public void OnDrag()
+    public void OnBeginDrag(PointerEventData eventData)
     {
         if (!UIManager.instance.IsHandAccept) return;
-        if (transform.parent == _handArea) return;
-
-
-        Vector3 mousePos = Input.mousePosition;
-
-        // 移動量から傾き方向を計算（画面座標でOK）
-        Vector3 move = mousePos - transform.position;
-
-        float tiltFactor = 1; 
-        float maxTilt = 20f;
-
-        float tiltX = Mathf.Clamp(move.y * tiltFactor, -maxTilt, maxTilt);
-        float tiltY = Mathf.Clamp(-move.x * tiltFactor, -maxTilt, maxTilt);
-
-        // 傾ける
-        transform.localRotation = Quaternion.Euler(tiltX, tiltY, 0);
-
-        // マウス位置に追従（スクリーン座標ベースでOK）
-        transform.position = mousePos;
-    }
-
-    /// <summary>
-    /// ドラッグ開始されたとき
-    /// </summary>
-    public void OnStartDrop()
-    {
-        if (!UIManager.instance.IsHandAccept) return;
-
-        Transform field = UIManager.instance.GetHandCanvas().transform;
-        // ドラッグしたオブジェクトを親から外す
-        _handArea = transform.parent;
-        transform.SetParent(field);
-        // 大きくする
-        transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
-    }
-
-    /// <summary>
-    /// ドラッグ解除されたとき
-    /// </summary>
-    public async void OnEndDrop()
-    {
-        if (!UIManager.instance.IsHandAccept) return;
-
-        // 元のサイズに戻す
-        transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-        transform.localRotation = Quaternion.identity;
-
-        // 使用エリアなら
-        if (!UIManager.instance.CheckPlayArea(Input.mousePosition))
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
-            // 使用エリア外なら元の位置に戻す
-            transform.SetParent(_handArea);
-            return;
+            Transform field = UIManager.instance.GetHandCanvas().transform;
+            // ドラッグしたオブジェクトを親から外す
+            _handArea = transform.parent;
+            transform.SetParent(field);
+            // 大きくする
+            transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
         }
-
-        await UseCard();
     }
 
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (!UIManager.instance.IsHandAccept) return;
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Vector3 mousePos = Input.mousePosition;
+
+            // 移動量から傾き方向を計算（画面座標でOK）
+            Vector3 move = mousePos - transform.position;
+
+            float tiltFactor = 1;
+            float maxTilt = 20f;
+
+            float tiltX = Mathf.Clamp(move.y * tiltFactor, -maxTilt, maxTilt);
+            float tiltY = Mathf.Clamp(-move.x * tiltFactor, -maxTilt, maxTilt);
+
+            // 傾ける
+            transform.localRotation = Quaternion.Euler(tiltX, tiltY, 0);
+
+            // マウス位置に追従（スクリーン座標ベースでOK）
+            transform.position = mousePos;
+        }
+    }
+
+    public async void OnEndDrag(PointerEventData eventData)
+    {
+        if (!UIManager.instance.IsHandAccept) return;
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            // 元のサイズに戻す
+            transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            transform.localRotation = Quaternion.identity;
+
+            // 使用エリアなら
+            if (!UIManager.instance.CheckPlayArea(Input.mousePosition))
+            {
+                // 使用エリア外なら元の位置に戻す
+                transform.SetParent(_handArea);
+                return;
+            }
+
+            await UseCard();
+        }
+    }
     private async UniTask UseCard()
     {
         // 入力受付終了
