@@ -15,6 +15,6 @@ public class Condition015_RankLowest : BaseCondition
 
         int rank = character.rank;
 
-        return rank == PLAYER_MAX;
+        return rank == GameDataManager.instance.playerMax;
     }
 }

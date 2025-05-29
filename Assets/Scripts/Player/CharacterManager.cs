@@ -17,10 +17,10 @@ public class CharacterManager : SystemObject
     public override async UniTask Initialize()
     {
         instance = this;
-        _characterList = new List<Character>(PLAYER_MAX);
+        _characterList = new List<Character>(GameDataManager.instance.playerMax);
 
         // キャラクターの生成
-        for (int i = 0; i < PLAYER_MAX; i++)
+        for (int i = 0; i < GameDataManager.instance.playerMax; i++)
         {
             GenerateCharacter(i);
         }
@@ -59,7 +59,7 @@ public class CharacterManager : SystemObject
         var rankList = _characterList.OrderByDescending(p => p.stars)
             .ThenByDescending(p => p.coins).ToList();
 
-        for (int i = 0; i < PLAYER_MAX; i++)
+        for (int i = 0; i < GameDataManager.instance.playerMax; i++)
         {
             // 同率判定
             if (i > 0 &&
@@ -72,7 +72,7 @@ public class CharacterManager : SystemObject
         }
 
         // プレイヤーに反映
-        for (int i = 0; i < PLAYER_MAX; i++)
+        for (int i = 0; i < GameDataManager.instance.playerMax; i++)
         {
             var rankPlayer = rankList.First(p => p.playerID == _characterList[i].playerID);
             if (rankPlayer == null) return;
@@ -88,10 +88,10 @@ public class CharacterManager : SystemObject
     /// <returns></returns>
     public List<int> GetRankList()
     {
-        List<int> rank = new List<int>(PLAYER_MAX);
-        for (int i = 0; i < PLAYER_MAX; i++)
+        List<int> rank = new List<int>(GameDataManager.instance.playerMax);
+        for (int i = 0; i < GameDataManager.instance.playerMax; i++)
         {
-            for (int j = 0; j < PLAYER_MAX; j++)
+            for (int j = 0; j < GameDataManager.instance.playerMax; j++)
             {
                 if (_characterList[j].rank != i + 1) continue;
                 rank.Add(j);
@@ -106,7 +106,7 @@ public class CharacterManager : SystemObject
     /// <returns></returns>
     public Character GetTopPlayer()
     {
-        for (int i = 0; i < PLAYER_MAX; i++)
+        for (int i = 0; i < GameDataManager.instance.playerMax; i++)
         {
             if (_characterList[i].rank != 1) continue;
             return _characterList[i];

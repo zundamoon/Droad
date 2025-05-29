@@ -9,7 +9,7 @@ public class Event030_LoseCoinEveryone : BaseEvent
     public override async UniTask ExecuteEvent(EventContext context, int param)
     {
         // ‘SˆõƒRƒCƒ“‚ğŒ¸‚ç‚·
-        for (int i = 0; i < PLAYER_MAX; i++)
+        for (int i = 0; i < GameDataManager.instance.playerMax; i++)
         {
             Character targetCharacter = CharacterManager.instance.GetCharacter(i);
             targetCharacter.RemoveCoin(param);

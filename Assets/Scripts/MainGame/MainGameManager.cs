@@ -5,19 +5,19 @@ using Cysharp.Threading.Tasks;
 
 public class MainGameManager : SystemObject
 {
-    [SerializeField]
-    private GameData _gameData = null;
+    public static MainGameManager instance;
     private TurnProcessor _turnProcessor = null;
 
     public int currentTurn { get; private set; } = 0;
 
-    private const int _TURN_MAX = 30;
     private const int _TURN_TEXT_ID = 100;
     private const int _END_GAME_TEXT_ID = 128;
     private const string _RESULT_SCENE_NAME = "ResultScene";
 
     public override async UniTask Initialize()
     {
+        instance = this;
+
         Application.targetFrameRate = 60;
 
         _turnProcessor = new TurnProcessor();
@@ -33,7 +33,7 @@ public class MainGameManager : SystemObject
     private async UniTask MainGameProc()
     {
         StageManager.instance.DecideStarSquare();
-        while (currentTurn < _TURN_MAX)
+        while (currentTurn < GameDataManager.instance.turnMax)
         {
             await TurnCountUp();
             await _turnProcessor.TurnProc();
@@ -49,8 +49,8 @@ public class MainGameManager : SystemObject
     {
         currentTurn++;
         // UI�ɒʒm
-        await UIManager.instance.RunMessage(string.Format(_TURN_TEXT_ID.ToText(), currentTurn, _TURN_MAX));
-        await UIManager.instance.AddStatus(string.Format(_TURN_TEXT_ID.ToText(), currentTurn, _TURN_MAX));
+        await UIManager.instance.RunMessage(string.Format(_TURN_TEXT_ID.ToText(), currentTurn, GameDataManager.instance.turnMax));
+        await UIManager.instance.AddStatus(string.Format(_TURN_TEXT_ID.ToText(), currentTurn, GameDataManager.instance.turnMax));
     }
 
     /// <summary>
