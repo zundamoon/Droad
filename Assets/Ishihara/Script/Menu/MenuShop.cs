@@ -110,7 +110,7 @@ public class MenuShop : BaseMenu
         for (int i = 0; i < _buyCardIDList.Count; i++)
         {
             int CardID = _buyCardIDList[i];
-            var Card = CardManager.GetCard(CardID);
+            var Card = CardManager.instance.GetCard(CardID);
             ButtonText.Add(Card.price.ToString());
         }
         _menuChoice.SetChoiceButtonText(ButtonText);
@@ -132,7 +132,7 @@ public class MenuShop : BaseMenu
         for (int i = 0; i < _removalCardIDList.Count; i++)
         {
             int CardID = _removalCardIDList[i];
-            var Card = CardManager.GetCard(CardID);
+            var Card = CardManager.instance.GetCard(CardID);
             ButtonText.Add(Card.price.ToString());
         }
         _menuChoice.SetChoiceButtonText(ButtonText);

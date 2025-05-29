@@ -119,7 +119,7 @@ public class PossessCard
         int cardID = handCardIDList[handIndex];
         // 手札から一時的に破棄
         handCardIDList.Remove(cardID);
-        CardData useCard = CardManager.GetCard(cardID);
+        CardData useCard = CardManager.instance.GetCard(cardID);
         if (useCard == null) return -1;
         // コイン追加
         useCharacter.AddCoin(useCard.addCoin);
@@ -214,11 +214,11 @@ public class PossessCard
         discardCardIDList.Add(ID);
         possessCardIDList.Add(ID);
         _CardCallback();
-        int cardNameID = CardManager.GetCard(ID).nameID;
+        int cardNameID = CardManager.instance.GetCard(ID).nameID;
         await UIManager.instance.RunMessage(string.Format(_GET_CARD_TEXT_ID.ToText(), cardNameID.ToText()));
 
         // スターカードならUI更新
-        CardData card = CardManager.GetCard(ID);
+        CardData card = CardManager.instance.GetCard(ID);
         if (!card.IsStar()) return;
 
         _AddStarCallback(1);
@@ -236,7 +236,7 @@ public class PossessCard
         _CardCallback();
 
         // スターカードならUI更新
-        CardData card = CardManager.GetCard(ID);
+        CardData card = CardManager.instance.GetCard(ID);
         if (!card.IsStar()) return;
 
         _AddStarCallback(1);
@@ -271,7 +271,7 @@ public class PossessCard
             handCardIDList.Remove(handCardID);
             _CardCallback();
 
-            CardData card = CardManager.GetCard(handCardID);
+            CardData card = CardManager.instance.GetCard(handCardID);
             if (!card.IsStar()) continue;
             _LoseStarCallback(1);
         }
@@ -288,7 +288,7 @@ public class PossessCard
         List<int> starIDList = new List<int>(max);
         for (int i = 0; i < max; i++)
         {
-            if (!CardManager.GetCard(possessCardIDList[i]).IsStar()) continue;
+            if (!CardManager.instance.GetCard(possessCardIDList[i]).IsStar()) continue;
 
             starIDList.Add(i);
         }
@@ -298,7 +298,7 @@ public class PossessCard
 
         // 指定IDを見つけ除外する
         RemoveCardID(randomID);
-        possessCardIDList.Remove(randomID);
+        _LoseStarCallback(1);
 
         return randomID;
     }
@@ -309,6 +309,7 @@ public class PossessCard
     /// <param name="cardID"></param>
     private void RemoveCardID(int cardID)
     {
+        possessCardIDList.Remove(cardID);
         if (handCardIDList.Remove(cardID)) return;
         if (discardCardIDList.Remove(cardID)) return;
         if (deckCardIDList.Remove(cardID)) return;
@@ -323,7 +324,7 @@ public class PossessCard
         int star = 0;
         for (int i = 0, max = possessCardIDList.Count; i < max; i++)
         {
-            CardData card = CardManager.GetCard(possessCardIDList[i]);
+            CardData card = CardManager.instance.GetCard(possessCardIDList[i]);
             star += card.star;
         }
         return star;

@@ -52,12 +52,13 @@ public class CardData_importer : AssetPostprocessor {
 						
 					cell = row.GetCell(0); p.ID = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(1); p.nameID = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(2); p.advance = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(3); p.coin = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(4); p.rarity = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(6); p.eventID = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(7); p.star = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(8); p.price = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(2); p.imageID = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(3); p.advance = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(4); p.coin = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(5); p.rarity = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(7); p.eventID = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(8); p.star = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(9); p.price = (int)(cell == null ? 0 : cell.NumericCellValue);
 						s.list.Add (p);
 					}
 					data.sheets.Add(s);

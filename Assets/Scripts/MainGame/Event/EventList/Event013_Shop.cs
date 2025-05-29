@@ -33,7 +33,7 @@ public class Event013_Shop : BaseEvent
         await UIManager.instance.SetRemovaItem(character.possessCard.deckCardIDList);
         await UIManager.instance.SetSelectCallback(async (cardID, isRemove) =>
         {
-            CardData card = CardManager.GetCard(cardID);
+            CardData card = CardManager.instance.GetCard(cardID);
             if (!await character.Pay(card.price)) return;
 
             await UIManager.instance.RemoveShopItem(cardID, isRemove);
@@ -53,25 +53,25 @@ public class Event013_Shop : BaseEvent
         // ブロンズ
         for (int i = 0; i < _BRONZE_CARD_COUNT; i++)
         {
-            int cardID = CardManager.GetRandRarityCard(Rarity.BRONZE);
+            int cardID = CardManager.instance.GetRandRarityCard(Rarity.BRONZE);
             cardIDList.Add(cardID);
         }
         // シルバー
         for (int i = 0; i < _SILVER_CARD_COUNT; i++)
         {
-            int cardID = CardManager.GetRandRarityCard(Rarity.SILVER);
+            int cardID = CardManager.instance.GetRandRarityCard(Rarity.SILVER);
             cardIDList.Add(cardID);
         }
         // ゴールド
         for (int i = 0; i < _GOLD_CARD_COUNT; i++)
         {
-            int cardID = CardManager.GetRandRarityCard(Rarity.GOLD);
+            int cardID = CardManager.instance.GetRandRarityCard(Rarity.GOLD);
             cardIDList.Add(cardID);
         }
         // レジェンド
         for (int i = 0; i < _LEGENDARY_CARD_COUNT; i++)
         {
-            int cardID = CardManager.GetRandRarityCard(Rarity.LEGENDARY);
+            int cardID = CardManager.instance.GetRandRarityCard(Rarity.LEGENDARY);
             cardIDList.Add(cardID);
         }
     }

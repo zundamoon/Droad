@@ -8,6 +8,7 @@ public class GameSettingManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> countUIObjectList;
     private List<BaseCountUI> countUIList = new List<BaseCountUI>();
+    [SerializeField] private GameData _gameData = null;
 
     private const string _NEXT_SCENE_NAME = "MainGame";
 

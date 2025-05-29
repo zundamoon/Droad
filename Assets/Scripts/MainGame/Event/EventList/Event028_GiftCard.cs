@@ -23,7 +23,7 @@ public class Event028_GiftCard : BaseEvent
         Character character = context.character;
         if (character == null) return;
 
-        int cardID = CardManager.GetRandRarityCard(GetRarity());
+        int cardID = CardManager.instance.GetRandRarityCard(GetRarity());
         await character.possessCard.AddCardDiscard(cardID);
     }
 

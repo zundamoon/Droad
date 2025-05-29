@@ -53,7 +53,7 @@ public class MenuStatusChara : MenuStatusItem
             if (i < chara.possessCard.handCardIDList.Count)
             {
                 int cardID = chara.possessCard.handCardIDList[i];
-                CardData cardData = CardManager.GetCard(cardID);
+                CardData cardData = CardManager.instance.GetCard(cardID);
                 _charaCards[i].text = cardData.advance.ToString();
             }
             else

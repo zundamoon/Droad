@@ -26,7 +26,7 @@ public class Event024_ExecuteHandCard : BaseEvent
         await UIManager.instance.SetChoiceCallback(async (cardID) =>
         {
             // イベント実行
-            int eventID = CardManager.GetCard(cardID).eventID;
+            int eventID = CardManager.instance.GetCard(cardID).eventID;
             await EventManager.ExecuteEvent(eventID, context);
         });
 

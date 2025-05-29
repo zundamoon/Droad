@@ -16,10 +16,10 @@ public class Condition007_HandAdvanceSameAll : BaseCondition
         int handCount = handIDList.Count;
         // ŽèŽD‚ª1–‡ˆÈ‰º‚È‚çtrue
         if (handCount <= 1) return true;
-        int beforeAdvance = CardManager.GetCard(handIDList[0]).advance;
+        int beforeAdvance = CardManager.instance.GetCard(handIDList[0]).advance;
         for (int i = 1, max = handIDList.Count; i < max; i++)
         {
-            int advance = CardManager.GetCard(handIDList[i]).advance;
+            int advance = CardManager.instance.GetCard(handIDList[i]).advance;
 
             if (advance != beforeAdvance) return false;
         }

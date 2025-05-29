@@ -17,6 +17,7 @@ MonoBehaviour:
     list:
     - ID: 0
       nameID: 300
+      imageID: 0
       advance: 1
       coin: 5
       rarity: 0
@@ -25,6 +26,7 @@ MonoBehaviour:
       price: 5
     - ID: 1
       nameID: 301
+      imageID: 0
       advance: 2
       coin: 5
       rarity: 0
@@ -33,6 +35,7 @@ MonoBehaviour:
       price: 5
     - ID: 2
       nameID: 302
+      imageID: 0
       advance: 3
       coin: 5
       rarity: 0
@@ -41,6 +44,7 @@ MonoBehaviour:
       price: 5
     - ID: 3
       nameID: 303
+      imageID: 0
       advance: 4
       coin: 5
       rarity: 0
@@ -49,6 +53,7 @@ MonoBehaviour:
       price: 5
     - ID: 4
       nameID: 304
+      imageID: 0
       advance: 5
       coin: 5
       rarity: 0
@@ -57,6 +62,7 @@ MonoBehaviour:
       price: 5
     - ID: 5
       nameID: 305
+      imageID: 0
       advance: 6
       coin: 5
       rarity: 0
@@ -65,6 +71,7 @@ MonoBehaviour:
       price: 5
     - ID: 6
       nameID: 306
+      imageID: -1
       advance: 1
       coin: 4
       rarity: 1
@@ -73,6 +80,7 @@ MonoBehaviour:
       price: 10
     - ID: 7
       nameID: 307
+      imageID: -1
       advance: 2
       coin: 4
       rarity: 1
@@ -81,6 +89,7 @@ MonoBehaviour:
       price: 10
     - ID: 8
       nameID: 308
+      imageID: -1
       advance: 3
       coin: 4
       rarity: 1
@@ -89,6 +98,7 @@ MonoBehaviour:
       price: 10
     - ID: 9
       nameID: 309
+      imageID: -1
       advance: 4
       coin: 4
       rarity: 1
@@ -97,6 +107,7 @@ MonoBehaviour:
       price: 10
     - ID: 10
       nameID: 310
+      imageID: -1
       advance: 5
       coin: 4
       rarity: 1
@@ -105,6 +116,7 @@ MonoBehaviour:
       price: 10
     - ID: 11
       nameID: 311
+      imageID: -1
       advance: 6
       coin: 4
       rarity: 1
@@ -113,6 +125,7 @@ MonoBehaviour:
       price: 10
     - ID: 12
       nameID: 312
+      imageID: -1
       advance: 1
       coin: 3
       rarity: 2
@@ -121,6 +134,7 @@ MonoBehaviour:
       price: 15
     - ID: 13
       nameID: 313
+      imageID: -1
       advance: 2
       coin: 3
       rarity: 2
@@ -129,6 +143,7 @@ MonoBehaviour:
       price: 15
     - ID: 14
       nameID: 314
+      imageID: -1
       advance: 3
       coin: 3
       rarity: 2
@@ -137,6 +152,7 @@ MonoBehaviour:
       price: 15
     - ID: 15
       nameID: 315
+      imageID: -1
       advance: 4
       coin: 3
       rarity: 2
@@ -145,6 +161,7 @@ MonoBehaviour:
       price: 15
     - ID: 16
       nameID: 316
+      imageID: -1
       advance: 5
       coin: 3
       rarity: 2
@@ -153,6 +170,7 @@ MonoBehaviour:
       price: 15
     - ID: 17
       nameID: 317
+      imageID: -1
       advance: 6
       coin: 3
       rarity: 2
@@ -161,6 +179,7 @@ MonoBehaviour:
       price: 15
     - ID: 18
       nameID: 318
+      imageID: -1
       advance: 1
       coin: 2
       rarity: 3
@@ -169,6 +188,7 @@ MonoBehaviour:
       price: 20
     - ID: 19
       nameID: 319
+      imageID: -1
       advance: 2
       coin: 2
       rarity: 3
@@ -177,6 +197,7 @@ MonoBehaviour:
       price: 20
     - ID: 20
       nameID: 320
+      imageID: -1
       advance: 3
       coin: 2
       rarity: 3
@@ -185,6 +206,7 @@ MonoBehaviour:
       price: 20
     - ID: 21
       nameID: 321
+      imageID: -1
       advance: 4
       coin: 2
       rarity: 3
@@ -193,6 +215,7 @@ MonoBehaviour:
       price: 20
     - ID: 22
       nameID: 322
+      imageID: -1
       advance: 5
       coin: 2
       rarity: 3
@@ -201,6 +224,7 @@ MonoBehaviour:
       price: 20
     - ID: 23
       nameID: 323
+      imageID: -1
       advance: 6
       coin: 2
       rarity: 3
@@ -209,6 +233,7 @@ MonoBehaviour:
       price: 20
     - ID: 24
       nameID: 324
+      imageID: -1
       advance: 1
       coin: 1
       rarity: 4
@@ -217,6 +242,7 @@ MonoBehaviour:
       price: 30
     - ID: 25
       nameID: 325
+      imageID: -1
       advance: 2
       coin: 1
       rarity: 4
@@ -225,6 +251,7 @@ MonoBehaviour:
       price: 30
     - ID: 26
       nameID: 326
+      imageID: -1
       advance: 3
       coin: 1
       rarity: 4
@@ -233,6 +260,7 @@ MonoBehaviour:
       price: 30
     - ID: 27
       nameID: 327
+      imageID: -1
       advance: 4
       coin: 1
       rarity: 4
@@ -241,6 +269,7 @@ MonoBehaviour:
       price: 30
     - ID: 28
       nameID: 328
+      imageID: -1
       advance: 5
       coin: 1
       rarity: 4
@@ -249,6 +278,7 @@ MonoBehaviour:
       price: 30
     - ID: 29
       nameID: 329
+      imageID: -1
       advance: 6
       coin: 1
       rarity: 4
@@ -257,6 +287,7 @@ MonoBehaviour:
       price: 30
     - ID: 0
       nameID: 0
+      imageID: 0
       advance: 0
       coin: 0
       rarity: 0

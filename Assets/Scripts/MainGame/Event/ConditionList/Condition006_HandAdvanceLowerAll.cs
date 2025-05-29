@@ -15,7 +15,7 @@ public class Condition006_HandAdvanceLowerAll : BaseCondition
         List<int> handIDList = character.possessCard.handCardIDList;
         for (int i = 0, max = handIDList.Count; i < max; i++)
         {
-            int advance = CardManager.GetCard(handIDList[i]).advance;
+            int advance = CardManager.instance.GetCard(handIDList[i]).advance;
             if (advance > param) return false;
         }
 

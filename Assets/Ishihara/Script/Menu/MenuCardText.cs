@@ -24,7 +24,7 @@ public class MenuCardText : BaseMenu
     {
         int ID = cardID;
         // ƒJ[ƒhî•ñæ“¾
-        CardData card = CardManager.GetCard(ID);
+        CardData card = CardManager.instance.GetCard(ID);
         if (card == null) return;
         _nameText.text = card.nameID.ToText();
         _advanceText.text = string.Format(_ADVANCE_TEXT_ID.ToText(), card.advance);

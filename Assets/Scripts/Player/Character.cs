@@ -56,6 +56,7 @@ public class Character : MonoBehaviour
         SetPosition(initPosition);
         nextPosition = StageManager.instance.GetNextPosition(position);
         AdaptPlayerColor();
+        AddStar(possessCard.CountStar());
     }
     /// <summary>
     /// 移動後イベントの設定
@@ -84,6 +85,7 @@ public class Character : MonoBehaviour
     public void AddCoin(int value) 
     { 
         coins += value;
+        if (UpdateStatus == null) return;
         UpdateStatus(this);
     }
     public int RemoveCoin(int value)
@@ -91,12 +93,14 @@ public class Character : MonoBehaviour
         int result = Math.Max(0, coins - value);
         int removeCoin = coins - result;
         coins = result;
+        if (UpdateStatus == null) return -1;
         UpdateStatus(this);
         return removeCoin;
     }
     public void AddStar(int value) 
     { 
         stars += value;
+        if (UpdateStatus == null) return;
         UpdateStatus(this);
     }
     public int RemoveStar(int value)
@@ -104,6 +108,7 @@ public class Character : MonoBehaviour
         int result = Math.Max(0, stars - value);
         int removeStar = stars - result;
         stars = result;
+        if (UpdateStatus == null) return -1;
         UpdateStatus(this);
         return removeStar;
     }
