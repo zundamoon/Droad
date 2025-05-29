@@ -47,4 +47,4 @@ MonoBehaviour:
   dragSpeed: 1
   zoomSpeed: 10
   zoomMin: 5
-  zoomMax: 100
+  zoomMax: 50
