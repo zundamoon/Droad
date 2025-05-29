@@ -50,8 +50,4 @@ public class CameraMover : MonoBehaviour
 
         transform.rotation = endQuat;
     }
-
-    // オプション：インスペクタから開始用
-    [ContextMenu("Start Rotate")]
-    private void DebugRotate() => StartRotate();
 }
