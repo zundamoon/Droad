@@ -1809,6 +1809,7 @@ MonoBehaviour:
   countUIObjectList:
   - {fileID: 1664402349}
   - {fileID: 1148929002}
+  _gameData: {fileID: 11400000, guid: 5f24dcae961f7d74180ea67d0b684619, type: 2}
 --- !u!4 &1737442402
 Transform:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class Event025_SameAdvanceAddCoin : BaseEvent
         int cardAdvance = card.advance;
         for (int i = 0, max = handList.Count; i < max; i++)
         {
-            CardData handCard = CardManager.GetCard(handList[i]);
+            CardData handCard = CardManager.instance.GetCard(handList[i]);
             if (handCard.advance == cardAdvance) isSame = true;
         }
 

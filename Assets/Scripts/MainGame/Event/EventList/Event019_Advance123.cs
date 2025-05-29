@@ -17,7 +17,7 @@ public class Event019_Advance123 : BaseEvent
         await UIManager.instance.SetChoiceCallback((cardID) =>
         {
             CardData newCard = new CardData();
-            newCard.SetAdvance(CardManager.GetCard(cardID).advance);
+            newCard.SetAdvance(CardManager.instance.GetCard(cardID).advance);
             context.card = newCard;
         });
 

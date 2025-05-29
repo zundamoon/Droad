@@ -19,6 +19,7 @@ public class Entity_CardData : ScriptableObject
 		
 		public int ID;
 		public int nameID;
+		public int imageID;
 		public int advance;
 		public int coin;
 		public int rarity;

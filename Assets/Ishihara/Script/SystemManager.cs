@@ -13,7 +13,6 @@ public class SystemManager : MonoBehaviour
         // 各種データの初期化
         MasterDataManager.LoadAllData();
         EventManager.Init();
-        CardManager.Init();
         UniTask task = Initialize();
     }
 

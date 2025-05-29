@@ -15,7 +15,7 @@ public class Condition004_HandOddAll : BaseCondition
         List<int> handIDList = character.possessCard.handCardIDList;
         for (int i = 0, max = handIDList.Count; i < max; i++)
         {
-            int advance = CardManager.GetCard(handIDList[i]).advance;
+            int advance = CardManager.instance.GetCard(handIDList[i]).advance;
             // Šï”‚Å‚È‚¢‚È‚çfalse
             if (advance % 2 != 1) return false;
         }

@@ -14,7 +14,7 @@ using System;
 public class FadeScreen : MonoBehaviour
 {
     [SerializeField] private Canvas canvas;
-    [SerializeField] private Image fade;            // 黒画面
+    [SerializeField] private UnityEngine.UI.Image fade;            // 黒画面
 
     [SerializeField] public float alphaValue = 0.0f;               // Fadeイメージのアルファ値を管理
 

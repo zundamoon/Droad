@@ -7,6 +7,7 @@ using Cysharp.Threading.Tasks;
 using static CommonModule;
 using static GameConst;
 using UnityEngine.TextCore.Text;
+using static UnityEngine.GraphicsBuffer;
 
 public class TurnProcessor
 {
@@ -43,11 +44,11 @@ public class TurnProcessor
         }
 
         // 手番決め
-        await UIManager.instance.RunMessage(_ORDER_TURN_ANNOUNCE_ID.ToText());
-        await DesidePlayerOrder();
-        await UIManager.instance.ScrollAllStatus();
-        await UIManager.instance.AddStatus(playerOrder);
-        await UIManager.instance.AddStatus(_ORDER_TURN_ANNOUNCE_ID.ToText());
+        //await UIManager.instance.RunMessage(_ORDER_TURN_ANNOUNCE_ID.ToText());
+        //await DesidePlayerOrder();
+        //await UIManager.instance.ScrollAllStatus();
+        //await UIManager.instance.AddStatus(playerOrder);
+        //await UIManager.instance.AddStatus(_ORDER_TURN_ANNOUNCE_ID.ToText());
 
         // 各手番
         for (int i = 0; i < PLAYER_MAX; i++)
@@ -73,7 +74,7 @@ public class TurnProcessor
     /// </summary>
     private async UniTask DesidePlayerOrder()
     {
-        List<int> playCardList = new List<int>(PLAYER_MAX);
+        Dictionary<int, int> playCardMap = new Dictionary<int, int>();
         for (int i = 0; i < PLAYER_MAX; i++)
         {
             Character character = CharacterManager.instance.GetCharacter(playerOrder[i]);
@@ -100,39 +101,35 @@ public class TurnProcessor
                 CameraManager.instance.CameraDrag();
                 CameraManager.instance.CameraZoom();
             }
-
             // カメラの位置をプレイヤーの元に戻す
             await CameraManager.SetAnchor(StageManager.instance.GetCameraAnchor());
 
+            int playerID = playerOrder[i];
             int playCardCount = GetOrderCount(handIndex, character);
-            playCardList.Add(playCardCount);
+            playCardMap[playerID] = playCardCount;
             await UIManager.instance.CloseDetail();
             await UIManager.instance.ScrollStatus();
-            await UIManager.instance.AddStatus(playerOrder[i]);
+            await UIManager.instance.AddStatus(playerID);
         }
         playerOrder.Clear();
         // 出されたカードから順番を決める
-        while (playerOrder.Count < PLAYER_MAX)
+        var sorted = playCardMap
+        .GroupBy(kvp => kvp.Value)
+        .OrderByDescending(g => g.Key)
+        .SelectMany(g =>
         {
-            int maxValue = playCardList.Max();
-            List<int> indexList = new();
-            for (int i = 0; i < playCardList.Count; i++)
+            List<int> ids = g.Select(kvp => kvp.Key).ToList();
+            // 同点の中でランダムに並び替え
+            for (int i = 0; i < ids.Count; i++)
             {
-                if (playCardList[i] == maxValue)
-                {
-                    indexList.Add(i);
-                }
+                int j = UnityEngine.Random.Range(i, ids.Count);
+                (ids[i], ids[j]) = (ids[j], ids[i]);
             }
-            // indexList からランダムな順番で playerOrder に追加
-            while (indexList.Count > 0)
-            {
-                int rand = Random.Range(0, indexList.Count);
-                int chosenIndex = indexList[rand];
-                playerOrder.Add(chosenIndex);
-                playCardList[chosenIndex] = -1;
-                indexList.RemoveAt(rand);
-            }
-        }
+            return ids;
+        })
+        .ToList();
+
+        playerOrder = sorted;
     }
 
     /// <summary>
@@ -145,7 +142,7 @@ public class TurnProcessor
         PossessCard possess = playCharacter.possessCard;
         int ID = possess.handCardIDList[handIndex];
         possess.DiscardHandIndex(handIndex);
-        return CardManager.GetCard(ID).advance;
+        return CardManager.instance.GetCard(ID).advance;
     }
 
     /// <summary>
@@ -196,6 +193,8 @@ public class TurnProcessor
         if (!turnCharacter.CanEvent()) return;
         await ExcuteSquareEvent(turnCharacter);
 
+        // 移動後にイベント実行数をリセット
+        turnCharacter.SetRepeatEventCount(1);
         await turnCharacter.SquareShift();
     }
 
@@ -258,18 +257,18 @@ public class TurnProcessor
         {
             // スターマスならスターイベントを実行
             if (targetSquare.GetIsStarSquare()) eventID = _STAR_EVENT_ID;
+            else eventID = targetSquare.GetEventID();
 
             EventContext context = new EventContext()
-            {
-                character = target,
-                square = targetSquare,
-            };
+                {
+                    character = target,
+                    square = targetSquare,
+                };
 
             await EventManager.ExecuteEvent(eventID, context);
 
             // 複数実行可マス出ないなら終わる
             if (!targetSquare.GetSquareData().canRepeatSquare) break;
         }
-        target.SetRepeatEventCount(1);
     }
 }

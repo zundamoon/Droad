@@ -6,8 +6,7 @@ using Cysharp.Threading.Tasks;
 public class MainGameManager : SystemObject
 {
     [SerializeField]
-    public List<Character> characterList { get; private set; } = null;
-
+    private GameData _gameData = null;
     private TurnProcessor _turnProcessor = null;
 
     public int currentTurn { get; private set; } = 0;
@@ -15,7 +14,6 @@ public class MainGameManager : SystemObject
     private const int _TURN_MAX = 30;
     private const int _TURN_TEXT_ID = 100;
     private const int _END_GAME_TEXT_ID = 128;
-    private const int _WIN_PLAYER_TEXT_ID = 129;
     private const string _RESULT_SCENE_NAME = "ResultScene";
 
     public override async UniTask Initialize()

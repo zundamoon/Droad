@@ -26,7 +26,7 @@ public class Event012_BuyStar : BaseEvent
         await UIManager.instance.SetBuyItem(cardIDList);
         await UIManager.instance.SetSelectCallback(async (cardID, isRemove) =>
         {
-            CardData card = CardManager.GetCard(cardID);
+            CardData card = CardManager.instance.GetCard(cardID);
             if (!await character.Pay(card.price)) return;
             await UIManager.instance.RemoveShopItem(cardID, isRemove);
             await character.possessCard.AddCardDiscard(cardID);

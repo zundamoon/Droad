@@ -16,7 +16,7 @@ public class Condition002_HandStarHigher : BaseCondition
         int starCount = 0;
         for (int i = 0, max = handIDList.Count; i < max; i++)
         {
-            if (!CardManager.GetCard(handIDList[i]).IsStar()) continue;
+            if (!CardManager.instance.GetCard(handIDList[i]).IsStar()) continue;
             starCount++;
         }
 

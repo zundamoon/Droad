@@ -28,7 +28,7 @@ public class Event023_ExecuteDiscardCard : BaseEvent
             // デッキに戻す
             character.possessCard.ReturnDiscardToDeck(cardID);
             // イベント実行
-            int eventID = CardManager.GetCard(cardID).eventID;
+            int eventID = CardManager.instance.GetCard(cardID).eventID;
             await EventManager.ExecuteEvent(eventID, context);
         });
 

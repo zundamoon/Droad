@@ -27,7 +27,7 @@ public class Event022_DiscardHandAdvance : BaseEvent
         {
             character.possessCard.DiscardHandID(cardID);
             CardData newCard = new CardData();
-            newCard.SetAdvance(card.advance + CardManager.GetCard(cardID).advance);
+            newCard.SetAdvance(card.advance + CardManager.instance.GetCard(cardID).advance);
             context.card = newCard;
         });
 

@@ -17,10 +17,10 @@ public class Condition008_HandRaritySameAll : BaseCondition
         int handCount = handIDList.Count;
         // ŽèŽD‚ª1–‡ˆÈ‰º‚È‚çtrue
         if (handCount <= 1) return true;
-        Rarity beforeRarity = CardManager.GetCard(handIDList[0]).rarity;
+        Rarity beforeRarity = CardManager.instance.GetCard(handIDList[0]).rarity;
         for (int i = 1, max = handIDList.Count; i < max; i++)
         {
-            Rarity rarity = CardManager.GetCard(handIDList[i]).rarity;
+            Rarity rarity = CardManager.instance.GetCard(handIDList[i]).rarity;
 
             if (rarity != beforeRarity) return false;
         }
