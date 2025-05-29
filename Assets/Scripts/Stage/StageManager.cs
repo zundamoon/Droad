@@ -228,11 +228,18 @@ public class StageManager : SystemObject
         // 最後のマスにスターを置く
         if (squareList.Count > 0)
         {
-            int value = UnityEngine.Random.Range(1, 5);
+            Square square = null;
+            while (true)
+            {
+                // マスの抽選
+                int value = UnityEngine.Random.Range(1, 5);
+                StagePosition lastSquarePos = squareList[squareList.Count - value];
+                square = GetSquare(lastSquarePos);
 
-            StagePosition lastSquarePos = squareList[squareList.Count - value];
-            Square square = GetSquare(lastSquarePos);
-            // square.SetIsStarSquare(true);
+                // 分岐マスへの設置を防ぐ
+                if (square.GetSquareData() is not BranchSquare) break;
+            }
+
             square.ChangeStarSquare();
         }
     }
