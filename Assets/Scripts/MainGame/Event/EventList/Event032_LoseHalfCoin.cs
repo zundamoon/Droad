@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Event032_LoseHalfCoin : BaseEvent
 {
+    private const int _LOSE_HALF_COIN_TEXT_ID = 136;
+
     public override async UniTask ExecuteEvent(EventContext context, int param)
     {
         if (context == null) return;
@@ -14,6 +16,6 @@ public class Event032_LoseHalfCoin : BaseEvent
 
         int halfCoin = character.coins / 2;
         character.RemoveCoin(halfCoin);
-        await UniTask.CompletedTask;
+        await UIManager.instance.RunMessage(_LOSE_HALF_COIN_TEXT_ID.ToText());
     }
 }

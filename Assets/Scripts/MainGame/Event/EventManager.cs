@@ -11,6 +11,8 @@ public class EventManager
     // ğŒ‚ÌƒŠƒXƒg
     public static List<ICondition> conditionList { get; private set; } = null;
 
+    private const int _UNCOMPLETE_CONDITION_TEXT_ID = 130;
+
     public static void Init()
     {
         EventInit();
@@ -105,7 +107,11 @@ public class EventManager
 
         // ğŒ’B¬‚Å‚«‚È‚¢‚È‚çˆ—‚µ‚È‚¢
         int conditionID = eventMaster.conditionID;
-        if (conditionID < 0 || !await IsCompleteCondition(conditionID, context)) return;
+        if (conditionID >= 0 && !await IsCompleteCondition(conditionID, context))
+        {
+            await UIManager.instance.RunMessage(_UNCOMPLETE_CONDITION_TEXT_ID.ToText());
+            return;
+        }
 
         int eventIndex = eventMaster.eventType;
         int eventParam = eventMaster.param[0];
@@ -125,6 +131,6 @@ public class EventManager
         int conditionType = conditionMaster.type;
         int conditionParam = conditionMaster.param;
 
-        return await conditionList[conditionType].IsCompleteCondition(context, conditionParam); ;
+        return await conditionList[conditionType].IsCompleteCondition(context, conditionParam);
     }
 }

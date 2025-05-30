@@ -2,10 +2,11 @@ using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static GameConst;
 
 public class Event031_StealCoinEveryone : BaseEvent
 {
+    private const int _TEXT_ID = 140;
+
     public override async UniTask ExecuteEvent(EventContext context, int param)
     {
         if (context == null) return;
@@ -22,7 +23,6 @@ public class Event031_StealCoinEveryone : BaseEvent
             stealCount += targetCharacter.RemoveCoin(param);
         }
         character.AddCoin(stealCount);
-
-        await UniTask.CompletedTask;
+        await UIManager.instance.RunMessage(string.Format(_TEXT_ID.ToText(), stealCount));
     }
 }

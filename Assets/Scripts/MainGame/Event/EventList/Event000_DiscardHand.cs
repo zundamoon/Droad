@@ -7,6 +7,7 @@ public class Event000_DiscardHand : BaseEvent
 {
     private const int _CHOICE_TEXT_ID = 114;
     private const int _NO_HAND_TEXT_ID = 124;
+    private const int _DISCARD_HAND_TEXT_ID = 132;
 
     public override async UniTask ExecuteEvent(EventContext context, int param)
     {
@@ -23,9 +24,10 @@ public class Event000_DiscardHand : BaseEvent
         }
 
         // ‘I‘ð‚ÌŒÄ‚Ño‚µ
-        await UIManager.instance.SetChoiceCallback((cardID) =>
+        await UIManager.instance.SetChoiceCallback(async (cardID) =>
         {
-            character.possessCard.DiscardHandID(cardID);
+            await character.possessCard.DiscardHandID(cardID);
+            await UIManager.instance.RunMessage(_DISCARD_HAND_TEXT_ID.ToText());
         });
 
         await UIManager.instance.RunMessage(_CHOICE_TEXT_ID.ToText());

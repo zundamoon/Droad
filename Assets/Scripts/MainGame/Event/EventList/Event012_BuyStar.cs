@@ -7,6 +7,7 @@ using UnityEngine.TextCore.Text;
 public class Event012_BuyStar : BaseEvent
 {
     private readonly int[] _STAR_CARD_ID_LIST = { 24, 25, 26, 27, 28, 29 };
+    private const int _STAR_TEXT_ID = 112;
 
     public override async UniTask ExecuteEvent(EventContext context, int param)
     {
@@ -16,6 +17,7 @@ public class Event012_BuyStar : BaseEvent
         Square square = context.square;
         if (character == null || square == null) return;
 
+        await UIManager.instance.RunMessage(_STAR_TEXT_ID.ToText());
         // 表示カードを抽選
         List<int> cardIDList = new List<int>(1);
         int starID = _STAR_CARD_ID_LIST[Random.Range(0, _STAR_CARD_ID_LIST.Length)];

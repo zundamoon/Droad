@@ -112,15 +112,41 @@ MonoBehaviour:
     - ID: 126
       text: "\u767A\u52D5\u3059\u308B\u30AB\u30FC\u30C9\u3092\u9078\u3093\u3067\u306D\uFF01"
     - ID: 127
-      text: "{0}\u3092\u5165\u624B"
+      text: "{0}\u3092\u30D7\u30EC\u30BC\u30F3\u30C8\uFF01"
     - ID: 128
       text: "\u30B2\u30FC\u30E0\u7D42\u4E86\uFF01"
     - ID: 129
       text: "{0}\u306E\u52DD\u3061\uFF01"
+    - ID: 130
+      text: "\u6761\u4EF6\u672A\u9054\u6210"
+    - ID: 131
+      text: "\u6B21\u306E\u30DE\u30B9\u52B9\u679C\u7121\u52B9"
+    - ID: 132
+      text: "\u624B\u672D\u3092\u6368\u3066\u305F"
+    - ID: 133
+      text: "\u5168\u54E1\u30EA\u30B7\u30E3\u30C3\u30D5\u30EB\uFF01"
+    - ID: 134
+      text: "\u9032\u3080\u65B9\u5411\u3092\u9078\u3093\u3067\u306D\uFF01"
+    - ID: 135
+      text: "\u6B21\u306E\u30DE\u30B9\u52B9\u679C\u3092{0}\u56DE\u7E70\u308A\u8FD4\u3059"
+    - ID: 136
+      text: "\u30B3\u30A4\u30F3\u3092\u534A\u5206\u5931\u3063\u305F\uFF01"
+    - ID: 137
+      text: "{0}\u30DE\u30B9\u9032\u3080"
+    - ID: 138
+      text: "\u30B3\u30A4\u30F3\u304C\u500D\u306B\u306A\u3063\u305F\uFF01"
+    - ID: 139
+      text: "\u5168\u54E1\u30B3\u30A4\u30F3\u3092{0}\u679A\u5931\u3063\u305F\uFF01"
+    - ID: 140
+      text: "\u30B3\u30A4\u30F3\u3092{0}\u679A\u76D7\u3093\u3060\uFF01"
     - ID: 200
       text: "{0}\u30DE\u30B9"
     - ID: 201
       text: "{0}\u30B3\u30A4\u30F3"
+    - ID: 202
+      text: "\u6761\u4EF6 : "
+    - ID: 203
+      text: "\u52B9\u679C : "
     - ID: 300
       text: "\u7740\u5B9F\u306A\u4E00\u6B69"
     - ID: 301
