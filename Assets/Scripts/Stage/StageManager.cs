@@ -20,16 +20,17 @@ public class StageManager : SystemObject
     public override async UniTask Initialize()
     {
         instance = this;
-        GenerateStage();
+        await GenerateStage();
         GameObject stageDataObject = GameObject.Find("StageData");
         stageData = stageDataObject.GetComponent<StageData>();
+
         InitAllSquare();
     }
 
     /// <summary>
     ///  ステージを生成
     /// </summary>
-    public void GenerateStage()
+    public async UniTask GenerateStage()
     {
         Instantiate(stagePrefab, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
     }
