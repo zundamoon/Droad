@@ -21,7 +21,7 @@ public class CardObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     [SerializeField]
     private Image _BGFrame = null;
     [SerializeField]
-    private SpriteRenderer _spriteRenderer = null;
+    private Image _image = null;
     [SerializeField]
     private GameObject _highLight = null;
 
@@ -181,7 +181,7 @@ public class CardObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         _advanceText.text = card.advance.ToString();
         _coinText.text = card.addCoin.ToString();
         Sprite cardImage = CardManager.instance.GetCardImage(card.imageID);
-        if (cardImage != null) _spriteRenderer.sprite = cardImage;
+        if (cardImage != null) _image.sprite = cardImage;
         switch (card.rarity)
         {
             case GameEnum.Rarity.BRONZE:

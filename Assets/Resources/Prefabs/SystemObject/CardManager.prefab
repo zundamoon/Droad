@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f89945e1bb25517458250e97a440eece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _imageClip: {fileID: 11400000, guid: aa795c7452df6b9448bbcd5ac33d6ac1, type: 2}
+  _spriteClip: {fileID: 11400000, guid: aa795c7452df6b9448bbcd5ac33d6ac1, type: 2}
