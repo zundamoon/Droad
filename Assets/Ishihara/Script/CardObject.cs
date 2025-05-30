@@ -209,12 +209,14 @@ public class CardObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             return;
         }
         int conditionID = param.conditionID;
-        string condition = string.Format(_CONDITION_TEXT_ID.ToText() + "‚È‚µ");
-        if (conditionID != -1) string.Format(_CONDITION_TEXT_ID.ToText() + conditionID.ToText());
+        string conditionText = string.Format(_CONDITION_TEXT_ID.ToText() + "‚È‚µ");
+        var conditionMaster = ConditionMasterUtility.GetConditionMaster(conditionID);
+        if (conditionID != -1)
+            conditionText = string.Format(_CONDITION_TEXT_ID.ToText() + string.Format(conditionMaster.textID.ToText(), conditionMaster.param));
         int eventTextID = param.textID;
         int[] paramList = param.param;
         string eventText = string.Format(_EVENT_TEXT_ID.ToText() + eventTextID.ToText(), paramList[0], paramList[1]);
-        _eventText.text = string.Format(condition + '\n' + eventText);
+        _eventText.text = string.Format(conditionText + '\n' + eventText);
     }
 
     /// <summary>

@@ -66,6 +66,30 @@ public class EventManager
     {
         conditionList = new List<ICondition>();
         conditionList.Add(new Condition000_CoinHigher());
+        conditionList.Add(new Condition001_CoinLower());
+        conditionList.Add(new Condition002_HandStarHigher());
+        conditionList.Add(new Condition003_HandEvenAll());
+        conditionList.Add(new Condition004_HandOddAll());
+        conditionList.Add(new Condition005_HandAdvanceHigherAll());
+        conditionList.Add(new Condition006_HandAdvanceLowerAll());
+        conditionList.Add(new Condition007_HandAdvanceSameAll());
+        conditionList.Add(new Condition008_HandRaritySameAll());
+        conditionList.Add(new Condition009_DeckHigher());
+        conditionList.Add(new Condition010_DeckLower());
+        conditionList.Add(new Condition011_DiscardHigher());
+        conditionList.Add(new Condition012_DiscardLower());
+        conditionList.Add(new Condition013_RankTop());
+        conditionList.Add(new Condition014_RankNoTop());
+        conditionList.Add(new Condition015_RankLowest());
+        conditionList.Add(new Condition016_RankNoLowest());
+        conditionList.Add(new Condition017_HandAdvanceSumHigher());
+        conditionList.Add(new Condition018_HandAdvanceSumLower());
+        conditionList.Add(new Condition019_HandAdvanceSumSame());
+        conditionList.Add(new Condition020_Probability());
+        conditionList.Add(new Condition021_HandAdvanceSame());
+        conditionList.Add(new Condition022_HandRarityHigherSilver());
+        conditionList.Add(new Condition023_LoseCoin());
+        conditionList.Add(new Condition024_LoseStar());
     }
 
     /// <summary>
@@ -81,7 +105,7 @@ public class EventManager
 
         // ðŒ’B¬‚Å‚«‚È‚¢‚È‚çˆ—‚µ‚È‚¢
         int conditionID = eventMaster.conditionID;
-        if (conditionID >= 0 && !await IsCompleteCondition(conditionID, context)) return;
+        if (conditionID < 0 || !await IsCompleteCondition(conditionID, context)) return;
 
         int eventIndex = eventMaster.eventType;
         int eventParam = eventMaster.param[0];

@@ -16,7 +16,7 @@ public class Condition005_HandAdvanceHigherAll : BaseCondition
         for (int i = 0, max = handIDList.Count; i < max; i++)
         {
             int advance = CardManager.instance.GetCard(handIDList[i]).advance;
-            if (advance < param) return false;
+            if (advance <= param) return false;
         }
 
         return true;
