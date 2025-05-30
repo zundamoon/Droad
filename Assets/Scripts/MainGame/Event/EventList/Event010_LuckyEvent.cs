@@ -17,8 +17,11 @@ public class Event010_LuckyEvent : BaseEvent
         { 34, 20 },
     };
 
+    private const int _LUCKEY_TEXT_ID = 110;
+
     public override async UniTask ExecuteEvent(EventContext context, int param)
     {
+        await UIManager.instance.RunMessage(_LUCKEY_TEXT_ID.ToText());
         // イベントの抽選
         int eventID = DicideEventID();
         await EventManager.ExecuteEvent(eventID, context);

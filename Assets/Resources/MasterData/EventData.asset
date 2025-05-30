@@ -113,12 +113,12 @@ MonoBehaviour:
     - ID: 19
       textID: 14
       eventType: 19
-      conditionID: -1
+      conditionID: 5
       param: ffffffffffffffff
     - ID: 20
       textID: 15
       eventType: 20
-      conditionID: -1
+      conditionID: 6
       param: ffffffffffffffff
     - ID: 21
       textID: 16
@@ -154,7 +154,7 @@ MonoBehaviour:
       textID: 20
       eventType: 27
       conditionID: -1
-      param: ffffffffffffffff
+      param: 00000000ffffffff
     - ID: 28
       textID: 12
       eventType: 16
@@ -195,3 +195,13 @@ MonoBehaviour:
       eventType: 8
       conditionID: -1
       param: 0a000000ffffffff
+    - ID: 36
+      textID: -1
+      eventType: 18
+      conditionID: 15
+      param: 01000000ffffffff
+    - ID: 36
+      textID: -1
+      eventType: 6
+      conditionID: 15
+      param: 01000000ffffffff

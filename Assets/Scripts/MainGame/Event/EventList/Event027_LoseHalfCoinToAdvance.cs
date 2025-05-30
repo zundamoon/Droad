@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Event027_LoseHalfCoinToAdvance : BaseEvent
 {
+    private const int _LOSE_HALF_COIN_TEXT_ID = 136;
+    private const int _ADVANCE_TEXT_ID = 137;
+
     public override async UniTask ExecuteEvent(EventContext context, int param)
     {
         if (context == null) return;
@@ -15,10 +18,12 @@ public class Event027_LoseHalfCoinToAdvance : BaseEvent
 
         int halfCoin = character.coins / 2;
         character.RemoveCoin(halfCoin);
+        await UIManager.instance.RunMessage(_LOSE_HALF_COIN_TEXT_ID.ToText());
 
         CardData newCard = new CardData();
         newCard.SetAdvance(halfCoin);
         context.card = newCard;
+        await UIManager.instance.RunMessage(string.Format(_ADVANCE_TEXT_ID.ToText(), halfCoin));
 
         await UniTask.CompletedTask;
     }
