@@ -39,6 +39,8 @@ public class CardObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     private int _ID = -1;
     private Transform _handArea;
     private int _handIndex = -1;
+    private const int _CONDITION_TEXT_ID = 202;
+    private const int _EVENT_TEXT_ID = 203;
 
     private Action<int> _OnUseCard = null;
 
@@ -206,9 +208,13 @@ public class CardObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             _eventText.text = "";
             return;
         }
+        int conditionID = param.conditionID;
+        string condition = string.Format(_CONDITION_TEXT_ID.ToText() + "‚È‚µ");
+        if (conditionID != -1) string.Format(_CONDITION_TEXT_ID.ToText() + conditionID.ToText());
         int eventTextID = param.textID;
         int[] paramList = param.param;
-        _eventText.text = string.Format(eventTextID.ToText(), paramList[0], paramList[1]);
+        string eventText = string.Format(_EVENT_TEXT_ID.ToText() + eventTextID.ToText(), paramList[0], paramList[1]);
+        _eventText.text = string.Format(condition + '\n' + eventText);
     }
 
     /// <summary>

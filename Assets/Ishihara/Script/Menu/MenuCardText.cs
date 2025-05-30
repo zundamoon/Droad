@@ -18,7 +18,8 @@ public class MenuCardText : BaseMenu
 
     private const int _ADVANCE_TEXT_ID = 200;
     private const int _CON_TEXT_ID = 201;
-
+    private const int _CONDITION_TEXT_ID = 202;
+    private const int _EVENT_TEXT_ID = 203;
 
     public async UniTask SetText(int cardID)
     {
@@ -35,9 +36,13 @@ public class MenuCardText : BaseMenu
             _cardtext.text = "";
             return;
         }
+        int conditionID = param.conditionID;
+        string condition = string.Format(_CONDITION_TEXT_ID.ToText() + "‚È‚µ");
+        if(conditionID != -1) string.Format(_CONDITION_TEXT_ID.ToText() + conditionID.ToText());
         int eventTextID = param.textID;
         int[] paramList = param.param;
-        _cardtext.text = string.Format(eventTextID.ToText(), paramList[0], paramList[1]);
+        string eventText = string.Format(_EVENT_TEXT_ID.ToText() + eventTextID.ToText(), paramList[0], paramList[1]);
+        _cardtext.text = string.Format(condition + '\n' + eventText);
         await UniTask.CompletedTask;
     }
 
