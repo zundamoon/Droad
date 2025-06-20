@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 using Cysharp.Threading.Tasks;
 using static GameEnum;
 
-public class AudioManager : SystemObject
+public class AudioManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject _bgmSourceOrigin;
@@ -25,7 +25,7 @@ public class AudioManager : SystemObject
     private List<AudioSource> BGMSourceList;
     private List<AudioSource> SESourceList;
 
-    public override async UniTask Initialize()
+    private void Start()
     {
         instance = this;
 

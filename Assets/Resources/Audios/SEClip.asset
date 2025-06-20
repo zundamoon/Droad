@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b7f0cc367614e459367cd7f5634bb9, type: 3}
   m_Name: SEClip
   m_EditorClassIdentifier: 
-  seClips: []
+  seClips:
+  - {fileID: 8300000, guid: 04683bb08734e8648b2a9a2cbb1cfce4, type: 3}
+  - {fileID: 8300000, guid: 9c9c9e6eccc249e4499ac85009eb4958, type: 3}
+  - {fileID: 8300000, guid: 90bc6a37ae18ffa428a96e1f22054607, type: 3}
+  - {fileID: 8300000, guid: 6990f692946fcad41bfdb162d8427073, type: 3}
+  - {fileID: 8300000, guid: eb1162196abd6ee4292a3dfb8ff8bd77, type: 3}
+  - {fileID: 8300000, guid: 6f56430eea9e2074da0fff07bbb4a9c6, type: 3}
+  - {fileID: 8300000, guid: 250e90cd297d26a41b7cfedacd3b20d9, type: 3}
+  - {fileID: 8300000, guid: 96ac79fcc9171294792286037c678448, type: 3}
+  - {fileID: 8300000, guid: c67968e9405eee447a600ec931210442, type: 3}
+  - {fileID: 8300000, guid: e668909f88735cb4eaaa68a5f589a849, type: 3}

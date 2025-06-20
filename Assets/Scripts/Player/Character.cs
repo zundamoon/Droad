@@ -83,7 +83,8 @@ public class Character : MonoBehaviour
     public void SetRank(int setRank) { rank = setRank; }
     public void SetCoin(int value) { coins = value; }
     public void AddCoin(int value) 
-    { 
+    {
+        AudioManager.instance.PlaySE(GameEnum.SE.GET_COIN);
         coins += value;
         if (UpdateStatus == null) return;
         UpdateStatus(this);
@@ -155,6 +156,7 @@ public class Character : MonoBehaviour
     /// <returns></returns>
     public async UniTask Move(Vector3 targetPos, float jumpHeight = 5.0f)
     {
+        AudioManager.instance.PlaySE(GameEnum.SE.PLAYER_ADVANCE);
         Vector3 startPos = transform.position;
         float distance = Vector3.Distance(new Vector3(startPos.x, 0, startPos.z), new Vector3(targetPos.x, 0, targetPos.z));
         Vector3 currentPos = startPos;
@@ -178,6 +180,7 @@ public class Character : MonoBehaviour
         }
 
         transform.position = targetPos; // 最終位置補正
+        AudioManager.instance.PlaySE(GameEnum.SE.PLAYER_LANDING);
     }
 
     public async UniTask SquareStand()

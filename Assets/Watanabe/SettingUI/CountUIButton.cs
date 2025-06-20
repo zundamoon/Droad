@@ -13,6 +13,7 @@ public class CountUIButton : MonoBehaviour
     public void PushButton()
     {
         countUI.AddCount(value);
+        AudioManager.instance.PlaySE(GameEnum.SE.SELECT_2);
     }
     
 }

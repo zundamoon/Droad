@@ -104,7 +104,7 @@ public class MenuStatus : BaseMenu
         var status = AddCharaStatusItem();
         status.SetChara(character);
         _statusOrderList.Add(status);
-
+        AudioManager.instance.PlaySE(GameEnum.SE.UI_ADVANCE);
         await Alignment();
     }
 

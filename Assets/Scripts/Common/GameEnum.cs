@@ -33,7 +33,16 @@ public class GameEnum
 
     public enum SE
     {
-        
+        DRAW_CARD = 0,
+        USE_CARD,
+        UI_ADVANCE,
+        PLAYER_ADVANCE,
+        PLAYER_LANDING,
+        START,
+        SELECT_1,
+        SELECT_2,
+        CANCEL,
+        GET_COIN,
         MAX
     }
 }

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteClip:
   - {fileID: 21300000, guid: 64e6859d687f87342a136aec9e73eb53, type: 3}
+  - {fileID: 21300000, guid: a95bbcf70427a7046ac80360b77abbb7, type: 3}
