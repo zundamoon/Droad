@@ -71,7 +71,7 @@ MonoBehaviour:
       price: 5
     - ID: 6
       nameID: 306
-      imageID: -1
+      imageID: 1
       advance: 1
       coin: 4
       rarity: 1

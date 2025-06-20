@@ -8,6 +8,7 @@ public class FadeSceneChange : MonoBehaviour
 {
     public static FadeSceneChange instance = null;
     [SerializeField] private bool cursorLock = true;
+    private static string _startSceneName = "GameSettingScene";
 
     private const float DEFAULT_DELAY_SECOND = 0;
     private const float DEFAULT_FADE_SECOND = 1.0f;
@@ -43,7 +44,8 @@ public class FadeSceneChange : MonoBehaviour
 
     private static async UniTask ChangeScene(string sceneName, float sec = DEFAULT_DELAY_SECOND)
     {
-    
+        if (sceneName == _startSceneName)
+            AudioManager.instance.PlaySE(GameEnum.SE.START);
         await FadeScreen.instance.FadeOut(DEFAULT_FADE_SECOND);
         await Task.Delay(TimeSpan.FromSeconds(sec));
         SceneManager.LoadScene(sceneName);

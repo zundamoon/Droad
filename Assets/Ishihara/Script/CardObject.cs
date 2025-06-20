@@ -80,6 +80,7 @@ public class CardObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             transform.SetParent(field);
             // 大きくする
             transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
+            AudioManager.instance.PlaySE(GameEnum.SE.DRAW_CARD);
         }
     }
 
@@ -127,6 +128,7 @@ public class CardObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             await UseCard();
         }
     }
+
     private async UniTask UseCard()
     {
         // 入力受付終了
@@ -160,6 +162,7 @@ public class CardObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         await UniTask.Delay(200);
 
         // 消してエフェクト再生
+        AudioManager.instance.PlaySE(GameEnum.SE.USE_CARD);
         gameObject.SetActive(false);
         transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         // スクリーン上に再生

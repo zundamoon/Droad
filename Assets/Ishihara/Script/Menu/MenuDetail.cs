@@ -49,6 +49,7 @@ public class MenuDetail : BaseMenu
     public async void OnShowDeck()
     {
         if (possessCard == null) return;
+        AudioManager.instance.PlaySE(GameEnum.SE.SELECT_2);
         // 手札の入力終了
         _IsHandAccept = UIManager.instance.IsHandAccept;
         UIManager.instance.EndHandAccept();
@@ -76,7 +77,7 @@ public class MenuDetail : BaseMenu
     public async void OnShowDiscard()
     {
         if (possessCard == null) return;
-
+        AudioManager.instance.PlaySE(GameEnum.SE.SELECT_2);
         // 手札の入力終了
         _IsHandAccept = UIManager.instance.IsHandAccept;
         UIManager.instance.EndHandAccept();
@@ -106,7 +107,7 @@ public class MenuDetail : BaseMenu
         // 手札の入力受付を再開
         if(_IsHandAccept) 
             UIManager.instance.StartHandAccept();
-
+        AudioManager.instance.PlaySE(GameEnum.SE.CANCEL);
         // ボタンの表示再開
         _deckDetail.gameObject.SetActive(true);
         _discardAreaDetail.gameObject.SetActive(true);

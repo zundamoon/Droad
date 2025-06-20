@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using static GameEnum;
-
 public class GameSettingManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> countUIObjectList;
@@ -39,6 +37,7 @@ public class GameSettingManager : MonoBehaviour
         }
 
         // ƒV[ƒ“‘JˆÚ
+        AudioManager.instance.PlaySE(GameEnum.SE.SELECT_1);
         FadeSceneChange.ChangeSceneEvent(_NEXT_SCENE_NAME);
     }
 }
