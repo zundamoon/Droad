@@ -8,7 +8,8 @@ public class BranchSquare : BaseSquareData
     [SerializeField] public GameObject branchArrow;
     private List<GameObject> _generatedObjectList;
     private float radius = 2.5f;
-    public BranchSquare()
+
+    public override void Initialize()
     {
         squareColor = Color.white;
         eventID = 9;
