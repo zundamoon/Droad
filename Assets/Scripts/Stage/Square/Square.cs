@@ -15,7 +15,6 @@ public class Square : MonoBehaviour
     {
         squareData.Initialize();
         GetSquareData().isStarSquare = false;
-        ChangeLooks(squareData.squareColor);
     }
     /// <summary>
     /// スターマスかを切り替える
@@ -67,7 +66,7 @@ public class Square : MonoBehaviour
     /// <summary>
     /// 見た目の変更を適応
     /// </summary>
-    private void ChangeLooks(Color color) { renderer.material.color = color; }
+    public void ChangeLooks(Color color) { renderer.material.color = color; }
 
     public BaseSquareData GetSquareData() { return squareData; }
     public void SetPosition(StagePosition position) { GetSquareData().squarePosition = position; }
