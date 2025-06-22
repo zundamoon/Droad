@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UnLuckySquare : BaseSquareData
 {
-    public UnLuckySquare()
+    public override void Initialize()
     {
         squareColor = Color.black;
         eventID = 11;

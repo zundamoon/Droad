@@ -13,6 +13,7 @@ public class Square : MonoBehaviour
 
     public void Init()
     {
+        squareData.Initialize();
         GetSquareData().isStarSquare = false;
         ChangeLooks(squareData.squareColor);
     }
