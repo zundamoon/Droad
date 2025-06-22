@@ -23,7 +23,7 @@ public class StageManager : SystemObject
         await GenerateStage();
         GameObject stageDataObject = GameObject.Find("StageData");
         stageData = stageDataObject.GetComponent<StageData>();
-
+        await UniTask.DelayFrame(2);
         InitAllSquare();
     }
 
