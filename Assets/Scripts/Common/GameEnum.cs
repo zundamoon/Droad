@@ -43,6 +43,9 @@ public class GameEnum
         SELECT_2,
         CANCEL,
         GET_COIN,
+        BUY_SHOP,
+        GET_STAR,
+        POPUP,
         MAX
     }
 }

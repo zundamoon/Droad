@@ -191,6 +191,7 @@ public class UIManager : SystemObject
     /// <returns></returns>
     public async UniTask RunMessage(string text, float displayTime = _DEFAULT_DISPLAY_TIME)
     {
+        AudioManager.instance.PlaySE(GameEnum.SE.POPUP);
         await _messageUI.RunMessage(text, displayTime);
     }
 
