@@ -23,7 +23,7 @@ public class StageManager : SystemObject
         await GenerateStage();
         GameObject stageDataObject = GameObject.Find("StageData");
         stageData = stageDataObject.GetComponent<StageData>();
-        InitAllSquare();
+        await InitAllSquare();
     }
 
     /// <summary>
@@ -37,7 +37,7 @@ public class StageManager : SystemObject
     /// <summary>
     /// Squareの情報を初期化
     /// </summary>
-    public void InitAllSquare()
+    public async UniTask InitAllSquare()
     {
         for (int i = 0; i < stageData.stageRoute.routeList.Count; i++)
         {
@@ -60,6 +60,8 @@ public class StageManager : SystemObject
 
                     // 初期化処理
                     square.Init();
+
+                    await UniTask.DelayFrame(1);
 
                     // マスの色を適応
                     square.ChangeLooks(square.GetSquareData().squareColor);
