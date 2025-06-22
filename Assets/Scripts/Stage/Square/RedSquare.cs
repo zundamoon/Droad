@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RedSquare : BaseSquareData
 {
-    public RedSquare()
+    public override void Initialize()
     {
         squareColor = Color.red;
         eventID = 8;

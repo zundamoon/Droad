@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HappeningSquare : BaseSquareData
 {
-    public HappeningSquare()
+    public override void Initialize()
     {
         squareColor = Color.white;
         eventID = -1;

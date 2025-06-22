@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BlueSquare : BaseSquareData
 {
-    public BlueSquare()
+    public override void Initialize()
     {
         squareColor = Color.blue;
         eventID = 6;

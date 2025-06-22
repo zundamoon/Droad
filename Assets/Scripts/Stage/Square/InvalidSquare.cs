@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InvalidSquare : BaseSquareData
 {
-    public InvalidSquare()
+    public override void Initialize()
     {
         squareColor = Color.grey;
         eventID = -1;

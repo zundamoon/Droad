@@ -18,8 +18,7 @@ public abstract class BaseSquareData
     public bool isStopSquare { get; protected set; }
     public bool canRepeatSquare { get; protected set; }
 
-
-    public BaseSquareData()
+    public virtual void Initialize()
     {
         squareColor = Color.white;
         eventID = -1;
