@@ -23,7 +23,6 @@ public class StageManager : SystemObject
         await GenerateStage();
         GameObject stageDataObject = GameObject.Find("StageData");
         stageData = stageDataObject.GetComponent<StageData>();
-        await UniTask.DelayFrame(2);
         InitAllSquare();
     }
 
@@ -61,6 +60,9 @@ public class StageManager : SystemObject
 
                     // 初期化処理
                     square.Init();
+
+                    // マスの色を適応
+                    square.ChangeLooks(square.GetSquareData().squareColor);
 
                     List<StagePosition> nextPositions = CheckNextPosition(pos);
                     square.SetNextPosition(nextPositions);
