@@ -34,6 +34,7 @@ public class Event012_BuyStar : BaseEvent
             await character.possessCard.AddCardDiscard(cardID);
             StageManager.instance.DecideStarSquare();
             square.ChangeStarSquare();
+            AudioManager.instance.PlaySE(GameEnum.SE.GET_STAR);
         });
         // ショップUIを表示
         await UIManager.instance.OpenShop();
