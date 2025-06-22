@@ -200,7 +200,7 @@ MonoBehaviour:
       eventType: 18
       conditionID: 15
       param: 01000000ffffffff
-    - ID: 36
+    - ID: 37
       textID: -1
       eventType: 6
       conditionID: 15

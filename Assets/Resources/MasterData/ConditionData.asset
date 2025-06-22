@@ -18,7 +18,7 @@ MonoBehaviour:
     - ID: 0
       textID: 400
       type: 0
-      param: 30
+      param: 20
     - ID: 1
       textID: 401
       type: 1
@@ -38,11 +38,11 @@ MonoBehaviour:
     - ID: 5
       textID: 405
       type: 5
-      param: 3
+      param: 4
     - ID: 6
       textID: 406
       type: 6
-      param: 4
+      param: 3
     - ID: 7
       textID: 407
       type: 7
