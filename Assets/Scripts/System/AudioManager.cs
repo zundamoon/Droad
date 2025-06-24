@@ -25,10 +25,8 @@ public class AudioManager : MonoBehaviour
     private List<AudioSource> BGMSourceList;
     private List<AudioSource> SESourceList;
 
-    private void Awake()
+    public void Init()
     {
-        instance = this;
-
         BGMSourceList = new List<AudioSource>();
         SESourceList = new List<AudioSource>();
     }
