@@ -169,7 +169,7 @@ public class TurnProcessor
             await UniTask.DelayFrame(1);
             if (!UIManager.instance.IsHandAccept) continue;
             CameraManager.instance.CameraDrag();
-            CameraManager.instance.CameraZoom();
+            // CameraManager.instance.CameraZoom();
         }
 
         // カメラの位置をプレイヤーの元に戻す

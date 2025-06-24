@@ -8,10 +8,12 @@ public class CameraManager : SystemObject
 {
     public static CameraManager instance;
 
-    public float dragSpeed = 0.1f;
-    public float zoomSpeed = 10f;
-    public float zoomMin = 5f;
-    public float zoomMax = 100f;
+    private float dragSpeed = 0.5f;
+    private float zoomSpeed = 50f;
+    private float zoomMin = 5.0f;
+    private float zoomMax = 30.0f;
+    private float moveLimitRange = 30.0f;
+
     private Transform zoomTarget;
 
     private static Camera _camera = null;
@@ -46,7 +48,7 @@ public class CameraManager : SystemObject
 
     public async UniTask CameraDrag()
     {
-        if(Input.GetMouseButton(0)) return;
+        if (Input.GetMouseButton(0)) return;
 
         if (Input.GetMouseButtonDown(1))
         {
@@ -56,9 +58,29 @@ public class CameraManager : SystemObject
         if (Input.GetMouseButton(1))
         {
             Vector3 delta = Input.mousePosition - lastMousePos;
-            Vector3 move = new Vector3(-delta.x, -delta.y, 0) * dragSpeed * Time.deltaTime;
 
-            _camera.transform.Translate(move, Space.Self);
+            // カメラの距離に応じてドラッグ移動速度をスケール調整
+            float distance = Vector3.Distance(_camera.transform.position, zoomTarget.position);
+            float scaledDragSpeed = dragSpeed * (distance / 10f);  // ← 数値調整可
+
+            Vector3 right = Vector3.ProjectOnPlane(_camera.transform.right, Vector3.up).normalized;
+            Vector3 forward = Vector3.ProjectOnPlane(_camera.transform.forward, Vector3.up).normalized;
+
+            Vector3 move = (-right * delta.x + -forward * delta.y) * scaledDragSpeed * Time.deltaTime;
+
+            Vector3 newPosition = _camera.transform.position + move;
+
+            // 「zoomTargetを中心」に範囲制限する
+            Vector3 center = zoomTarget.position;
+            Vector3 offset = newPosition - center;
+
+            offset = Vector3.ClampMagnitude(offset, moveLimitRange);
+            newPosition = center + offset;
+
+            // Y座標は固定
+            newPosition.y = _camera.transform.position.y;
+
+            _camera.transform.position = newPosition;
 
             lastMousePos = Input.mousePosition;
         }
