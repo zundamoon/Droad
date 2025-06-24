@@ -27,7 +27,8 @@ public class GameEnum
 
     public enum BGM
     {
-        
+        TITLE = 0,
+        MAIN,
         MAX
     }
 

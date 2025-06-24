@@ -25,7 +25,7 @@ public class AudioManager : MonoBehaviour
     private List<AudioSource> BGMSourceList;
     private List<AudioSource> SESourceList;
 
-    private void Start()
+    private void Awake()
     {
         instance = this;
 
@@ -39,6 +39,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="num"></param>
     public void PlayBGM(BGM num)
     {
+        StopBGM();
         AudioSource source = GetUnusedBGMSource(BGMSourceList);
         source.clip = _bgmClip.bgmClips[(int)num];
         source.Play();
@@ -50,6 +51,8 @@ public class AudioManager : MonoBehaviour
     /// <param name="num"></param>
     public void StopBGM()
     {
+        // BGMÇÃÉ\Å[ÉXÇ™ñ≥Ç¢èÍçáÇÕâΩÇ‡ÇµÇ»Ç¢
+        if (BGMSourceList.Count == 0) return;
         AudioSource source = BGMSourceList[0];
         source.Stop();
     }
