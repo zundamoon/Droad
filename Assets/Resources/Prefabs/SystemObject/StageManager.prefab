@@ -46,3 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stagePrefab: {fileID: 8765084483583139767, guid: ef88ed3e74e5fba43940c650794a7af6, type: 3}
   _cameraAnchor: {fileID: 0}
+  squareMaterialList:
+  - {fileID: 2100000, guid: 204e426b2520524479b3c6d30422c3bd, type: 2}
+  - {fileID: 2100000, guid: 0b57c2f6fac6f394abf1530fc05089f6, type: 2}
+  - {fileID: 2100000, guid: 9c1881b900ded1d4ea56a966e197917d, type: 2}
+  - {fileID: 2100000, guid: 83b31d076690a38448ba1bc2d36d2247, type: 2}
+  - {fileID: 2100000, guid: 65d478d97de4b054a968175b9434e36e, type: 2}
+  - {fileID: 2100000, guid: e45a4f339b614214cbc5f2ad24fef870, type: 2}
+  - {fileID: 2100000, guid: 41c38fcf77412cb468db8a63d715085d, type: 2}
+  - {fileID: 2100000, guid: 1684b7e41770f354cae1814fcfab456f, type: 2}

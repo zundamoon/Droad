@@ -4,7 +4,7 @@ public class UnLuckySquare : BaseSquareData
 {
     public override void Initialize()
     {
-        squareColor = Color.black;
+        squareType = GameEnum.SquareType.UNLUCKY;
         eventID = 11;
         isStopSquare = false;
         canRepeatSquare = true;

@@ -11,7 +11,7 @@ public class BranchSquare : BaseSquareData
 
     public override void Initialize()
     {
-        squareColor = Color.white;
+        squareType = GameEnum.SquareType.BRANCH;
         eventID = 9;
         isStopSquare = true;
         canRepeatSquare = false;
