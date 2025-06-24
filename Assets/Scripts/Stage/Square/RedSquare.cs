@@ -4,7 +4,7 @@ public class RedSquare : BaseSquareData
 {
     public override void Initialize()
     {
-        squareColor = Color.red;
+        squareType = GameEnum.SquareType.RED;
         eventID = 8;
         isStopSquare = false;
         canRepeatSquare = true;

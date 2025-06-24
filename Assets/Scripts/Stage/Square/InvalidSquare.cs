@@ -4,7 +4,7 @@ public class InvalidSquare : BaseSquareData
 {
     public override void Initialize()
     {
-        squareColor = Color.grey;
+        squareType = GameEnum.SquareType.INVALID;
         eventID = -1;
         isStopSquare = false;
     }

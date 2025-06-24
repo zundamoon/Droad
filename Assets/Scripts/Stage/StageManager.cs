@@ -17,6 +17,8 @@ public class StageManager : SystemObject
     [SerializeField]
     private Transform _cameraAnchor = null;
 
+    [SerializeField] public List<Material> squareMaterialList;
+
     public override async UniTask Initialize()
     {
         instance = this;
@@ -63,8 +65,12 @@ public class StageManager : SystemObject
 
                     await UniTask.DelayFrame(1);
 
-                    // マスの色を適応
-                    square.ChangeLooks(square.GetSquareData().squareColor);
+                    SquareType squareType = square.GetSquareType();
+                    if(squareType != SquareType.INVALID)
+                    {
+                        // マスの色を適応
+                        square.ChangeLooks(squareMaterialList[(int)squareType]);
+                    }
 
                     List<StagePosition> nextPositions = CheckNextPosition(pos);
                     square.SetNextPosition(nextPositions);
@@ -86,6 +92,26 @@ public class StageManager : SystemObject
         if (newData != null)
         {
             square.ChangeSquareType(newData);
+            Material material = squareMaterialList[(int)square.GetSquareType()];
+            square.ChangeLooks(material);
+        }
+    }
+
+    /// <summary>
+    /// スターマスかを切り替える
+    /// </summary>
+    public void ChangeStarSquare(Square square)
+    {
+        if (square.GetIsStarSquare())
+        {
+            square.GetSquareData().isStarSquare = false;
+            Material material = squareMaterialList[(int)square.GetSquareType()];
+            square.ChangeLooks(material);
+        }
+        else
+        {
+            square.GetSquareData().isStarSquare = true;
+            square.ChangeLooks(Color.magenta);
         }
     }
 
@@ -245,7 +271,7 @@ public class StageManager : SystemObject
                 if (square.GetSquareData() is not BranchSquare) break;
             }
 
-            square.ChangeStarSquare();
+            ChangeStarSquare(square);
         }
     }
 

@@ -20,8 +20,12 @@ public class GameEnum
         INVALID = -1,
         BLUE,
         RED,
+        LUCKY,
+        UNLUCKY,
+        GIFT,
         HAPPENING,
         SHOP,
+        BRANCH,
         MAX
     }
 
