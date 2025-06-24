@@ -17,11 +17,11 @@ public class DontDestroy : MonoBehaviour
 
     void Awake()
     {
-        CheckInstance();
+        //CheckInstance();
     }
 
     // dontdestroyを複数使えるようにしてオブジェクト番号がかぶってたら消す
-    void CheckInstance()
+    public void CheckInstance()
     {
         if (instance[ObjectNum] == null)
         {
