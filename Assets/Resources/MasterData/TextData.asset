@@ -196,17 +196,7 @@ MonoBehaviour:
     - ID: 323
       text: "\u540C\u8ABF"
     - ID: 324
-      text: "\u30B9\u30BF\u30FC1"
-    - ID: 325
-      text: "\u30B9\u30BF\u30FC2"
-    - ID: 326
-      text: "\u30B9\u30BF\u30FC3"
-    - ID: 327
-      text: "\u30B9\u30BF\u30FC4"
-    - ID: 328
-      text: "\u30B9\u30BF\u30FC5"
-    - ID: 329
-      text: "\u30B9\u30BF\u30FC6"
+      text: "\u30B9\u30BF\u30FC"
     - ID: 400
       text: "\u30B3\u30A4\u30F3\u304C{0}\u679A\u4EE5\u4E0A\u3002"
     - ID: 401

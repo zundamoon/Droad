@@ -111,7 +111,9 @@ public class StageManager : SystemObject
         else
         {
             square.GetSquareData().isStarSquare = true;
-            square.ChangeLooks(Color.magenta);
+
+            Material material = squareMaterialList[(int)SquareType.STAR];
+            square.ChangeLooks(material);
         }
     }
 

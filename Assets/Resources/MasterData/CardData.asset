@@ -241,7 +241,7 @@ MonoBehaviour:
       star: 1
       price: 30
     - ID: 25
-      nameID: 325
+      nameID: 324
       imageID: 19
       advance: 2
       coin: 1
@@ -250,7 +250,7 @@ MonoBehaviour:
       star: 1
       price: 30
     - ID: 26
-      nameID: 326
+      nameID: 324
       imageID: 19
       advance: 3
       coin: 1
@@ -259,7 +259,7 @@ MonoBehaviour:
       star: 1
       price: 30
     - ID: 27
-      nameID: 327
+      nameID: 324
       imageID: 19
       advance: 4
       coin: 1
@@ -268,7 +268,7 @@ MonoBehaviour:
       star: 1
       price: 30
     - ID: 28
-      nameID: 328
+      nameID: 324
       imageID: 19
       advance: 5
       coin: 1
@@ -277,7 +277,7 @@ MonoBehaviour:
       star: 1
       price: 30
     - ID: 29
-      nameID: 329
+      nameID: 324
       imageID: 19
       advance: 6
       coin: 1

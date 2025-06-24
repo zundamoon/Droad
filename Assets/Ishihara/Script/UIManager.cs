@@ -60,6 +60,7 @@ public class UIManager : SystemObject
         _menuCardText = Instantiate(_menuCardText);
         _menuDetail = Instantiate(_menuDetail);
 
+        await _messageUI.Initialize();
         await _menuHand.Initialize();
         await _menuChoice.Initialize();
         await _menuStatus.Initialize();
