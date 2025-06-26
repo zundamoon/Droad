@@ -39,6 +39,7 @@ public class CardObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     private int _ID = -1;
     private Transform _handArea;
     private int _handIndex = -1;
+    private const int _NON_EVENT_TEXT_ID = 21;
     private const int _CONDITION_TEXT_ID = 202;
     private const int _EVENT_TEXT_ID = 203;
 
@@ -208,7 +209,7 @@ public class CardObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         Entity_EventData.Param param = EventMasterUtility.GetEventMaster(card.eventID);
         if (param == null)
         {
-            _eventText.text = "";
+            _eventText.text = _NON_EVENT_TEXT_ID.ToText();
             return;
         }
         int conditionID = param.conditionID;
