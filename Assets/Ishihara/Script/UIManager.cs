@@ -310,6 +310,17 @@ public class UIManager : SystemObject
     }
 
     /// <summary>
+    /// 除外アイテムの値段設定
+    /// </summary>
+    /// <param name="itemIDList"></param>
+    /// <returns></returns>
+    public async UniTask SetRemovaPrice(int price)
+    {
+        _menuShop.SetRemovalCardPrice(price);
+        await UniTask.CompletedTask;
+    }
+
+    /// <summary>
     /// 購入処理コールバックの設定
     /// </summary>
     /// <param name="onSelect"></param>
