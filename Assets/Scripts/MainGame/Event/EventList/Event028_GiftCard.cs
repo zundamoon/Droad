@@ -11,7 +11,7 @@ public class Event028_GiftCard : BaseEvent
     /// </summary>
     private static Dictionary<Rarity, int> rarityWeights = new Dictionary<Rarity, int>
     {
-        { Rarity.SILVER, 50 },
+        { Rarity.SILVER, 30 },
         { Rarity.GOLD, 30 },
         { Rarity.LEGENDARY, 20 }
     };

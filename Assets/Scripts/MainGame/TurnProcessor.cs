@@ -171,7 +171,7 @@ public class TurnProcessor
             CameraManager.instance.CameraDrag();
             // CameraManager.instance.CameraZoom();
         }
-
+        await UIManager.instance.CloseHandArea();
         // カメラの位置をプレイヤーの元に戻す
         await CameraManager.SetAnchor(turnCharacter.GetCameraAnchor());
 
