@@ -71,7 +71,6 @@ public class UIManager : SystemObject
 
         await _menuHand.Close();
         await _menuChoice.Close();
-        await _messageUI.Inactive();
         await _menuCardText.Close();
         _menuShop.Open();
         _menuShop.Close();
@@ -194,6 +193,25 @@ public class UIManager : SystemObject
     {
         AudioManager.instance.PlaySE(GameEnum.SE.POPUP);
         await _messageUI.RunMessage(text, displayTime);
+    }
+
+    /// <summary>
+    /// バナーUIを表示する
+    /// </summary>
+    /// <param name="text"></param>
+    /// <returns></returns>
+    public async UniTask RunBanner(string text)
+    {
+        await _messageUI.RunBanner(text);
+    }
+
+    /// <summary>
+    /// バナーを閉じる
+    /// </summary>
+    /// <returns></returns>
+    public async UniTask CloseBanner()
+    {
+        await _messageUI.CloseBanner();
     }
 
     /// <summary>

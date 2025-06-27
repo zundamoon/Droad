@@ -43,10 +43,8 @@ public class PossessCard
         // ‰ŠúèDİ’è
         for (int i = 0; i < 6; i++)
         {
-            deckCardIDList.Add(18);
-            possessCardIDList.Add(18);
-            deckCardIDList.Add(24);
-            possessCardIDList.Add(24);
+            deckCardIDList.Add(i);
+            possessCardIDList.Add(i);
         }
         ShuffleDeck();
     }
