@@ -51,4 +51,3 @@ MonoBehaviour:
   _menuShop: {fileID: 2679556295844602366, guid: 493933632d891f54797c5c68eee7e233, type: 3}
   _menuCardText: {fileID: 7868829751268456658, guid: 3e65295390c18c5458419418c603e762, type: 3}
   _menuDetail: {fileID: 7393428306904706201, guid: 9dddd892e9ec7ec46bdf4775e985fc57, type: 3}
-  _tutorial: {fileID: 8749897379632444911, guid: 506f659564a9b6a40b61ae33de3ed5ba, type: 3}

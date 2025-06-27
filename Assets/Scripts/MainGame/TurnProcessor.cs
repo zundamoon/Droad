@@ -96,7 +96,7 @@ public class TurnProcessor
                 await UniTask.DelayFrame(1);
                 if (!UIManager.instance.IsHandAccept) continue;
                 CameraManager.instance.CameraDrag();
-                CameraManager.instance.CameraZoom();
+                // CameraManager.instance.CameraZoom();
             }
             // カメラの位置をプレイヤーの元に戻す
             await CameraManager.SetAnchor(StageManager.instance.GetCameraAnchor());
@@ -106,7 +106,7 @@ public class TurnProcessor
             playCardMap[playerID] = playCardCount;
             await UIManager.instance.CloseDetail();
             await UIManager.instance.ScrollStatus();
-            await UIManager.instance.AddStatus(playerID);
+            await UIManager.instance.AddStatus(playerID, playCardCount);
         }
         playerOrder.Clear();
         // 出されたカードから順番を決める
