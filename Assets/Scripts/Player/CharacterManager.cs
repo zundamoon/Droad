@@ -86,18 +86,34 @@ public class CharacterManager : SystemObject
     /// ランクリストを取得
     /// </summary>
     /// <returns></returns>
-    public List<int> GetRankList()
+    public List<List<int>> GetRankList()
     {
-        List<int> rank = new List<int>(GameDataManager.instance.playerMax);
+        List<List<int>> rank = new List<List<int>>();
+
+        // 各プレイヤー分、空のList<int>を用意
+        for (int i = 0; i < GameDataManager.instance.playerMax; i++)
+        {
+            rank.Add(new List<int>());
+        }
+
         for (int i = 0; i < GameDataManager.instance.playerMax; i++)
         {
             for (int j = 0; j < GameDataManager.instance.playerMax; j++)
             {
                 if (_characterList[j].rank != i + 1) continue;
-                rank.Add(j);
+
+                int coin = _characterList[j].coins;
+                int star = _characterList[j].stars;
+
+                // i番目の順位リストにデータを追加
+                rank[i].Add(j);     // プレイヤーID or インデックス
+                rank[i].Add(coin);  // コイン数
+                rank[i].Add(star);  // スター数
             }
         }
+
         return rank;
+
     }
 
     /// <summary>
