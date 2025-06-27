@@ -30,7 +30,6 @@ public class PossessCard
 
     private const int _DEFAULT_DECK_MAX = 12;
     private const int _HAND_MAX = 4;
-    private const int _GET_STAR_TEXT_ID = 106;
     private const int _RESHUFFLE_TEXT_ID = 107;
     private const int _GET_CARD_TEXT_ID = 127;
 
@@ -44,11 +43,10 @@ public class PossessCard
         // ‰ŠúèDİ’è
         for (int i = 0; i < 6; i++)
         {
-            for (int j = 0; j < 1; j++)
-            {
-                deckCardIDList.Add(i);
-                possessCardIDList.Add(i);
-            }
+            deckCardIDList.Add(18);
+            possessCardIDList.Add(18);
+            deckCardIDList.Add(24);
+            possessCardIDList.Add(24);
         }
         ShuffleDeck();
     }
@@ -290,11 +288,11 @@ public class PossessCard
         {
             if (!CardManager.instance.GetCard(possessCardIDList[i]).IsStar()) continue;
 
-            starIDList.Add(i);
+            starIDList.Add(possessCardIDList[i]);
         }
         int starCount = starIDList.Count;
         if (starCount <= 0) return -1;
-        int randomID = UnityEngine.Random.Range(0, starCount);
+        int randomID = starIDList[UnityEngine.Random.Range(0, starCount)];
 
         // w’èID‚ğŒ©‚Â‚¯œŠO‚·‚é
         RemoveCardID(randomID);

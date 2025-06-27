@@ -7,15 +7,31 @@ using UnityEngine.UI;
 
 public class MessageUI : MonoBehaviour
 {
+    // メッセージ
+    [SerializeField]
+    private GameObject _messageObject;
     // テキスト
     [SerializeField]
-    private TextMeshProUGUI _text = null;
+    private TextMeshProUGUI _messageText = null;
     // テキストBG
     [SerializeField]
-    private Image _textBG = null;
+    private Image _messageTextBG = null;
     // 表示アンカー
     [SerializeField]
-    private RectTransform _displayAnchor = null;
+    private RectTransform _messageDisplayAnchor = null;
+
+    // バナー
+    [SerializeField]
+    private GameObject _bannerObject = null;
+    // テキスト
+    [SerializeField]
+    private TextMeshProUGUI _bannerText = null;
+    // テキストBG
+    [SerializeField]
+    private Image _bannerTextBG = null;
+    // 表示アンカー
+    [SerializeField]
+    private RectTransform _bannerDisplayAnchor = null;
 
     private Color _defaultTextColor = Color.white;
     private Color _defaultBGColor = Color.white;
@@ -25,8 +41,8 @@ public class MessageUI : MonoBehaviour
 
     public async UniTask Initialize()
     {
-        _defaultBGColor = _textBG.color;
-        _defaultTextColor = _text.color;
+        _defaultBGColor = _messageTextBG.color;
+        _defaultTextColor = _messageText.color;
         await UniTask.CompletedTask;
     }
 
@@ -39,8 +55,8 @@ public class MessageUI : MonoBehaviour
     {
         gameObject.SetActive(true);
         // テキストの表示
-        _text.text = setText;
-        _textBG.rectTransform.anchoredPosition = _displayAnchor.anchoredPosition;
+        _messageText.text = setText;
+        _messageTextBG.rectTransform.anchoredPosition = _messageDisplayAnchor.anchoredPosition;
 
         float elapsedTime = 0;
         // 移動
@@ -48,12 +64,12 @@ public class MessageUI : MonoBehaviour
         {
             // UIを動かす
             float ratio = elapsedTime / _MOVE_TIME;
-            _textBG.rectTransform.anchoredPosition += new Vector2(0, _MOVE_HEIGHT / _MOVE_TIME * Time.deltaTime);
+            _messageTextBG.rectTransform.anchoredPosition += new Vector2(0, _MOVE_HEIGHT / _MOVE_TIME * Time.deltaTime);
             SetMessageAlpha(ratio);
             elapsedTime += Time.deltaTime;
             await UniTask.DelayFrame(1);
         }
-        _textBG.rectTransform.anchoredPosition = _displayAnchor.anchoredPosition + new Vector2(0, _MOVE_HEIGHT);
+        _messageTextBG.rectTransform.anchoredPosition = _messageDisplayAnchor.anchoredPosition + new Vector2(0, _MOVE_HEIGHT);
         SetMessageAlpha(1);
         elapsedTime = 0;
         // 待機
@@ -74,11 +90,24 @@ public class MessageUI : MonoBehaviour
         // テキストの透過度設定
         Color color = _defaultTextColor;
         color.a = _defaultTextColor.a * alpha;
-        _text.color = color;
+        _messageText.color = color;
         // BGの透過設定
         color = _defaultBGColor;
         color.a = _defaultBGColor.a * alpha;
-        _textBG.color = color;
+        _messageTextBG.color = color;
+    }
+
+    public async UniTask RunBanner(string setText)
+    {
+        gameObject.SetActive(true);
+        // テキストの表示
+        _bannerText.text = setText;
+        _bannerTextBG.rectTransform.anchoredPosition = _bannerDisplayAnchor.anchoredPosition;
+    }
+
+    public async UniTask CloseBanner()
+    {
+
     }
 
     /// <summary>

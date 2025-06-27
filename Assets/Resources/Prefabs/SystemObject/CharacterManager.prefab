@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6ac430d93b562479395968604c5b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterObject: {fileID: 810137318518854391, guid: 1ad7fbc9ddd7b0440804d54a85d9f24c, type: 3}
+  characterObject: {fileID: 6983759177148448631, guid: 9b5b89f7bf1810e479b6a87461602bfb, type: 3}
   _playerColorList:
   - {r: 1, g: 0.4198113, b: 0.4198113, a: 1}
   - {r: 0.33685616, g: 0.3254717, b: 1, a: 1}
