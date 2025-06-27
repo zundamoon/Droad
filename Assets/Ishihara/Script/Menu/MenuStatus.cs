@@ -102,6 +102,17 @@ public class MenuStatus : BaseMenu
     public async UniTask AddStatus(Character character)
     {
         var status = AddCharaStatusItem();
+        status.ClearOrder();
+        status.SetChara(character);
+        _statusOrderList.Add(status);
+        AudioManager.instance.PlaySE(GameEnum.SE.UI_ADVANCE);
+        await Alignment();
+    }
+
+    public async UniTask AddStatus(Character character, int order)
+    {
+        var status = AddCharaStatusItem();
+        status.SetOrder(order);
         status.SetChara(character);
         _statusOrderList.Add(status);
         AudioManager.instance.PlaySE(GameEnum.SE.UI_ADVANCE);

@@ -20,6 +20,12 @@ public class MenuStatusChara : MenuStatusItem
     [SerializeField]
     private List<TextMeshProUGUI> _charaCards = null;
 
+    [SerializeField]
+    private GameObject _orderImage = null;
+
+    [SerializeField]
+    private TextMeshProUGUI _orderText = null;
+
     public int _charaID { get; private set; } = -1;
 
     public override async UniTask Initialize()
@@ -61,5 +67,17 @@ public class MenuStatusChara : MenuStatusItem
                 _charaCards[i].text = "";
             }
         }
+    }
+
+    public void SetOrder(int order)
+    {
+        _orderImage.SetActive(true);
+        _orderText.text = order.ToString();
+    }
+
+    public void ClearOrder()
+    {
+        _orderImage.SetActive(false);
+        _orderText.text = "";
     }
 }
