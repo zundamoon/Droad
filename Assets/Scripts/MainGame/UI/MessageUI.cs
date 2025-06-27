@@ -17,8 +17,18 @@ public class MessageUI : MonoBehaviour
     [SerializeField]
     private RectTransform _displayAnchor = null;
 
+    private Color _defaultTextColor = Color.white;
+    private Color _defaultBGColor = Color.white;
+
     private const float _MOVE_TIME = 0.25f;
     private const float _MOVE_HEIGHT = 100;
+
+    public async UniTask Initialize()
+    {
+        _defaultBGColor = _textBG.color;
+        _defaultTextColor = _text.color;
+        await UniTask.CompletedTask;
+    }
 
     /// <summary>
     /// メッセージを流す
@@ -43,6 +53,8 @@ public class MessageUI : MonoBehaviour
             elapsedTime += Time.deltaTime;
             await UniTask.DelayFrame(1);
         }
+        _textBG.rectTransform.anchoredPosition = _displayAnchor.anchoredPosition + new Vector2(0, _MOVE_HEIGHT);
+        SetMessageAlpha(1);
         elapsedTime = 0;
         // 待機
         while (elapsedTime < displayTime)
@@ -60,12 +72,12 @@ public class MessageUI : MonoBehaviour
     private void SetMessageAlpha(float alpha)
     {
         // テキストの透過度設定
-        Color color = _text.color;
-        color.a = alpha;
+        Color color = _defaultTextColor;
+        color.a = _defaultTextColor.a * alpha;
         _text.color = color;
         // BGの透過設定
-        color = _textBG.color;
-        color.a = alpha;
+        color = _defaultBGColor;
+        color.a = _defaultBGColor.a * alpha;
         _textBG.color = color;
     }
 

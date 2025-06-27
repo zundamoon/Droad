@@ -31,6 +31,8 @@ public class MenuShop : BaseMenu
 
     private UniTaskCompletionSource _isShopActive = null;
 
+    private int removePrice = 0; 
+
     /// <summary>
     /// 非同期初期化
     /// </summary>
@@ -71,6 +73,14 @@ public class MenuShop : BaseMenu
     public void SetRemovalCardID(List<int> setRemovalCardID)
     {
         _removalCardIDList = new List<int>(setRemovalCardID);
+    }
+
+    /// <summary>
+    /// 除外候補カードの値段を設定
+    /// </summary>
+    public void SetRemovalCardPrice(int setPrice)
+    {
+        removePrice = setPrice;
     }
 
     /// <summary>
@@ -131,9 +141,7 @@ public class MenuShop : BaseMenu
         List<string> ButtonText = new List<string>(_removalCardIDList.Count);
         for (int i = 0; i < _removalCardIDList.Count; i++)
         {
-            int CardID = _removalCardIDList[i];
-            var Card = CardManager.instance.GetCard(CardID);
-            ButtonText.Add(Card.price.ToString());
+            ButtonText.Add(removePrice.ToString());
         }
         _menuChoice.SetChoiceButtonText(ButtonText);
         _menuChoice.SetChoiceCardID(_removalCardIDList);

@@ -16,6 +16,7 @@ public class MenuCardText : BaseMenu
     [SerializeField]
     private TextMeshProUGUI _nameText = null;
 
+    private const int _NON_EVENT_TEXT_ID = 21;
     private const int _ADVANCE_TEXT_ID = 200;
     private const int _CON_TEXT_ID = 201;
     private const int _CONDITION_TEXT_ID = 202;
@@ -33,7 +34,7 @@ public class MenuCardText : BaseMenu
         Entity_EventData.Param param = EventMasterUtility.GetEventMaster(card.eventID);
         if (param == null)
         {
-            _cardtext.text = "";
+            _cardtext.text = _NON_EVENT_TEXT_ID.ToText();
             return;
         }
         int conditionID = param.conditionID;

@@ -24,7 +24,6 @@ public class MainGameManager : SystemObject
         _turnProcessor.Init();
         AudioManager.instance.PlayBGM(GameEnum.BGM.MAIN);
         await CameraManager.SetAnchor(StageManager.instance.GetCameraAnchor(), 0);
-
         await MainGameProc();
     }
 

@@ -60,6 +60,7 @@ public class UIManager : SystemObject
         _menuCardText = Instantiate(_menuCardText);
         _menuDetail = Instantiate(_menuDetail);
 
+        await _messageUI.Initialize();
         await _menuHand.Initialize();
         await _menuChoice.Initialize();
         await _menuStatus.Initialize();
@@ -305,6 +306,17 @@ public class UIManager : SystemObject
     public async UniTask SetRemovaItem(List<int> itemIDList)
     {
         _menuShop.SetRemovalCardID(itemIDList);
+        await UniTask.CompletedTask;
+    }
+
+    /// <summary>
+    /// 除外アイテムの値段設定
+    /// </summary>
+    /// <param name="itemIDList"></param>
+    /// <returns></returns>
+    public async UniTask SetRemovaPrice(int price)
+    {
+        _menuShop.SetRemovalCardPrice(price);
         await UniTask.CompletedTask;
     }
 

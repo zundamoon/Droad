@@ -26,6 +26,7 @@ public class GameEnum
         HAPPENING,
         SHOP,
         BRANCH,
+        STAR,
         MAX
     }
 

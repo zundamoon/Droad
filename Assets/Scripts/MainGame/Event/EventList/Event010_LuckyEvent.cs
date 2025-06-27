@@ -12,8 +12,6 @@ public class Event010_LuckyEvent : BaseEvent
     {
         { 30, 10 },
         { 32, 20 },
-        { 2, 20 },
-        { 13, 20 },
         { 34, 20 },
     };
 
