@@ -407,12 +407,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d4cb14c3ba0114db2bec9501b6a0d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _messageText: {fileID: 1480244285091593147}
-  _messageTextBG: {fileID: 1480244284438216253}
+  _messageObject: {fileID: 1480244284438216251}
   _messageDisplayAnchor: {fileID: 1480244285819965155}
-  _bannerText: {fileID: 0}
-  _bannerTextBG: {fileID: 0}
-  _bannerDisplayAnchor: {fileID: 0}
+  _bannerObject: {fileID: 2206914501381518549}
+  _bannerDisplayAnchor: {fileID: 5270304520321119347}
 --- !u!1 &2206914501381518549
 GameObject:
   m_ObjectHideFlags: 0

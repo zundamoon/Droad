@@ -41,11 +41,12 @@ public class TurnProcessor
         }
 
         // Žè”ÔŒˆ‚ß
-        await UIManager.instance.RunMessage(_ORDER_TURN_ANNOUNCE_ID.ToText());
+        await UIManager.instance.RunBanner(_ORDER_TURN_ANNOUNCE_ID.ToText());
         await DesidePlayerOrder();
         await UIManager.instance.ScrollAllStatus();
         await UIManager.instance.AddStatus(playerOrder);
         await UIManager.instance.AddStatus(_ORDER_TURN_ANNOUNCE_ID.ToText());
+        await UIManager.instance.CloseBanner();
 
         // ŠeŽè”Ô
         for (int i = 0; i < GameDataManager.instance.playerMax; i++)

@@ -9,13 +9,7 @@ public class MessageUI : MonoBehaviour
 {
     // メッセージ
     [SerializeField]
-    private GameObject _messageObject;
-    // テキスト
-    [SerializeField]
-    private TextMeshProUGUI _messageText = null;
-    // テキストBG
-    [SerializeField]
-    private Image _messageTextBG = null;
+    private GameObject _messageObject = null;
     // 表示アンカー
     [SerializeField]
     private RectTransform _messageDisplayAnchor = null;
@@ -23,15 +17,14 @@ public class MessageUI : MonoBehaviour
     // バナー
     [SerializeField]
     private GameObject _bannerObject = null;
-    // テキスト
-    [SerializeField]
-    private TextMeshProUGUI _bannerText = null;
-    // テキストBG
-    [SerializeField]
-    private Image _bannerTextBG = null;
     // 表示アンカー
     [SerializeField]
     private RectTransform _bannerDisplayAnchor = null;
+
+    private TextMeshProUGUI _messageText = null;
+    private Image _messageTextBG = null;
+    private TextMeshProUGUI _bannerText = null;
+    private Image _bannerTextBG = null;
 
     private Color _defaultTextColor = Color.white;
     private Color _defaultBGColor = Color.white;
@@ -41,8 +34,14 @@ public class MessageUI : MonoBehaviour
 
     public async UniTask Initialize()
     {
+        _messageText = _messageObject.GetComponentInChildren<TextMeshProUGUI>();
+        _messageTextBG = _messageObject.GetComponent<Image>();
+        _bannerText = _bannerObject.GetComponentInChildren<TextMeshProUGUI>();
+        _bannerTextBG = _bannerObject.gameObject.GetComponent<Image>();
         _defaultBGColor = _messageTextBG.color;
         _defaultTextColor = _messageText.color;
+        _messageObject.SetActive(false);
+        _bannerObject.SetActive(false);
         await UniTask.CompletedTask;
     }
 
@@ -53,7 +52,7 @@ public class MessageUI : MonoBehaviour
     /// <returns></returns>
     public async UniTask RunMessage(string setText, float displayTime)
     {
-        gameObject.SetActive(true);
+        _messageObject.SetActive(true);
         // テキストの表示
         _messageText.text = setText;
         _messageTextBG.rectTransform.anchoredPosition = _messageDisplayAnchor.anchoredPosition;
@@ -78,7 +77,7 @@ public class MessageUI : MonoBehaviour
             elapsedTime += Time.deltaTime;
             await UniTask.DelayFrame(1);
         }
-        await Inactive();
+        _messageObject.SetActive(false);
     }
 
     /// <summary>
@@ -99,7 +98,7 @@ public class MessageUI : MonoBehaviour
 
     public async UniTask RunBanner(string setText)
     {
-        gameObject.SetActive(true);
+        _bannerObject.SetActive(true);
         // テキストの表示
         _bannerText.text = setText;
         _bannerTextBG.rectTransform.anchoredPosition = _bannerDisplayAnchor.anchoredPosition;
@@ -107,16 +106,6 @@ public class MessageUI : MonoBehaviour
 
     public async UniTask CloseBanner()
     {
-
-    }
-
-    /// <summary>
-    /// 非表示にする
-    /// </summary>
-    /// <returns></returns>
-    public async UniTask Inactive()
-    {
-        gameObject.SetActive(false);
-        await UniTask.CompletedTask;
+        _bannerObject.SetActive(false);
     }
 }
