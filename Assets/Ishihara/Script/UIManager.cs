@@ -210,6 +210,17 @@ public class UIManager : SystemObject
     /// <summary>
     /// ステータスエリアに追加する
     /// </summary>
+    /// <param name="character"></param>
+    /// <returns></returns>
+    public async UniTask AddStatus(int CharacterID, int order)
+    {
+        Character character = CharacterManager.instance.GetCharacter(CharacterID);
+        await _menuStatus.AddStatus(character, order);
+    }
+
+    /// <summary>
+    /// ステータスエリアに追加する
+    /// </summary>
     /// <returns></returns>
     public async UniTask AddStatus(string str)
     {
